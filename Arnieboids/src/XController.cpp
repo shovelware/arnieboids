@@ -1,4 +1,4 @@
-#include "XController.hpp"
+#include <include/XController.hpp>
 
 XController::XController() :
 	deadzoneLX_(0.15f), deadzoneLY_(0.15f),

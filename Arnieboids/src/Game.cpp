@@ -37,8 +37,7 @@ int Game::run() {
 		//If time since last tick is greater or equal to the time per tick...
 		while (tickClock_.now() - timeOfLastTick_ >= timePerTick_)
 		{
-			//Update the time last tick to be now.
-			timeOfLastTick_ = tickClock_.now();
+			timeOfLastTick_ += timePerTick_;
 
 			//Update bullets and ships.
 			update();

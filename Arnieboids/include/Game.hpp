@@ -6,7 +6,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include <include/I_Ship.hpp>
+#include "I_Ship.hpp"
 
 class Bullet;
 

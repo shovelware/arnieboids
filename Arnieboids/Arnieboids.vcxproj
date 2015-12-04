@@ -74,12 +74,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp" />
-    <ClCompile Include="src\I_Ship.cpp" />
+    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Ship.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\XController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Game.hpp" />
-    <ClInclude Include="include\I_Ship.hpp" />
+    <ClInclude Include="include\Ship.hpp" />
+    <ClInclude Include="include\Player.hpp" />
+    <ClInclude Include="include\XController.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
