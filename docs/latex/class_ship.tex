@@ -1,0 +1,62 @@
+\hypertarget{class_ship}{}\section{Ship Class Reference}
+\label{class_ship}\index{Ship@{Ship}}
+
+
+Base \hyperlink{class_ship}{Ship} class. Abstract class that inherits from sf\+::\+Convex\+Shape. Contains members common to all ships.  
+
+
+
+
+{\ttfamily \#include $<$Ship.\+hpp$>$}
+
+Inheritance diagram for Ship\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_ship}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_ship_a4361703fa6d49a17f080648e1c2dc60b}{}{\bfseries Ship} (float max\+Speed)\label{class_ship_a4361703fa6d49a17f080648e1c2dc60b}
+
+\item 
+\hypertarget{class_ship_abfe8b92e7f0346b198e8c40cff44ebeb}{}virtual void \hyperlink{class_ship_abfe8b92e7f0346b198e8c40cff44ebeb}{update} ()=0\label{class_ship_abfe8b92e7f0346b198e8c40cff44ebeb}
+
+\begin{DoxyCompactList}\small\item\em Hides sf\+::\+Shape\+::update() \end{DoxyCompactList}\item 
+\hypertarget{class_ship_a966830e20a179ada7d4b7301577b72d7}{}virtual void {\bfseries on\+Collide} (\hyperlink{class_ship}{Ship} $\ast$other)=0\label{class_ship_a966830e20a179ada7d4b7301577b72d7}
+
+\item 
+\hypertarget{class_ship_a3a0732b4bb4697b57398cec3b24d76ed}{}void {\bfseries take\+Damage} (unsigned int amount)\label{class_ship_a3a0732b4bb4697b57398cec3b24d76ed}
+
+\item 
+\hypertarget{class_ship_a52d219bbadbba6475b919f8e6497ce34}{}bool {\bfseries is\+Dead} () const \label{class_ship_a52d219bbadbba6475b919f8e6497ce34}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_ship_a8e7bc2ee7d749ab0d28062091733987c}{}void \hyperlink{class_ship_a8e7bc2ee7d749ab0d28062091733987c}{clamp\+To\+Max\+Speed} ()\label{class_ship_a8e7bc2ee7d749ab0d28062091733987c}
+
+\begin{DoxyCompactList}\small\item\em Clamps the length of the velocity\+\_\+ vector to M\+A\+X\+\_\+\+S\+P\+E\+E\+D\+\_\+. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_ship_a6843554ddc3c0098bcc9d17f7a7fbf3b}{}const float \hyperlink{class_ship_a6843554ddc3c0098bcc9d17f7a7fbf3b}{M\+A\+X\+\_\+\+S\+P\+E\+E\+D\+\_\+}\label{class_ship_a6843554ddc3c0098bcc9d17f7a7fbf3b}
+
+\begin{DoxyCompactList}\small\item\em Maximum length of velocity\+\_\+ vector. \end{DoxyCompactList}\item 
+\hypertarget{class_ship_ac1584ef024d6ed1538eb2d1e99661557}{}sf\+::\+Vector2f \hyperlink{class_ship_ac1584ef024d6ed1538eb2d1e99661557}{velocity\+\_\+}\label{class_ship_ac1584ef024d6ed1538eb2d1e99661557}
+
+\begin{DoxyCompactList}\small\item\em Change of position of ship per update. \end{DoxyCompactList}\item 
+\hypertarget{class_ship_a6a377507ab7c9c91356869121a84c252}{}unsigned int {\bfseries health\+\_\+}\label{class_ship_a6a377507ab7c9c91356869121a84c252}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Base \hyperlink{class_ship}{Ship} class. Abstract class that inherits from sf\+::\+Convex\+Shape. Contains members common to all ships. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Arnieboids/include/Ship.\+hpp\item 
+Arnieboids/src/Ship.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,29 @@
+\hypertarget{class_game}{}\section{Game Class Reference}
+\label{class_game}\index{Game@{Game}}
+
+
+{\ttfamily \#include $<$Game.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_game_a50d0ebb6c8c0dbb762d2c1c10bc0c91c}{}{\bfseries Game} (unsigned int win\+Width=800\+U, unsigned int win\+Height=600\+U, unsigned int time\+Per\+Tick=16\+U)\label{class_game_a50d0ebb6c8c0dbb762d2c1c10bc0c91c}
+
+\item 
+\hypertarget{class_game_a99fb161fbbe87d25a8b73265a0611e58}{}int \hyperlink{class_game_a99fb161fbbe87d25a8b73265a0611e58}{run} ()\label{class_game_a99fb161fbbe87d25a8b73265a0611e58}
+
+\begin{DoxyCompactList}\small\item\em Implements the main game loop. While window\+\_\+ is open\+: Calls handle\+Events(), Implements a fixed timestep and calls update() and draw() inside it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Updates and draws all ships and bullets. Culls dead bullets and ships.
+
+\begin{DoxyRemark}{Remarks}
+Chrono members are used for fixed timestep 
+\end{DoxyRemark}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Arnieboids/include/Game.\+hpp\item 
+Arnieboids/src/Game.\+cpp\end{DoxyCompactItemize}
