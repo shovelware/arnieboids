@@ -2,14 +2,15 @@
 
 #pragma region PublicMemberFunctions
 Game::Game(unsigned int winWidth, unsigned int winHeight, unsigned int timePerTick) :
-window_(sf::VideoMode(winWidth, winHeight), "ArnieBoids"),
+window_(sf::VideoMode(winWidth, winHeight), "ArnieBoids", sf::Style::Default, sf::ContextSettings(0u, 0u, 8u)),	//AntiAliasing level: 8
 ships_(),
 bullets_(),
+controller_(),
 tickClock_(),
 timePerTick_(timePerTick),
 timeOfLastTick_(tickClock_.now() - timePerTick_)
 {
-
+	ships_.push_back(new Player(sf::Vector2f(200.f, 200.f)));
 }
 
 Game::~Game() {
@@ -24,7 +25,7 @@ Game::~Game() {
 		itr != end;
 		++itr)
 	{
-		//delete *itr;
+		delete *itr;
 	}
 }
 
@@ -105,6 +106,7 @@ void Game::update() {
 }
 
 void Game::draw() {
+	window_.clear();
 
 	for (auto itr = bullets_.begin(), end = bullets_.end();
 		itr != end;
@@ -119,5 +121,7 @@ void Game::draw() {
 	{
 		window_.draw(**itr);
 	}
+
+	window_.display();
 }
 #pragma endregion

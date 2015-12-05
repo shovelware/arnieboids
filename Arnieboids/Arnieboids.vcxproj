@@ -57,6 +57,13 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy $(THOR)\bin\thor-d.dll $(TargetDir) /Y /D /C
+xcopy $(SFML)\bin\*-d-2.dll $(TargetDir) /Y /D</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy sfml and thor dlls into target directory. Update Doxygen documentation</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

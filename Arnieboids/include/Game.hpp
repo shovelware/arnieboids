@@ -6,7 +6,9 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "I_Ship.hpp"
+#include "Ship.hpp"
+#include "Player.hpp"
+#include "XController.hpp"
 
 class Bullet;
 
@@ -30,10 +32,17 @@ public:
 	int run();
 
 private:
-	sf::RenderWindow window_;	//!< Window that everything will be drawn to.
+	//! Window that everything will be drawn to
+	sf::RenderWindow window_;
 
-	std::list<I_Ship*> ships_;	//!< All ships in the game
-	std::list<Bullet*> bullets_;	//!< All bullets in the game
+	//! All ships in the game
+	std::list<Ship*> ships_;
+
+	//! All bullets in the game
+	std::list<Bullet*> bullets_;
+
+	//! For taking input from an xBox controller
+	XController controller_;
 
 	std::chrono::steady_clock tickClock_;
 	std::chrono::milliseconds timePerTick_;	//!< Milliseconds per update/draw tick
