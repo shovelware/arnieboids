@@ -9,6 +9,7 @@
 #include "Ship.hpp"
 #include "Player.hpp"
 #include "XController.hpp"
+#include "Camera.hpp"
 
 class Bullet;
 
@@ -20,7 +21,7 @@ class Bullet;
  */
 class Game {
 public:
-	Game(unsigned int winWidth = 800U, unsigned int winHeight = 600U, unsigned int timePerTick = 16U);
+	Game(unsigned int winWidth = 800U, unsigned int winHeight = 800U, unsigned int timePerTick = 16U);
 	~Game();
 
 	/*!
@@ -41,8 +42,11 @@ private:
 	//! All bullets in the game
 	std::list<Bullet*> bullets_;
 
-	//! For taking input from an xBox controller
+	//! For taking input from an Xbox controller
 	XController controller_;
+
+	//! Camera that follows ships and has a HUD
+	Camera camera_;
 
 	std::chrono::steady_clock tickClock_;
 	std::chrono::milliseconds timePerTick_;	//!< Milliseconds per update/draw tick
