@@ -36,18 +36,7 @@ void Player::update() {
 		shouldTurn = !shouldTurn;		//demo
 	}									//demo
 
-	//Get rotation in radians
-	float rotRads = getRotation() * 0.017f;
-
-	//Calculate forward vector
-	forward_.y = -cosf(rotRads);
-	forward_.x = sinf(rotRads);
-
-	//Calculate and pplay delta velocity
-	velocity_.x += forward_.x * thrust_;
-	velocity_.y += forward_.y * thrust_;
-
-	clampToMaxSpeed();
+	thrust();
 
 	move(velocity_);
 }

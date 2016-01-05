@@ -8,12 +8,6 @@ public:
 	Player(sf::Vector2f const &position, unsigned int maxHealth = 10U);
 	~Player();
 
-	/*!
-	 * Calculates forward vector and
-	 * accelerates player in that direction
-	 * by the ship's thrust.
-	 * \remarks Calls clampToMaxSpeed(). This is important.
-	 */
 	void update() override;
 
 	//! Not implemented!

@@ -36,3 +36,18 @@ void Ship::clampToMaxSpeed() {
 		velocity_ *= MAX_SPEED_;
 	}
 }
+
+void Ship::thrust() {
+	//Get rotation in radians
+	float rotRads = getRotation() * 0.017f;
+
+	//Calculate forward vector
+	forward_.y = -cosf(rotRads);
+	forward_.x = sinf(rotRads);
+
+	//Calculate and pplay delta velocity
+	velocity_.x += forward_.x * thrust_;
+	velocity_.y += forward_.y * thrust_;
+
+	clampToMaxSpeed();
+}

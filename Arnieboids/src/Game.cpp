@@ -12,7 +12,7 @@ timePerTick_(timePerTick),
 timeOfLastTick_(tickClock_.now() - timePerTick_)
 {
 	ships_.push_back(new Player(sf::Vector2f(200.f, 200.f)));
-	camera_.setTarget(*(--ships_.end()));
+	camera_.setTarget(*ships_.rbegin());
 }
 
 Game::~Game() {
@@ -34,13 +34,14 @@ Game::~Game() {
 int Game::run() {
 
 	while (window_.isOpen()) {
-		//Handle events from the RenderWindow
-		handleEvents();
 
 		//If time since last tick is greater or equal to the time per tick...
 		while (tickClock_.now() - timeOfLastTick_ >= timePerTick_)
 		{
 			timeOfLastTick_ += timePerTick_;
+
+			//Handle events from the RenderWindow
+			handleEvents();
 
 			//Update bullets and ships.
 			update();
@@ -61,7 +62,9 @@ void Game::handleEvents() {
 	{
 		switch (evnt.type)
 		{
-		case sf::Event::Closed: break;
+		case sf::Event::Closed:
+			window_.close();
+			break;
 		case sf::Event::Resized: break;
 		case sf::Event::LostFocus: break;
 		case sf::Event::GainedFocus: break;
