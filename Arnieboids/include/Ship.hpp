@@ -12,7 +12,7 @@
  */
 class Ship : public sf::ConvexShape {
 public:
-	Ship(float maxSpeed, unsigned int health = 1u);
+	Ship(sf::Vector2f const &position, float maxSpeed, unsigned int health = 1u);
 	~Ship();
 
 	virtual void update() = 0;	//!< Hides sf::Shape::update()

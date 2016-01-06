@@ -1,6 +1,6 @@
 #include <include/Ship.hpp>
 
-Ship::Ship(float maxSpeed, unsigned int health) :
+Ship::Ship(sf::Vector2f const &position, float maxSpeed, unsigned int health) :
 MAX_SPEED_(maxSpeed),
 velocity_(0.f, 0.f),
 health_(health),
@@ -8,6 +8,7 @@ forward_(0.f, 0.f),
 turnSpeed_(1.f),
 thrust_(0.1f)
 {
+	setPosition(position);
 }
 
 Ship::~Ship() {

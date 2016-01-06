@@ -11,8 +11,20 @@ tickClock_(),
 timePerTick_(timePerTick),
 timeOfLastTick_(tickClock_.now() - timePerTick_)
 {
+	ships_.push_back(new SwarmBoid(sf::Vector2f(100.f, 100.f)));
+	ships_.push_back(new SwarmBoid(sf::Vector2f(300.f, 300.f)));
+	ships_.push_back(new SwarmBoid(sf::Vector2f(600.f, 100.f)));
+	ships_.push_back(new SwarmBoid(sf::Vector2f(700.f, 300.f)));
+
 	ships_.push_back(new Player(sf::Vector2f(200.f, 200.f)));
 	camera_.setTarget(*ships_.rbegin());
+
+	bullets_.push_back(new Bullet(sf::Vector2f(100.f, 100.f), sf::Vector2f(1.f, 0.1f)));
+	bullets_.push_back(new Bullet(sf::Vector2f(1000.f, 1000.f), sf::Vector2f(-1.f, -1.f)));
+	bullets_.push_back(new Bullet(sf::Vector2f(0.f, 0.f), sf::Vector2f(200.f, 200.f)));
+	bullets_.push_back(new Bullet(sf::Vector2f(0.f, 0.f), sf::Vector2f(6.f, 1.f)));
+
+	bullets_.push_back(new Missile(*ships_.rbegin(), sf::Vector2f(100.f, 100.f), sf::Vector2f(0.1f, 1.f)));
 }
 
 Game::~Game() {
@@ -20,7 +32,7 @@ Game::~Game() {
 		itr != end;
 		++itr)
 	{
-		//delete *itr;
+		delete *itr;
 	}
 
 	for (auto itr = ships_.begin(), end = ships_.end();
@@ -101,7 +113,7 @@ void Game::update() {
 		itr != end;
 		++itr)
 	{
-		//(*itr)->update();
+		(*itr)->update();
 	}
 
 	for (auto itr = ships_.begin(), end = ships_.end();
@@ -120,7 +132,7 @@ void Game::draw() {
 		itr != end;
 		++itr)
 	{
-		//window_.draw(**itr);
+		window_.draw(**itr);
 	}
 
 	for (auto itr = ships_.begin(), end = ships_.end();

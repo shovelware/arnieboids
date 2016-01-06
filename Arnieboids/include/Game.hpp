@@ -8,6 +8,9 @@
 
 #include "Ship.hpp"
 #include "Player.hpp"
+#include "SwarmBoid.hpp"
+#include "Bullet.hpp"
+#include "Missile.hpp"
 #include "XController.hpp"
 #include "Camera.hpp"
 
