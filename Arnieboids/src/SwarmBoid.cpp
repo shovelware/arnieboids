@@ -3,6 +3,8 @@
 //define static list of boids
 std::list<SwarmBoid*> SwarmBoid::swarm_ = std::list<SwarmBoid*>();
 
+float SwarmBoid::swarmThresholdRadius_ = FLT_MAX;
+
 SwarmBoid::SwarmBoid(sf::Vector2f position) :
 Ship(position, 3.f)
 {
@@ -27,6 +29,8 @@ Ship(position, 3.f)
 
 	setOutlineThickness(1.f);
 	setOutlineColor(sf::Color::Green);
+
+	swarm_.push_back(this);
 }
 
 SwarmBoid::~SwarmBoid() {
@@ -35,9 +39,60 @@ SwarmBoid::~SwarmBoid() {
 }
 
 void SwarmBoid::update() {
-	//TODO: swarm!
+	swarm();
 }
 
 void SwarmBoid::onCollide(Ship* other) {
 	--health_;
+}
+
+// returns sin(theta)*length(a)*length(b), where theta = the angle between vectors a,b
+inline float perpDot(const sf::Vector2f& a, const sf::Vector2f& b)
+{
+	return (a.y*b.x) - (a.x*b.y);
+}
+
+void SwarmBoid::swarm() {
+	/*
+	Lenard-Jones Potential function
+	Vector R = me.position - you.position
+	Real D = R.magnitude()
+	Real U = -A / pow(D, N) + B / pow(D, M)
+	R.normalise()
+	force = force + R*U
+	*/
+	sf::Vector2f R;
+	sf::Vector2f sum(0, 0);
+	float D, U;
+
+	static const float A = 100.0f;	//force of attraction
+	static const float B = 5000.0f;	//force of seperation
+	static const float N = 1.0f;	//attraction attenuation
+	static const float M = 2.0f;	//seperatation attenuation
+
+	int count = 0;
+	for (SwarmBoid* boid : swarm_)
+	{
+		R = this->getPosition() - boid->getPosition();
+		D = thor::length(R);
+
+		if (D > 1)	//1 instead of 0, just in case of rounding errors
+		{
+			++count;
+			U = (-A / powf(D, N)) + (B / powf(D, M));	//Lenard-Jones Potential
+
+			R = thor::unitVector(R);
+
+			//sum += R*U
+			R *= U;
+			sum += R;
+		}
+	}
+	//get average
+	sum /= static_cast<float>(count);
+
+	velocity_ += sum;
+	clampToMaxSpeed();
+	//borders();
+	move(velocity_);
 }
