@@ -15,8 +15,7 @@
 #include "XController.hpp"
 #include "Camera.hpp"
 #include "Asteroid.hpp"
-
-class Bullet;
+#include "Star.hpp"
 
 /*!
  * Updates and draws all ships and bullets.
@@ -44,10 +43,15 @@ private:
 	//! All ships in the game
 	std::list<Ship*> ships_;
 
+	//! Ship affected by input
 	Ship* controlled_;
 
 	//! All bullets in the game
 	std::list<Bullet*> bullets_;
+
+	//! Background stars
+	std::list<Star> stars_;
+	void genStars(float minX, float maxX, float minY, float maxY, unsigned int amount, float minR, float maxR);
 
 	//! For keyboard input
 	KeyInput keyboard_;

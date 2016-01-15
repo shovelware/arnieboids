@@ -89,6 +89,7 @@ xcopy $(SFML)\bin\*-d-2.dll $(TargetDir) /Y /D</Command>
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Ship.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Star.cpp" />
     <ClCompile Include="src\SwarmBoid.cpp" />
     <ClCompile Include="src\XController.cpp" />
   </ItemGroup>
@@ -101,6 +102,7 @@ xcopy $(SFML)\bin\*-d-2.dll $(TargetDir) /Y /D</Command>
     <ClInclude Include="include\Missile.hpp" />
     <ClInclude Include="include\Ship.hpp" />
     <ClInclude Include="include\Player.hpp" />
+    <ClInclude Include="include\Star.hpp" />
     <ClInclude Include="include\SwarmBoid.hpp" />
     <ClInclude Include="include\XController.hpp" />
   </ItemGroup>

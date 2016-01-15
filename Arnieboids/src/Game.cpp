@@ -1,5 +1,8 @@
 #include <include/Game.hpp>
 
+inline float randFloat(float MAX) { return static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / MAX)); };
+inline float randFloat(float MIN, float MAX) { return MIN + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (MAX - MIN))); };
+
 #pragma region PublicMemberFunctions
 Game::Game(unsigned int winWidth, unsigned int winHeight, unsigned int timePerTick) :
 window_(sf::VideoMode(winWidth, winHeight), "ArnieBoids", sf::Style::Default, sf::ContextSettings(0u, 0u, 8u)),	//AntiAliasing level: 8
@@ -12,6 +15,11 @@ timePerTick_(timePerTick),
 timeOfLastTick_(tickClock_.now() - timePerTick_),
 keyboard_()
 {
+	float w = winWidth;
+	float h = winHeight;
+
+	genStars(-w, w * 2, -h, h * 2, 1000U, 1, 5);
+
 	ships_.push_back(new SwarmBoid(sf::Vector2f(100.f, 100.f)));
 	ships_.push_back(new SwarmBoid(sf::Vector2f(300.f, 300.f)));
 	ships_.push_back(new SwarmBoid(sf::Vector2f(600.f, 400.f)));
@@ -39,6 +47,7 @@ keyboard_()
 	bullets_.push_back(new Bullet(sf::Vector2f(0.f, 0.f), sf::Vector2f(6.f, 1.f)));
 
 	bullets_.push_back(new Missile(*ships_.rbegin(), sf::Vector2f(100.f, 100.f), sf::Vector2f(0.1f, 1.f)));
+
 }
 
 Game::~Game() {
@@ -135,31 +144,6 @@ void Game::update() {
 		else bullets_.erase(itr++);
 	}
 
-	/*
-	p->update(dt);
-
-			//If we're not active, increment by deleting
-			if (p->getActive() == false)
-			{
-				removeProjectile(p);
-			}
-
-			//Else just increment
-			else ++p;
-		}
-		
-		///////
-
-		//Removes projectile from the world and increments iterator, for use within loops
-		void GameWorld::removeProjectile(std::list<Projectile>::iterator& p)
-		{
-		DestroyBody(p->getBody());
-		projectiles_.erase(p++);
-		}
-	
-	
-	*/
-
 	for (auto itr = ships_.begin(), end = ships_.end();
 	itr != end;
 		++itr)
@@ -198,9 +182,43 @@ void Game::update() {
 	}
 }
 
+void Game::genStars(float minX, float maxX, float minY, float maxY, unsigned int amount, float minR, float maxR)
+{
+	if (minX <= maxX && minY <= maxY && minR <= maxR)
+	{
+		stars_.clear();
+
+		sf::Vector2f p;
+		float r;
+		sf::Color c;
+
+		for (unsigned int i = 0; i < amount; ++i)
+		{
+			p.x = randFloat(minX, maxX);
+			p.y = randFloat(minY, maxY);
+
+			r = randFloat(minR, maxR);
+
+			c.r = randFloat(128, 255);
+			c.g = randFloat(128, 255);
+			c.b = randFloat(128, 255);
+
+			stars_.push_back(Star(p, r, c));
+		}
+	}
+
+}
+
 void Game::draw() {
 	window_.clear();
 	window_.setView(camera_);
+
+	for (auto itr = stars_.begin(), end = stars_.end();
+	itr != end;
+		++itr)
+	{
+		window_.draw(*itr);
+	}
 
 	for (auto itr = bullets_.begin(), end = bullets_.end();
 		itr != end;

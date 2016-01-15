@@ -46,6 +46,7 @@ protected:
 
 	float refireTime_;
 	float coolDown_;
+	unsigned int ticks_; //ticks_ = (ticks_ + 1) % INT_MAX;
 
 	//! Delta position per update
 	sf::Vector2f velocity_;	
