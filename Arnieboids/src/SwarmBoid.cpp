@@ -26,6 +26,8 @@ Ship(position, 3.f)
 
 	setOrigin(15.f, 5.f);
 
+	calculateBoundingCircle();
+
 	setFillColor(sf::Color(0, 100, 2));
 
 	setOutlineThickness(1.f);

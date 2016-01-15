@@ -2,7 +2,7 @@
 #include <iostream>
 
 Player::Player(sf::Vector2f const& position, unsigned int maxHealth) :
-Ship(position, 3.f),
+Ship(position, 1.f),
 MAX_HEALTH_(maxHealth)
 {
 	setPointCount(3u);
@@ -18,6 +18,8 @@ MAX_HEALTH_(maxHealth)
 	setPoint(2u, sf::Vector2f(0, 30));
 
 	setOrigin(10.f, 15.f);
+
+	calculateBoundingCircle();
 
 	setFillColor(sf::Color::Blue);
 
