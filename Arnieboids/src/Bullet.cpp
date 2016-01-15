@@ -31,9 +31,7 @@ void Bullet::update() {
 	{
 		rotate(10.f);
 		move(forward_ * speed_);
-
-		ticks_++;
-
+		
 		ticks_ = (ticks_ + 1) % INT_MAX;
 
 		if (tickToSec(ticks_) >= lifeTime_)
