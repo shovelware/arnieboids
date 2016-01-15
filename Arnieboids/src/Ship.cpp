@@ -6,7 +6,9 @@ velocity_(0.f, 0.f),
 health_(health),
 forward_(0.f, -1.f),
 turnSpeed_(2.f),
-thrust_(0.1f)
+thrust_(0.1f),
+refireTime_(2.f),
+coolDown_(0)
 {
 	setPosition(position);
 }
@@ -71,13 +73,27 @@ void Ship::turnRight()
 	rotate(turnSpeed_);
 }
 
+//Should this be here?
 bool Ship::trigger()
 {
+	bool fired = false;
+	
 	//Handle firing logic, return success here
-	return true;
+	if (coolDown_ <= 0)
+	{
+		coolDown_ = refireTime_;
+		fired = true;
+	}
+
+	return fired;
 }
 
 sf::Vector2f Ship::getForward() const
 {
 	return forward_;
+}
+
+float Ship::tickToSec(unsigned int ticks) const
+{
+	return (16.f / 1000.f) * ticks;
 }

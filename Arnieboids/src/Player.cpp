@@ -23,6 +23,8 @@ MAX_HEALTH_(maxHealth)
 
 	setOutlineThickness(1.f);
 	setOutlineColor(sf::Color::Cyan);
+
+	refireTime_ = .5f;
 }
 
 Player::~Player() {
@@ -31,6 +33,9 @@ Player::~Player() {
 
 void Player::update() {
 	move(velocity_);
+
+	//Cool weapon
+	coolDown_ -= tickToSec(1);
 }
 
 void Player::onCollide(Ship* other) {

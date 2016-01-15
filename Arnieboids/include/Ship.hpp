@@ -44,6 +44,9 @@ protected:
 	//! Maxiumum length of velocity vector
 	const float MAX_SPEED_;
 
+	float refireTime_;
+	float coolDown_;
+
 	//! Delta position per update
 	sf::Vector2f velocity_;	
 
@@ -61,5 +64,8 @@ protected:
 
 	//! Clamps the length of the velocity_ vector to MAX_SPEED_
 	void clampToMaxSpeed();
+
+	//! Ticks to seconds
+	float tickToSec(unsigned int ticks) const;
 };
 #endif

@@ -118,11 +118,40 @@ void Game::update() {
 	keyboard_.update();
 
 	for (auto itr = bullets_.begin(), end = bullets_.end();
-	itr != end;
-		++itr)
+	itr != end; /*No increment*/)
 	{
-		(*itr)->update();
+		if ((*itr)->isActive())
+		{
+			(*itr++)->update();
+		}
+		
+		else bullets_.erase(itr++);
 	}
+
+	/*
+	p->update(dt);
+
+			//If we're not active, increment by deleting
+			if (p->getActive() == false)
+			{
+				removeProjectile(p);
+			}
+
+			//Else just increment
+			else ++p;
+		}
+		
+		///////
+
+		//Removes projectile from the world and increments iterator, for use within loops
+		void GameWorld::removeProjectile(std::list<Projectile>::iterator& p)
+		{
+		DestroyBody(p->getBody());
+		projectiles_.erase(p++);
+		}
+	
+	
+	*/
 
 	for (auto itr = ships_.begin(), end = ships_.end();
 	itr != end;
@@ -131,22 +160,23 @@ void Game::update() {
 		(*itr)->update();
 	}
 
+	//Keyboard updates
 	if (keyboard_.isKeyDown(sf::Keyboard::Escape))
 	{
 		window_.close();
 	}
 
-	if (keyboard_.isKeyDown(sf::Keyboard::W))
+	if (keyboard_.isKeyDown(sf::Keyboard::W) || keyboard_.isKeyDown(sf::Keyboard::Up))
 	{
 		controlled_->thrust();
 	}
 
-	if (keyboard_.isKeyDown(sf::Keyboard::D))
+	if (keyboard_.isKeyDown(sf::Keyboard::D) || keyboard_.isKeyDown(sf::Keyboard::Right))
 	{
 		controlled_->turnRight();
 	}
 
-	if (keyboard_.isKeyDown(sf::Keyboard::A))
+	if (keyboard_.isKeyDown(sf::Keyboard::A) || keyboard_.isKeyDown(sf::Keyboard::Left))
 	{
 		controlled_->turnLeft();
 	}
