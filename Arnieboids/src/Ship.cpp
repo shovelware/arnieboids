@@ -4,7 +4,7 @@ Ship::Ship(sf::Vector2f const &position, float maxSpeed, unsigned int health) :
 MAX_SPEED_(maxSpeed),
 velocity_(0.f, 0.f),
 health_(health),
-forward_(0.f, 0.f),
+forward_(0.f, -1.f),
 turnSpeed_(2.f),
 thrust_(0.1f)
 {
@@ -39,12 +39,6 @@ void Ship::clampToMaxSpeed() {
 }
 
 void Ship::thrust() {
-	//Get rotation in radians
-	float rotRads = getRotation() * 0.017f;
-
-	//Calculate forward vector
-	forward_.y = -cosf(rotRads);
-	forward_.x = sinf(rotRads);
 
 	//Calculate and pplay delta velocity
 	velocity_.x += forward_.x * thrust_;
@@ -55,16 +49,35 @@ void Ship::thrust() {
 
 void Ship::turnLeft()
 {
+	//Get rotation in radians
+	float rotRads = thor::toRadian(getRotation());
+
+	//Calculate forward vector
+	forward_.y = -cosf(rotRads);
+	forward_.x = sinf(rotRads);
+
 	rotate(-turnSpeed_);
 }
 
 void Ship::turnRight()
 {
+	//Get rotation in radians
+	float rotRads = thor::toRadian(getRotation());
+
+	//Calculate forward vector
+	forward_.y = -cosf(rotRads);
+	forward_.x = sinf(rotRads);
+
 	rotate(turnSpeed_);
 }
 
 bool Ship::trigger()
 {
 	//Handle firing logic, return success here
-	return false;
+	return true;
+}
+
+sf::Vector2f Ship::getForward() const
+{
+	return forward_;
 }

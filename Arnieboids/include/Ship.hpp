@@ -37,6 +37,9 @@ public:
 	//! Attempt to fire, returns success
 	bool trigger();
 
+	//! Returns forward direction of ship
+	sf::Vector2f getForward() const;
+
 protected:
 	//! Maxiumum length of velocity vector
 	const float MAX_SPEED_;
