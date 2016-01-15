@@ -13,6 +13,7 @@
 #include "Missile.hpp"
 #include "XController.hpp"
 #include "Camera.hpp"
+#include "Asteroid.hpp"
 
 class Bullet;
 

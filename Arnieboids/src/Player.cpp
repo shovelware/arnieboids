@@ -34,7 +34,7 @@ bool shouldTurn = true;	//demo
 
 void Player::update() {
 
-	rotate(turnDir);	//demo purposes (until input is implemented)
+	//rotate(turnDir);	//demo purposes (until input is implemented)
 	if ((int)getRotation() % 180 < 1) {	//demo
 		if (shouldTurn) turnDir *= -1;	//demo
 		shouldTurn = !shouldTurn;		//demo
@@ -42,7 +42,7 @@ void Player::update() {
 
 	thrust();
 
-	move(velocity_);
+	//move(velocity_);
 }
 
 void Player::onCollide(Ship* other) {

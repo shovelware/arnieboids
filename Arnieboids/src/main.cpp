@@ -16,6 +16,8 @@
 
 int main()
 {
+	srand(time_t(NULL));
+
 	Game game = Game();
 
 	return game.run();
