@@ -11,6 +11,7 @@
 #include "SwarmBoid.hpp"
 #include "Bullet.hpp"
 #include "Missile.hpp"
+#include "KeyInput.hpp"
 #include "XController.hpp"
 #include "Camera.hpp"
 
@@ -42,8 +43,13 @@ private:
 	//! All ships in the game
 	std::list<Ship*> ships_;
 
+	Ship* controlled_;
+
 	//! All bullets in the game
 	std::list<Bullet*> bullets_;
+
+	//! For keyboard input
+	KeyInput keyboard_;
 
 	//! For taking input from an Xbox controller
 	XController controller_;

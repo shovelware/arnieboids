@@ -5,7 +5,7 @@ MAX_SPEED_(maxSpeed),
 velocity_(0.f, 0.f),
 health_(health),
 forward_(0.f, 0.f),
-turnSpeed_(1.f),
+turnSpeed_(2.f),
 thrust_(0.1f)
 {
 	setPosition(position);
@@ -51,4 +51,20 @@ void Ship::thrust() {
 	velocity_.y += forward_.y * thrust_;
 
 	clampToMaxSpeed();
+}
+
+void Ship::turnLeft()
+{
+	rotate(-turnSpeed_);
+}
+
+void Ship::turnRight()
+{
+	rotate(turnSpeed_);
+}
+
+bool Ship::trigger()
+{
+	//Handle firing logic, return success here
+	return false;
 }

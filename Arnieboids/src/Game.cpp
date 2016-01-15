@@ -9,7 +9,8 @@ bullets_(),
 controller_(),
 tickClock_(),
 timePerTick_(timePerTick),
-timeOfLastTick_(tickClock_.now() - timePerTick_)
+timeOfLastTick_(tickClock_.now() - timePerTick_),
+keyboard_()
 {
 	ships_.push_back(new SwarmBoid(sf::Vector2f(100.f, 100.f)));
 	ships_.push_back(new SwarmBoid(sf::Vector2f(300.f, 300.f)));
@@ -18,6 +19,7 @@ timeOfLastTick_(tickClock_.now() - timePerTick_)
 
 	ships_.push_back(new Player(sf::Vector2f(200.f, 200.f)));
 	camera_.setTarget(*ships_.rbegin());
+	controlled_ = *(ships_.rbegin());
 
 	bullets_.push_back(new Bullet(sf::Vector2f(100.f, 100.f), sf::Vector2f(1.f, 0.1f)));
 	bullets_.push_back(new Bullet(sf::Vector2f(1000.f, 1000.f), sf::Vector2f(-1.f, -1.f)));
@@ -108,19 +110,48 @@ void Game::handleEvents() {
 void Game::update() {
 
 	camera_.update();
+	keyboard_.update();
 
 	for (auto itr = bullets_.begin(), end = bullets_.end();
-		itr != end;
+	itr != end;
 		++itr)
 	{
 		(*itr)->update();
 	}
 
 	for (auto itr = ships_.begin(), end = ships_.end();
-		itr != end;
+	itr != end;
 		++itr)
 	{
 		(*itr)->update();
+	}
+
+	if (keyboard_.isKeyDown(sf::Keyboard::Escape))
+	{
+		window_.close();
+	}
+
+	if (keyboard_.isKeyDown(sf::Keyboard::W))
+	{
+		controlled_->thrust();
+	}
+
+	if (keyboard_.isKeyDown(sf::Keyboard::D))
+	{
+		controlled_->turnRight();
+	}
+
+	if (keyboard_.isKeyDown(sf::Keyboard::A))
+	{
+		controlled_->turnLeft();
+	}
+
+	if (keyboard_.isKeyDown(sf::Keyboard::Space))
+	{
+		if (controlled_->trigger())
+		{
+			//Add a bullet here
+		}
 	}
 }
 

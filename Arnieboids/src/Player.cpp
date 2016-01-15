@@ -2,7 +2,7 @@
 #include <iostream>
 
 Player::Player(sf::Vector2f const& position, unsigned int maxHealth) :
-Ship(position, 3.f),
+Ship(position, 4.f),
 MAX_HEALTH_(maxHealth)
 {
 	setPointCount(3u);
@@ -29,19 +29,7 @@ Player::~Player() {
 	
 }
 
-float turnDir = 1.f;	//demo
-bool shouldTurn = true;	//demo
-
 void Player::update() {
-
-	rotate(turnDir);	//demo purposes (until input is implemented)
-	if ((int)getRotation() % 180 < 1) {	//demo
-		if (shouldTurn) turnDir *= -1;	//demo
-		shouldTurn = !shouldTurn;		//demo
-	}									//demo
-
-	thrust();
-
 	move(velocity_);
 }
 

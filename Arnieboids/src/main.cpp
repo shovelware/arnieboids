@@ -14,9 +14,10 @@
 
 #include <include/Game.hpp>
 
+
 int main()
 {
-	Game game = Game();
+	Game game;
 
 	return game.run();
 }

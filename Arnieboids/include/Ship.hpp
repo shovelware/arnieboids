@@ -19,11 +19,23 @@ public:
 
 	virtual void onCollide(Ship* other) = 0;
 
-	//Reduces health by the specified amount
+	//! Reduces health by the specified amount
 	void takeDamage(unsigned int amount);
 
 	//! Returns true if health is zero
 	bool isDead() const;
+
+	//! Apply acceleration in direction of forward vector
+	void thrust();
+
+	//! Turn ship left
+	void turnLeft();
+
+	//! Turn ship right
+	void turnRight();
+
+	//! Attempt to fire, returns success
+	bool trigger();
 
 protected:
 	//! Maxiumum length of velocity vector
@@ -46,8 +58,5 @@ protected:
 
 	//! Clamps the length of the velocity_ vector to MAX_SPEED_
 	void clampToMaxSpeed();
-
-	//! Apply accelleration in direction of forward vector
-	void thrust();
 };
 #endif
