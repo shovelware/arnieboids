@@ -9,7 +9,8 @@ bullets_(),
 controller_(),
 tickClock_(),
 timePerTick_(timePerTick),
-timeOfLastTick_(tickClock_.now() - timePerTick_)
+timeOfLastTick_(tickClock_.now() - timePerTick_),
+keyboard_()
 {
 	ships_.push_back(new SwarmBoid(sf::Vector2f(100.f, 100.f)));
 	ships_.push_back(new SwarmBoid(sf::Vector2f(300.f, 300.f)));
@@ -22,6 +23,7 @@ timeOfLastTick_(tickClock_.now() - timePerTick_)
 
 	ships_.push_back(new Player(sf::Vector2f(200.f, 200.f)));
 	camera_.setTarget(*ships_.rbegin());
+	controlled_ = (*ships_.rbegin());
 	SwarmBoid::setSwarmTarget(*ships_.rbegin());
 
 	ships_.push_back(new Asteroid(sf::Vector2f(rand() % 500, rand() % 500)));
@@ -120,19 +122,79 @@ void Game::handleEvents() {
 void Game::update() {
 
 	camera_.update();
+	keyboard_.update();
 
 	for (auto itr = bullets_.begin(), end = bullets_.end();
-		itr != end;
+	itr != end; /*No increment*/)
+	{
+		if ((*itr)->isActive())
+		{
+			(*itr++)->update();
+		}
+		
+		else bullets_.erase(itr++);
+	}
+
+	/*
+	p->update(dt);
+
+			//If we're not active, increment by deleting
+			if (p->getActive() == false)
+			{
+				removeProjectile(p);
+			}
+
+			//Else just increment
+			else ++p;
+		}
+		
+		///////
+
+		//Removes projectile from the world and increments iterator, for use within loops
+		void GameWorld::removeProjectile(std::list<Projectile>::iterator& p)
+		{
+		DestroyBody(p->getBody());
+		projectiles_.erase(p++);
+		}
+	
+	
+	*/
+
+	for (auto itr = ships_.begin(), end = ships_.end();
+	itr != end;
 		++itr)
 	{
 		(*itr)->update();
 	}
 
-	for (auto itr = ships_.begin(), end = ships_.end();
-		itr != end;
-		++itr)
+	//Keyboard updates
+	if (keyboard_.isKeyDown(sf::Keyboard::Escape))
 	{
-		(*itr)->update();
+		window_.close();
+	}
+
+	if (keyboard_.isKeyDown(sf::Keyboard::W) || keyboard_.isKeyDown(sf::Keyboard::Up))
+	{
+		controlled_->thrust();
+	}
+
+	if (keyboard_.isKeyDown(sf::Keyboard::D) || keyboard_.isKeyDown(sf::Keyboard::Right))
+	{
+		controlled_->turnRight();
+	}
+
+	if (keyboard_.isKeyDown(sf::Keyboard::A) || keyboard_.isKeyDown(sf::Keyboard::Left))
+	{
+		controlled_->turnLeft();
+	}
+
+	if (keyboard_.isKeyDown(sf::Keyboard::Space))
+	{
+		if (controlled_->trigger())
+		{
+			//Add a bullet here
+			bullets_.push_back(new Bullet(controlled_->getPosition(), controlled_->getForward()));
+		}
 	}
 }
 

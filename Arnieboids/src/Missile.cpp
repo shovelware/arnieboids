@@ -22,7 +22,7 @@ isAccelerating_(true)
 
 	setOutlineColor(sf::Color::Red);
 
-	setRotation(atan2(forward_.y, forward_.x) * 57.296f);	//get forward vector as angle in degrees
+	setRotation(thor::toDegree(atan2(forward_.y, forward_.x)));	//get forward vector as angle in degrees
 }
 
 Missile::~Missile() {}
