@@ -1,13 +1,14 @@
 #include <include/SwarmBoid.hpp>
 
-//define static list of boids
+//define static members
 std::list<SwarmBoid*> SwarmBoid::swarm_ = std::list<SwarmBoid*>();
-
-float SwarmBoid::swarmThresholdRadius_ = FLT_MAX;
+float SwarmBoid::swarmThresholdRadius_ = 200.f;
+Ship* SwarmBoid::swarmTarget_ = nullptr;
 
 SwarmBoid::SwarmBoid(sf::Vector2f position) :
 Ship(position, 3.f)
 {
+
 	setPointCount(6u);
 
 	// Shape:
@@ -46,13 +47,53 @@ void SwarmBoid::onCollide(Ship* other) {
 	--health_;
 }
 
-// returns sin(theta)*length(a)*length(b), where theta = the angle between vectors a,b
-inline float perpDot(const sf::Vector2f& a, const sf::Vector2f& b)
-{
-	return (a.y*b.x) - (a.x*b.y);
+void SwarmBoid::setSwarmTarget(Ship* target) {
+	swarmTarget_ = target;
 }
 
 void SwarmBoid::swarm() {
+	sf::Vector2f sum(0, 0);
+
+	static const float A = 100.0f;	//force of attraction
+	static const float B = 50000.0f;	//force of seperation
+	static const float N = 1.0f;	//attraction attenuation
+	static const float M = 2.0f;	//seperatation attenuation
+
+	int count = 0;
+	for (SwarmBoid* boid : swarm_)
+	{
+		if (thor::length(boid->getPosition() - this->getPosition()) <= swarmThresholdRadius_) {
+			sum += LenardJonesPotential(boid, count);
+		}
+	}
+
+	//tend toward target
+	if (swarmTarget_) {
+		sum += LenardJonesPotential(swarmTarget_, count);
+	}
+
+	//get average
+	sum /= static_cast<float>(count);
+
+	velocity_ += sum;
+
+	forward_ = thor::unitVector(velocity_);
+
+	setRotation(atan2(forward_.y, forward_.x) * 57.296f);
+
+	thrust();
+
+	move(velocity_);
+
+	//borders();
+}
+
+sf::Vector2f SwarmBoid::LenardJonesPotential(const Ship* const other, int& count) const {
+	static const float A = 100.0f;	//force of attraction
+	static const float B = 3000.0f;	//force of seperation
+	static const float N = 1.0f;	//attraction attenuation
+	static const float M = 1.8f;	//seperatation attenuation
+
 	/*
 	Lenard-Jones Potential function
 	Vector R = me.position - you.position
@@ -61,38 +102,35 @@ void SwarmBoid::swarm() {
 	R.normalise()
 	force = force + R*U
 	*/
+
 	sf::Vector2f R;
-	sf::Vector2f sum(0, 0);
 	float D, U;
 
-	static const float A = 100.0f;	//force of attraction
-	static const float B = 5000.0f;	//force of seperation
-	static const float N = 1.0f;	//attraction attenuation
-	static const float M = 2.0f;	//seperatation attenuation
+	R = this->getPosition() - other->getPosition();
+	D = thor::length(R);
 
-	int count = 0;
-	for (SwarmBoid* boid : swarm_)
+	if (D > 1)	//1 instead of 0, just in case of rounding errors
 	{
-		R = this->getPosition() - boid->getPosition();
-		D = thor::length(R);
-
-		if (D > 1)	//1 instead of 0, just in case of rounding errors
+		++count;
+		if (other == swarmTarget_)
 		{
-			++count;
-			U = (-A / powf(D, N)) + (B / powf(D, M));	//Lenard-Jones Potential
-
-			R = thor::unitVector(R);
-
-			//sum += R*U
-			R *= U;
-			sum += R;
+			//apply no separation to swarmTarget_
+			U = (-A / powf(D, N));
 		}
-	}
-	//get average
-	sum /= static_cast<float>(count);
+		else {
+			U = (-A / powf(D, N)) + (B / powf(D, M));	//Lenard-Jones Potential
+		}
 
-	velocity_ += sum;
-	clampToMaxSpeed();
-	//borders();
-	move(velocity_);
+		R = thor::unitVector(R);
+
+		//sum += R*U
+		R *= U;
+	}
+	else
+	{
+		R = sf::Vector2f();
+	}
+
+	return R;
+
 }

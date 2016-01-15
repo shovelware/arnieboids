@@ -13,11 +13,16 @@ timeOfLastTick_(tickClock_.now() - timePerTick_)
 {
 	ships_.push_back(new SwarmBoid(sf::Vector2f(100.f, 100.f)));
 	ships_.push_back(new SwarmBoid(sf::Vector2f(300.f, 300.f)));
-	ships_.push_back(new SwarmBoid(sf::Vector2f(600.f, 100.f)));
+	ships_.push_back(new SwarmBoid(sf::Vector2f(600.f, 400.f)));
 	ships_.push_back(new SwarmBoid(sf::Vector2f(700.f, 300.f)));
+	ships_.push_back(new SwarmBoid(sf::Vector2f(160.f, 333.f)));
+	ships_.push_back(new SwarmBoid(sf::Vector2f(360.f, 800.f)));
+	ships_.push_back(new SwarmBoid(sf::Vector2f(660.f, 100.f)));
+	ships_.push_back(new SwarmBoid(sf::Vector2f(760.f, 100.f)));
 
 	ships_.push_back(new Player(sf::Vector2f(200.f, 200.f)));
 	camera_.setTarget(*ships_.rbegin());
+	SwarmBoid::setSwarmTarget(*ships_.rbegin());
 
 	bullets_.push_back(new Bullet(sf::Vector2f(100.f, 100.f), sf::Vector2f(1.f, 0.1f)));
 	bullets_.push_back(new Bullet(sf::Vector2f(1000.f, 1000.f), sf::Vector2f(-1.f, -1.f)));
