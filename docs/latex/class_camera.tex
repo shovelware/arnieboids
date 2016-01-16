@@ -1,0 +1,69 @@
+\hypertarget{class_camera}{}\section{Camera Class Reference}
+\label{class_camera}\index{Camera@{Camera}}
+
+
+{\ttfamily \#include $<$Camera.\+hpp$>$}
+
+Inheritance diagram for Camera\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_camera}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_camera_a221f2071bdc6218f785bb3b151570c62}{}{\bfseries Camera} (sf\+::\+Vector2u screen\+Size)\label{class_camera_a221f2071bdc6218f785bb3b151570c62}
+
+\item 
+\hypertarget{class_camera_abcd03175feb626a823d17d92d55a30d8}{}{\bfseries Camera} (sf\+::\+Vector2u screen\+Size, \hyperlink{class_ship}{Ship} $\ast$target)\label{class_camera_abcd03175feb626a823d17d92d55a30d8}
+
+\item 
+\hypertarget{class_camera_a2a8fc39bb84d82d969827d504e4f6928}{}void {\bfseries set\+Target} (\hyperlink{class_ship}{Ship} $\ast$target)\label{class_camera_a2a8fc39bb84d82d969827d504e4f6928}
+
+\item 
+\hypertarget{class_camera_ad9ab2d09758faec8de60205b4cecacd9}{}\hyperlink{class_ship}{Ship} $\ast$ {\bfseries get\+Target} ()\label{class_camera_ad9ab2d09758faec8de60205b4cecacd9}
+
+\item 
+\hypertarget{class_camera_a2c2eb9907441db681f3fbd34694d415e}{}void {\bfseries clear\+Target} ()\label{class_camera_a2c2eb9907441db681f3fbd34694d415e}
+
+\item 
+void \hyperlink{class_camera_a42cda7239981a5618660d04bd5893556}{update} ()
+\item 
+\hypertarget{class_camera_a8414e6d74d3f6259fa5ea1f037e9d8bd}{}void \hyperlink{class_camera_a8414e6d74d3f6259fa5ea1f037e9d8bd}{move} ()\label{class_camera_a8414e6d74d3f6259fa5ea1f037e9d8bd}
+
+\begin{DoxyCompactList}\small\item\em Not implemented! \end{DoxyCompactList}\item 
+\hypertarget{class_camera_a62d35e87b3eeac9463f43c17b65ef090}{}void \hyperlink{class_camera_a62d35e87b3eeac9463f43c17b65ef090}{zoom\+In} ()\label{class_camera_a62d35e87b3eeac9463f43c17b65ef090}
+
+\begin{DoxyCompactList}\small\item\em Not implemented! \end{DoxyCompactList}\item 
+\hypertarget{class_camera_aafc1d985053e11bd553b8a12540a562d}{}void {\bfseries zoom\+Out} ()\label{class_camera_aafc1d985053e11bd553b8a12540a562d}
+
+\item 
+\hypertarget{class_camera_a20f8f7cb0ef6591c33e9aacb5539c55c}{}void {\bfseries zoom\+Set} ()\label{class_camera_a20f8f7cb0ef6591c33e9aacb5539c55c}
+
+\item 
+\hypertarget{class_camera_a9d6e88df1d8fc3e3209089529751be60}{}void {\bfseries zoom\+Reset} ()\label{class_camera_a9d6e88df1d8fc3e3209089529751be60}
+
+\item 
+\hypertarget{class_camera_a293e96ec309365bbbe590140ce1b7828}{}void \hyperlink{class_camera_a293e96ec309365bbbe590140ce1b7828}{draw\+H\+U\+D} ()\label{class_camera_a293e96ec309365bbbe590140ce1b7828}
+
+\begin{DoxyCompactList}\small\item\em Not implemented! \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Follow camera that can target a ship Also draws that ship\textquotesingle{}s hp and radar to screen 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_camera_a42cda7239981a5618660d04bd5893556}{}\index{Camera@{Camera}!update@{update}}
+\index{update@{update}!Camera@{Camera}}
+\subsubsection[{update()}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_camera_a42cda7239981a5618660d04bd5893556}
+Updates camera\textquotesingle{}s center to where the target is May also have some nice tweening later 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Arnieboids/include/Camera.\+hpp\item 
+Arnieboids/src/Camera.\+cpp\end{DoxyCompactItemize}

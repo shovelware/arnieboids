@@ -1,0 +1,64 @@
+\hypertarget{class_asteroid}{}\section{Asteroid Class Reference}
+\label{class_asteroid}\index{Asteroid@{Asteroid}}
+Inheritance diagram for Asteroid\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_asteroid}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_asteroid_a478e555c280f7f5726e84273d0094dc0}{Asteroid} (sf\+::\+Vector2f const \&position, sf\+::\+Vector2f const \&direction, float spin\+Speed=(rand()\%50-\/25)$\ast$0.\+1f)
+\item 
+\hypertarget{class_asteroid_af2371381f0daa45c8cba88c9ee04f0a1}{}{\bfseries Asteroid} (sf\+::\+Vector2f const \&position, float spin\+Speed=(rand()\%50-\/25)$\ast$0.\+1f)\label{class_asteroid_af2371381f0daa45c8cba88c9ee04f0a1}
+
+\item 
+\hypertarget{class_asteroid_aabe3a75b05df4749a69469a1204b8382}{}void \hyperlink{class_asteroid_aabe3a75b05df4749a69469a1204b8382}{update} () override\label{class_asteroid_aabe3a75b05df4749a69469a1204b8382}
+
+\begin{DoxyCompactList}\small\item\em Moves us forward and keps us spinning. \end{DoxyCompactList}\item 
+void \hyperlink{class_asteroid_a1d13470ee5d53dad7dfcbc7ccc56851a}{on\+Collide} (\hyperlink{class_ship}{Ship} $\ast$other) override
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_asteroid_a478e555c280f7f5726e84273d0094dc0}{}\index{Asteroid@{Asteroid}!Asteroid@{Asteroid}}
+\index{Asteroid@{Asteroid}!Asteroid@{Asteroid}}
+\subsubsection[{Asteroid(sf\+::\+Vector2f const \&position, sf\+::\+Vector2f const \&direction, float spin\+Speed=(rand()\%50-\/25)$\ast$0.\+1f)}]{\setlength{\rightskip}{0pt plus 5cm}Asteroid\+::\+Asteroid (
+\begin{DoxyParamCaption}
+\item[{sf\+::\+Vector2f const \&}]{position, }
+\item[{sf\+::\+Vector2f const \&}]{direction, }
+\item[{float}]{spin\+Speed = {\ttfamily (rand()~\%~50~-\/~25)~$\ast$~0.1f}}
+\end{DoxyParamCaption}
+)}\label{class_asteroid_a478e555c280f7f5726e84273d0094dc0}
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Initial position of the \hyperlink{class_asteroid}{Asteroid}. \\
+\hline
+{\em direction} & The heading that the \hyperlink{class_asteroid}{Asteroid} will travel on  How fast (in degrees per tick) that the asteroid will rotate \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_asteroid_a1d13470ee5d53dad7dfcbc7ccc56851a}{}\index{Asteroid@{Asteroid}!on\+Collide@{on\+Collide}}
+\index{on\+Collide@{on\+Collide}!Asteroid@{Asteroid}}
+\subsubsection[{on\+Collide(\+Ship $\ast$other) override}]{\setlength{\rightskip}{0pt plus 5cm}void Asteroid\+::on\+Collide (
+\begin{DoxyParamCaption}
+\item[{{\bf Ship} $\ast$}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_asteroid_a1d13470ee5d53dad7dfcbc7ccc56851a}
+Empty method. Does nothing on collision. \begin{DoxyRemark}{Remarks}
+Perhaps asteroids should bounce off each other? 
+\end{DoxyRemark}
+
+
+Implements \hyperlink{class_ship}{Ship}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Arnieboids/include/Asteroid.\+hpp\item 
+Arnieboids/src/Asteroid.\+cpp\end{DoxyCompactItemize}

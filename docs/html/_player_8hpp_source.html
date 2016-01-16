@@ -93,22 +93,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define _PLAYER_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;Ship.hpp&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;XController.hpp&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="class_player.html">    7</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_player.html">Player</a> : <a class="code" href="class_ship.html">Ship</a> {</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="class_player.html">Player</a>(sf::Vector2f <span class="keyword">const</span> &amp;position, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> maxHealth = 10U);</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    ~<a class="code" href="class_player.html">Player</a>();</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="class_player.html">    6</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_player.html">Player</a> : <span class="keyword">public</span> <a class="code" href="class_ship.html">Ship</a> {</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="class_player.html">Player</a>(sf::Vector2f <span class="keyword">const</span> &amp;position, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> maxHealth = 10U);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    ~<a class="code" href="class_player.html">Player</a>();</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_player.html#a6912bb6e48efb5845d59f0f4582827ef">update</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="class_x_controller.html">XController</a> controller_;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> MAX_HEALTH_;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;};</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="class_x_controller_html"><div class="ttname"><a href="class_x_controller.html">XController</a></div><div class="ttdef"><b>Definition:</b> XController.hpp:21</div></div>
-<div class="ttc" id="class_player_html_a6912bb6e48efb5845d59f0f4582827ef"><div class="ttname"><a href="class_player.html#a6912bb6e48efb5845d59f0f4582827ef">Player::update</a></div><div class="ttdeci">void update() override</div><div class="ttdoc">Hides sf::Shape::update() </div><div class="ttdef"><b>Definition:</b> Player.cpp:17</div></div>
-<div class="ttc" id="class_player_html"><div class="ttname"><a href="class_player.html">Player</a></div><div class="ttdef"><b>Definition:</b> Player.hpp:7</div></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_player.html#a6912bb6e48efb5845d59f0f4582827ef">update</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_player.html#a4f7cc374f991211ccc547f66dd6bcd13">onCollide</a>(<a class="code" href="class_ship.html">Ship</a>* other) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> MAX_HEALTH_;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;};</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="class_player_html_a4f7cc374f991211ccc547f66dd6bcd13"><div class="ttname"><a href="class_player.html#a4f7cc374f991211ccc547f66dd6bcd13">Player::onCollide</a></div><div class="ttdeci">void onCollide(Ship *other) override</div><div class="ttdoc">Does nothing. </div><div class="ttdef"><b>Definition:</b> Player.cpp:45</div></div>
+<div class="ttc" id="class_player_html_a6912bb6e48efb5845d59f0f4582827ef"><div class="ttname"><a href="class_player.html#a6912bb6e48efb5845d59f0f4582827ef">Player::update</a></div><div class="ttdeci">void update() override</div><div class="ttdoc">Moves by velocity and cools gun. </div><div class="ttdef"><b>Definition:</b> Player.cpp:36</div></div>
+<div class="ttc" id="class_player_html"><div class="ttname"><a href="class_player.html">Player</a></div><div class="ttdef"><b>Definition:</b> Player.hpp:6</div></div>
 <div class="ttc" id="class_ship_html"><div class="ttname"><a href="class_ship.html">Ship</a></div><div class="ttdoc">Base Ship class. Abstract class that inherits from sf::ConvexShape. Contains members common to all sh...</div><div class="ttdef"><b>Definition:</b> Ship.hpp:13</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

@@ -8,9 +8,11 @@ public:
 	Player(sf::Vector2f const &position, unsigned int maxHealth = 10U);
 	~Player();
 
+
+	//! Moves by velocity and cools gun.
 	void update() override;
 
-	//! Not implemented!
+	//! Does nothing
 	void onCollide(Ship* other) override;
 private:
 	const unsigned int MAX_HEALTH_;

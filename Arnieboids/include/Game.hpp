@@ -14,14 +14,9 @@
 #include "KeyInput.hpp"
 #include "XController.hpp"
 #include "Camera.hpp"
-<<<<<<< HEAD
 #include "CollisionSystem.hpp"
-
-class Bullet;
-=======
 #include "Asteroid.hpp"
 #include "Star.hpp"
->>>>>>> master
 
 /*!
  * Updates and draws all ships and bullets.

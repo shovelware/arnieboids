@@ -1,0 +1,53 @@
+\hypertarget{class_bullet}{}\section{Bullet Class Reference}
+\label{class_bullet}\index{Bullet@{Bullet}}
+Inheritance diagram for Bullet\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_bullet}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_bullet_af049e550cd3848277badd21f86194c49}{}{\bfseries Bullet} (sf\+::\+Vector2f const \&position, sf\+::\+Vector2f const \&direction, const float speed=5.f)\label{class_bullet_af049e550cd3848277badd21f86194c49}
+
+\item 
+\hypertarget{class_bullet_a32f4a0611fe2dd245fee955d14ca1f68}{}virtual void \hyperlink{class_bullet_a32f4a0611fe2dd245fee955d14ca1f68}{update} ()\label{class_bullet_a32f4a0611fe2dd245fee955d14ca1f68}
+
+\begin{DoxyCompactList}\small\item\em Moves the bullet forward and checks if it has exceeded time to live. \end{DoxyCompactList}\item 
+\hypertarget{class_bullet_ac34da8003c6bc44bddfabce81411bed8}{}bool \hyperlink{class_bullet_ac34da8003c6bc44bddfabce81411bed8}{is\+Active} () const \label{class_bullet_ac34da8003c6bc44bddfabce81411bed8}
+
+\begin{DoxyCompactList}\small\item\em Is the bullet active? \end{DoxyCompactList}\item 
+\hypertarget{class_bullet_a3b790871b9487ef3cf5bf956354c8639}{}void {\bfseries set\+Active} (bool active)\label{class_bullet_a3b790871b9487ef3cf5bf956354c8639}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_bullet_a27f956e0fe2c7e1da53bff8aecfb87b1}{}float \hyperlink{class_bullet_a27f956e0fe2c7e1da53bff8aecfb87b1}{tick\+To\+Sec} (unsigned int ticks) const \label{class_bullet_a27f956e0fe2c7e1da53bff8aecfb87b1}
+
+\begin{DoxyCompactList}\small\item\em Ticks to seconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_bullet_a6fb156b4f69194ca4e6b2c1b23887902}{}float \hyperlink{class_bullet_a6fb156b4f69194ca4e6b2c1b23887902}{speed\+\_\+}\label{class_bullet_a6fb156b4f69194ca4e6b2c1b23887902}
+
+\begin{DoxyCompactList}\small\item\em How far the bullet travels each update. \end{DoxyCompactList}\item 
+\hypertarget{class_bullet_a04d2c6f850e61e353b5c84b55f42a6f8}{}unsigned int \hyperlink{class_bullet_a04d2c6f850e61e353b5c84b55f42a6f8}{ticks\+\_\+}\label{class_bullet_a04d2c6f850e61e353b5c84b55f42a6f8}
+
+\begin{DoxyCompactList}\small\item\em Ticks since bullet has spawned. \end{DoxyCompactList}\item 
+\hypertarget{class_bullet_a7bc86024912fd5c74aee5c1de7bb3130}{}sf\+::\+Vector2f \hyperlink{class_bullet_a7bc86024912fd5c74aee5c1de7bb3130}{forward\+\_\+}\label{class_bullet_a7bc86024912fd5c74aee5c1de7bb3130}
+
+\begin{DoxyCompactList}\small\item\em The direction or heading of the bullet. \end{DoxyCompactList}\item 
+\hypertarget{class_bullet_ae23efe218426ce94127db9d8baac29dd}{}int {\bfseries life\+Time\+\_\+}\label{class_bullet_ae23efe218426ce94127db9d8baac29dd}
+
+\item 
+\hypertarget{class_bullet_a46cc668478d5c798e4cbe85a56f14939}{}bool {\bfseries active\+\_\+}\label{class_bullet_a46cc668478d5c798e4cbe85a56f14939}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Arnieboids/include/Bullet.\+hpp\item 
+Arnieboids/src/Bullet.\+cpp\end{DoxyCompactItemize}

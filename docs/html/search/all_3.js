@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['player',['Player',['../class_player.html',1,'']]]
+  ['drawhud',['drawHUD',['../class_camera.html#a293e96ec309365bbbe590140ce1b7828',1,'Camera']]]
 ];

@@ -97,7 +97,7 @@ Inheritance diagram for Player:</div>
  <div class="center">
   <img src="class_player.png" usemap="#Player_map" alt=""/>
   <map id="Player_map" name="Player_map">
-<area href="class_ship.html" title="Base Ship class. Abstract class that inherits from sf::ConvexShape. Contains members common to all sh..." alt="Ship" shape="rect" coords="0,0,49,24"/>
+<area href="class_ship.html" title="Base Ship class. Abstract class that inherits from sf::ConvexShape. Contains members common to all sh..." alt="Ship" shape="rect" coords="0,56,91,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -108,8 +108,103 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aac1c48b82a1e579cae0f93482f1c6a22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6912bb6e48efb5845d59f0f4582827ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6912bb6e48efb5845d59f0f4582827ef"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a6912bb6e48efb5845d59f0f4582827ef">update</a> () override</td></tr>
-<tr class="memdesc:a6912bb6e48efb5845d59f0f4582827ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hides sf::Shape::update() <br /></td></tr>
+<tr class="memdesc:a6912bb6e48efb5845d59f0f4582827ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves by velocity and cools gun. <br /></td></tr>
 <tr class="separator:a6912bb6e48efb5845d59f0f4582827ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f7cc374f991211ccc547f66dd6bcd13"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4f7cc374f991211ccc547f66dd6bcd13"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a4f7cc374f991211ccc547f66dd6bcd13">onCollide</a> (<a class="el" href="class_ship.html">Ship</a> *other) override</td></tr>
+<tr class="memdesc:a4f7cc374f991211ccc547f66dd6bcd13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does nothing. <br /></td></tr>
+<tr class="separator:a4f7cc374f991211ccc547f66dd6bcd13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_ship"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_ship')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_ship.html">Ship</a></td></tr>
+<tr class="memitem:ac33d8bcf838eb988b6050e4e433973d2 inherit pub_methods_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac33d8bcf838eb988b6050e4e433973d2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Ship</b> (sf::Vector2f const &amp;position, float maxSpeed, unsigned int health=1u)</td></tr>
+<tr class="separator:ac33d8bcf838eb988b6050e4e433973d2 inherit pub_methods_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a0732b4bb4697b57398cec3b24d76ed inherit pub_methods_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3a0732b4bb4697b57398cec3b24d76ed"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship.html#a3a0732b4bb4697b57398cec3b24d76ed">takeDamage</a> (unsigned int amount)</td></tr>
+<tr class="memdesc:a3a0732b4bb4697b57398cec3b24d76ed inherit pub_methods_class_ship"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reduces health by the specified amount. <br /></td></tr>
+<tr class="separator:a3a0732b4bb4697b57398cec3b24d76ed inherit pub_methods_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52d219bbadbba6475b919f8e6497ce34 inherit pub_methods_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52d219bbadbba6475b919f8e6497ce34"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship.html#a52d219bbadbba6475b919f8e6497ce34">isDead</a> () const </td></tr>
+<tr class="memdesc:a52d219bbadbba6475b919f8e6497ce34 inherit pub_methods_class_ship"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if health is zero. <br /></td></tr>
+<tr class="separator:a52d219bbadbba6475b919f8e6497ce34 inherit pub_methods_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67d74d32e2f12fdf11a998cc464c0e2e inherit pub_methods_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a67d74d32e2f12fdf11a998cc464c0e2e"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>getRadius</b> () const </td></tr>
+<tr class="separator:a67d74d32e2f12fdf11a998cc464c0e2e inherit pub_methods_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4543637a3f0b4275206f684247e1b313 inherit pub_methods_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4543637a3f0b4275206f684247e1b313"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship.html#a4543637a3f0b4275206f684247e1b313">thrust</a> ()</td></tr>
+<tr class="memdesc:a4543637a3f0b4275206f684247e1b313 inherit pub_methods_class_ship"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply acceleration in direction of forward vector. <br /></td></tr>
+<tr class="separator:a4543637a3f0b4275206f684247e1b313 inherit pub_methods_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee981dc9846a549b31274e7e2d29b82c inherit pub_methods_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee981dc9846a549b31274e7e2d29b82c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship.html#aee981dc9846a549b31274e7e2d29b82c">turnLeft</a> ()</td></tr>
+<tr class="memdesc:aee981dc9846a549b31274e7e2d29b82c inherit pub_methods_class_ship"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turn ship left. <br /></td></tr>
+<tr class="separator:aee981dc9846a549b31274e7e2d29b82c inherit pub_methods_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a471e4e86d3cf0ea0b02d3603575f070e inherit pub_methods_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a471e4e86d3cf0ea0b02d3603575f070e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship.html#a471e4e86d3cf0ea0b02d3603575f070e">turnRight</a> ()</td></tr>
+<tr class="memdesc:a471e4e86d3cf0ea0b02d3603575f070e inherit pub_methods_class_ship"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turn ship right. <br /></td></tr>
+<tr class="separator:a471e4e86d3cf0ea0b02d3603575f070e inherit pub_methods_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8f6d67f0ae2d0076792f9076a99373c inherit pub_methods_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8f6d67f0ae2d0076792f9076a99373c"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship.html#ad8f6d67f0ae2d0076792f9076a99373c">trigger</a> ()</td></tr>
+<tr class="memdesc:ad8f6d67f0ae2d0076792f9076a99373c inherit pub_methods_class_ship"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempt to fire, returns success. <br /></td></tr>
+<tr class="separator:ad8f6d67f0ae2d0076792f9076a99373c inherit pub_methods_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40f4d36fbef8f0b501f60b8ec817f8f6 inherit pub_methods_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a40f4d36fbef8f0b501f60b8ec817f8f6"></a>
+sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship.html#a40f4d36fbef8f0b501f60b8ec817f8f6">getForward</a> () const </td></tr>
+<tr class="memdesc:a40f4d36fbef8f0b501f60b8ec817f8f6 inherit pub_methods_class_ship"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns forward direction of ship. <br /></td></tr>
+<tr class="separator:a40f4d36fbef8f0b501f60b8ec817f8f6 inherit pub_methods_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_methods_class_ship"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_ship')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_ship.html">Ship</a></td></tr>
+<tr class="memitem:a8e7bc2ee7d749ab0d28062091733987c inherit pro_methods_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e7bc2ee7d749ab0d28062091733987c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship.html#a8e7bc2ee7d749ab0d28062091733987c">clampToMaxSpeed</a> ()</td></tr>
+<tr class="memdesc:a8e7bc2ee7d749ab0d28062091733987c inherit pro_methods_class_ship"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clamps the length of the velocity_ vector to MAX_SPEED_. <br /></td></tr>
+<tr class="separator:a8e7bc2ee7d749ab0d28062091733987c inherit pro_methods_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4543637a3f0b4275206f684247e1b313 inherit pro_methods_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4543637a3f0b4275206f684247e1b313"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship.html#a4543637a3f0b4275206f684247e1b313">thrust</a> ()</td></tr>
+<tr class="memdesc:a4543637a3f0b4275206f684247e1b313 inherit pro_methods_class_ship"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply accelleration in direction of forward vector. <br /></td></tr>
+<tr class="separator:a4543637a3f0b4275206f684247e1b313 inherit pro_methods_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7136b677ba0b2139b429dfa7013a8237 inherit pro_methods_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7136b677ba0b2139b429dfa7013a8237"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>calculateBoundingCircle</b> ()</td></tr>
+<tr class="separator:a7136b677ba0b2139b429dfa7013a8237 inherit pro_methods_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab865757829aec291f3f1d26cb598b39d inherit pro_methods_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab865757829aec291f3f1d26cb598b39d"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship.html#ab865757829aec291f3f1d26cb598b39d">tickToSec</a> (unsigned int ticks) const </td></tr>
+<tr class="memdesc:ab865757829aec291f3f1d26cb598b39d inherit pro_methods_class_ship"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ticks to seconds. <br /></td></tr>
+<tr class="separator:ab865757829aec291f3f1d26cb598b39d inherit pro_methods_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_ship"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_ship')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_ship.html">Ship</a></td></tr>
+<tr class="memitem:a6843554ddc3c0098bcc9d17f7a7fbf3b inherit pro_attribs_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6843554ddc3c0098bcc9d17f7a7fbf3b"></a>
+const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship.html#a6843554ddc3c0098bcc9d17f7a7fbf3b">MAX_SPEED_</a></td></tr>
+<tr class="memdesc:a6843554ddc3c0098bcc9d17f7a7fbf3b inherit pro_attribs_class_ship"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum length of velocity vector. <br /></td></tr>
+<tr class="separator:a6843554ddc3c0098bcc9d17f7a7fbf3b inherit pro_attribs_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81d6b0cb2ba9cfbee65844d237f9ab5b inherit pro_attribs_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a81d6b0cb2ba9cfbee65844d237f9ab5b"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>refireTime_</b></td></tr>
+<tr class="separator:a81d6b0cb2ba9cfbee65844d237f9ab5b inherit pro_attribs_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fcce9e29f267aa642555fb74c349187 inherit pro_attribs_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2fcce9e29f267aa642555fb74c349187"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>coolDown_</b></td></tr>
+<tr class="separator:a2fcce9e29f267aa642555fb74c349187 inherit pro_attribs_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade95fc0845ea4a025c655671617f91d8 inherit pro_attribs_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade95fc0845ea4a025c655671617f91d8"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>ticks_</b></td></tr>
+<tr class="separator:ade95fc0845ea4a025c655671617f91d8 inherit pro_attribs_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1584ef024d6ed1538eb2d1e99661557 inherit pro_attribs_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac1584ef024d6ed1538eb2d1e99661557"></a>
+sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship.html#ac1584ef024d6ed1538eb2d1e99661557">velocity_</a></td></tr>
+<tr class="memdesc:ac1584ef024d6ed1538eb2d1e99661557 inherit pro_attribs_class_ship"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delta position per update. <br /></td></tr>
+<tr class="separator:ac1584ef024d6ed1538eb2d1e99661557 inherit pro_attribs_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9523b2053ac0164fa6c702aa1a1165e inherit pro_attribs_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af9523b2053ac0164fa6c702aa1a1165e"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship.html#af9523b2053ac0164fa6c702aa1a1165e">health_</a></td></tr>
+<tr class="memdesc:af9523b2053ac0164fa6c702aa1a1165e inherit pro_attribs_class_ship"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current health. <br /></td></tr>
+<tr class="separator:af9523b2053ac0164fa6c702aa1a1165e inherit pro_attribs_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a152b38aa89be58f3037f82c408ff28c9 inherit pro_attribs_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a152b38aa89be58f3037f82c408ff28c9"></a>
+sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship.html#a152b38aa89be58f3037f82c408ff28c9">forward_</a></td></tr>
+<tr class="memdesc:a152b38aa89be58f3037f82c408ff28c9 inherit pro_attribs_class_ship"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unit vector for ship's heading. <br /></td></tr>
+<tr class="separator:a152b38aa89be58f3037f82c408ff28c9 inherit pro_attribs_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2415e485b0707df42ef22121977fdce9 inherit pro_attribs_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2415e485b0707df42ef22121977fdce9"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship.html#a2415e485b0707df42ef22121977fdce9">thrust_</a></td></tr>
+<tr class="memdesc:a2415e485b0707df42ef22121977fdce9 inherit pro_attribs_class_ship"><td class="mdescLeft">&#160;</td><td class="mdescRight">How fast the ship accelerates. <br /></td></tr>
+<tr class="separator:a2415e485b0707df42ef22121977fdce9 inherit pro_attribs_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56a38990ec7817f256bce1abe1ded6ed inherit pro_attribs_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a56a38990ec7817f256bce1abe1ded6ed"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship.html#a56a38990ec7817f256bce1abe1ded6ed">turnSpeed_</a></td></tr>
+<tr class="memdesc:a56a38990ec7817f256bce1abe1ded6ed inherit pro_attribs_class_ship"><td class="mdescLeft">&#160;</td><td class="mdescRight">How fast (in degrees) the ship can turn. <br /></td></tr>
+<tr class="separator:a56a38990ec7817f256bce1abe1ded6ed inherit pro_attribs_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a043b1bdba9024621ebb5b503545e4e16 inherit pro_attribs_class_ship"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a043b1bdba9024621ebb5b503545e4e16"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>boundingCircleRadius_</b></td></tr>
+<tr class="separator:a043b1bdba9024621ebb5b503545e4e16 inherit pro_attribs_class_ship"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Arnieboids/include/<a class="el" href="_player_8hpp_source.html">Player.hpp</a></li>

@@ -9,9 +9,14 @@ class SwarmBoid : public Ship {
 public:
 	SwarmBoid(sf::Vector2f position);
 	~SwarmBoid();
-
+#
+	//! Calls swarm()
 	void update() override;
+
+	//! Takes one damage.
 	void onCollide(Ship* other) override;
+
+	//! Sets the target for all swarm boids. They will tend toward this target.
 	static void setSwarmTarget(Ship* target);
 private:
 	//! A list of all swarm boids. Boids add themselves in the ctor and remove themselves in the dtor

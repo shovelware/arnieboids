@@ -18,7 +18,7 @@ Inheritance diagram for Ship\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_ship_a4361703fa6d49a17f080648e1c2dc60b}{}{\bfseries Ship} (float max\+Speed)\label{class_ship_a4361703fa6d49a17f080648e1c2dc60b}
+\hypertarget{class_ship_ac33d8bcf838eb988b6050e4e433973d2}{}{\bfseries Ship} (sf\+::\+Vector2f const \&position, float max\+Speed, unsigned int health=1u)\label{class_ship_ac33d8bcf838eb988b6050e4e433973d2}
 
 \item 
 \hypertarget{class_ship_abfe8b92e7f0346b198e8c40cff44ebeb}{}virtual void \hyperlink{class_ship_abfe8b92e7f0346b198e8c40cff44ebeb}{update} ()=0\label{class_ship_abfe8b92e7f0346b198e8c40cff44ebeb}
@@ -27,28 +27,76 @@ Inheritance diagram for Ship\+:\begin{figure}[H]
 \hypertarget{class_ship_a966830e20a179ada7d4b7301577b72d7}{}virtual void {\bfseries on\+Collide} (\hyperlink{class_ship}{Ship} $\ast$other)=0\label{class_ship_a966830e20a179ada7d4b7301577b72d7}
 
 \item 
-\hypertarget{class_ship_a3a0732b4bb4697b57398cec3b24d76ed}{}void {\bfseries take\+Damage} (unsigned int amount)\label{class_ship_a3a0732b4bb4697b57398cec3b24d76ed}
+\hypertarget{class_ship_a3a0732b4bb4697b57398cec3b24d76ed}{}void \hyperlink{class_ship_a3a0732b4bb4697b57398cec3b24d76ed}{take\+Damage} (unsigned int amount)\label{class_ship_a3a0732b4bb4697b57398cec3b24d76ed}
+
+\begin{DoxyCompactList}\small\item\em Reduces health by the specified amount. \end{DoxyCompactList}\item 
+\hypertarget{class_ship_a52d219bbadbba6475b919f8e6497ce34}{}bool \hyperlink{class_ship_a52d219bbadbba6475b919f8e6497ce34}{is\+Dead} () const \label{class_ship_a52d219bbadbba6475b919f8e6497ce34}
+
+\begin{DoxyCompactList}\small\item\em Returns true if health is zero. \end{DoxyCompactList}\item 
+\hypertarget{class_ship_a67d74d32e2f12fdf11a998cc464c0e2e}{}float {\bfseries get\+Radius} () const \label{class_ship_a67d74d32e2f12fdf11a998cc464c0e2e}
 
 \item 
-\hypertarget{class_ship_a52d219bbadbba6475b919f8e6497ce34}{}bool {\bfseries is\+Dead} () const \label{class_ship_a52d219bbadbba6475b919f8e6497ce34}
+\hypertarget{class_ship_a4543637a3f0b4275206f684247e1b313}{}void \hyperlink{class_ship_a4543637a3f0b4275206f684247e1b313}{thrust} ()\label{class_ship_a4543637a3f0b4275206f684247e1b313}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Apply acceleration in direction of forward vector. \end{DoxyCompactList}\item 
+\hypertarget{class_ship_aee981dc9846a549b31274e7e2d29b82c}{}void \hyperlink{class_ship_aee981dc9846a549b31274e7e2d29b82c}{turn\+Left} ()\label{class_ship_aee981dc9846a549b31274e7e2d29b82c}
+
+\begin{DoxyCompactList}\small\item\em Turn ship left. \end{DoxyCompactList}\item 
+\hypertarget{class_ship_a471e4e86d3cf0ea0b02d3603575f070e}{}void \hyperlink{class_ship_a471e4e86d3cf0ea0b02d3603575f070e}{turn\+Right} ()\label{class_ship_a471e4e86d3cf0ea0b02d3603575f070e}
+
+\begin{DoxyCompactList}\small\item\em Turn ship right. \end{DoxyCompactList}\item 
+\hypertarget{class_ship_ad8f6d67f0ae2d0076792f9076a99373c}{}bool \hyperlink{class_ship_ad8f6d67f0ae2d0076792f9076a99373c}{trigger} ()\label{class_ship_ad8f6d67f0ae2d0076792f9076a99373c}
+
+\begin{DoxyCompactList}\small\item\em Attempt to fire, returns success. \end{DoxyCompactList}\item 
+\hypertarget{class_ship_a40f4d36fbef8f0b501f60b8ec817f8f6}{}sf\+::\+Vector2f \hyperlink{class_ship_a40f4d36fbef8f0b501f60b8ec817f8f6}{get\+Forward} () const \label{class_ship_a40f4d36fbef8f0b501f60b8ec817f8f6}
+
+\begin{DoxyCompactList}\small\item\em Returns forward direction of ship. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{class_ship_a8e7bc2ee7d749ab0d28062091733987c}{}void \hyperlink{class_ship_a8e7bc2ee7d749ab0d28062091733987c}{clamp\+To\+Max\+Speed} ()\label{class_ship_a8e7bc2ee7d749ab0d28062091733987c}
 
-\begin{DoxyCompactList}\small\item\em Clamps the length of the velocity\+\_\+ vector to M\+A\+X\+\_\+\+S\+P\+E\+E\+D\+\_\+. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Clamps the length of the velocity\+\_\+ vector to M\+A\+X\+\_\+\+S\+P\+E\+E\+D\+\_\+. \end{DoxyCompactList}\item 
+\hypertarget{class_ship_a4543637a3f0b4275206f684247e1b313}{}void \hyperlink{class_ship_a4543637a3f0b4275206f684247e1b313}{thrust} ()\label{class_ship_a4543637a3f0b4275206f684247e1b313}
+
+\begin{DoxyCompactList}\small\item\em Apply accelleration in direction of forward vector. \end{DoxyCompactList}\item 
+\hypertarget{class_ship_a7136b677ba0b2139b429dfa7013a8237}{}void {\bfseries calculate\+Bounding\+Circle} ()\label{class_ship_a7136b677ba0b2139b429dfa7013a8237}
+
+\item 
+\hypertarget{class_ship_ab865757829aec291f3f1d26cb598b39d}{}float \hyperlink{class_ship_ab865757829aec291f3f1d26cb598b39d}{tick\+To\+Sec} (unsigned int ticks) const \label{class_ship_ab865757829aec291f3f1d26cb598b39d}
+
+\begin{DoxyCompactList}\small\item\em Ticks to seconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{class_ship_a6843554ddc3c0098bcc9d17f7a7fbf3b}{}const float \hyperlink{class_ship_a6843554ddc3c0098bcc9d17f7a7fbf3b}{M\+A\+X\+\_\+\+S\+P\+E\+E\+D\+\_\+}\label{class_ship_a6843554ddc3c0098bcc9d17f7a7fbf3b}
 
-\begin{DoxyCompactList}\small\item\em Maximum length of velocity\+\_\+ vector. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Maximum length of velocity vector. \end{DoxyCompactList}\item 
+\hypertarget{class_ship_a81d6b0cb2ba9cfbee65844d237f9ab5b}{}float {\bfseries refire\+Time\+\_\+}\label{class_ship_a81d6b0cb2ba9cfbee65844d237f9ab5b}
+
+\item 
+\hypertarget{class_ship_a2fcce9e29f267aa642555fb74c349187}{}float {\bfseries cool\+Down\+\_\+}\label{class_ship_a2fcce9e29f267aa642555fb74c349187}
+
+\item 
+\hypertarget{class_ship_ade95fc0845ea4a025c655671617f91d8}{}unsigned int {\bfseries ticks\+\_\+}\label{class_ship_ade95fc0845ea4a025c655671617f91d8}
+
+\item 
 \hypertarget{class_ship_ac1584ef024d6ed1538eb2d1e99661557}{}sf\+::\+Vector2f \hyperlink{class_ship_ac1584ef024d6ed1538eb2d1e99661557}{velocity\+\_\+}\label{class_ship_ac1584ef024d6ed1538eb2d1e99661557}
 
-\begin{DoxyCompactList}\small\item\em Change of position of ship per update. \end{DoxyCompactList}\item 
-\hypertarget{class_ship_a6a377507ab7c9c91356869121a84c252}{}unsigned int {\bfseries health\+\_\+}\label{class_ship_a6a377507ab7c9c91356869121a84c252}
+\begin{DoxyCompactList}\small\item\em Delta position per update. \end{DoxyCompactList}\item 
+\hypertarget{class_ship_af9523b2053ac0164fa6c702aa1a1165e}{}int \hyperlink{class_ship_af9523b2053ac0164fa6c702aa1a1165e}{health\+\_\+}\label{class_ship_af9523b2053ac0164fa6c702aa1a1165e}
+
+\begin{DoxyCompactList}\small\item\em Current health. \end{DoxyCompactList}\item 
+\hypertarget{class_ship_a152b38aa89be58f3037f82c408ff28c9}{}sf\+::\+Vector2f \hyperlink{class_ship_a152b38aa89be58f3037f82c408ff28c9}{forward\+\_\+}\label{class_ship_a152b38aa89be58f3037f82c408ff28c9}
+
+\begin{DoxyCompactList}\small\item\em Unit vector for ship\textquotesingle{}s heading. \end{DoxyCompactList}\item 
+\hypertarget{class_ship_a2415e485b0707df42ef22121977fdce9}{}float \hyperlink{class_ship_a2415e485b0707df42ef22121977fdce9}{thrust\+\_\+}\label{class_ship_a2415e485b0707df42ef22121977fdce9}
+
+\begin{DoxyCompactList}\small\item\em How fast the ship accelerates. \end{DoxyCompactList}\item 
+\hypertarget{class_ship_a56a38990ec7817f256bce1abe1ded6ed}{}float \hyperlink{class_ship_a56a38990ec7817f256bce1abe1ded6ed}{turn\+Speed\+\_\+}\label{class_ship_a56a38990ec7817f256bce1abe1ded6ed}
+
+\begin{DoxyCompactList}\small\item\em How fast (in degrees) the ship can turn. \end{DoxyCompactList}\item 
+\hypertarget{class_ship_a043b1bdba9024621ebb5b503545e4e16}{}float {\bfseries bounding\+Circle\+Radius\+\_\+}\label{class_ship_a043b1bdba9024621ebb5b503545e4e16}
 
 \end{DoxyCompactItemize}
 

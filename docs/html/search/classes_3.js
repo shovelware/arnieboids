@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['xcontroller',['XController',['../class_x_controller.html',1,'']]]
+  ['game',['Game',['../class_game.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['clamptomaxspeed',['clampToMaxSpeed',['../class_ship.html#a8e7bc2ee7d749ab0d28062091733987c',1,'Ship']]]
+  ['asteroid',['Asteroid',['../class_asteroid.html#a478e555c280f7f5726e84273d0094dc0',1,'Asteroid']]]
 ];

@@ -46,7 +46,7 @@ void SwarmBoid::update() {
 }
 
 void SwarmBoid::onCollide(Ship* other) {
-	--health_;
+	takeDamage(1u);
 }
 
 void SwarmBoid::setSwarmTarget(Ship* target) {
