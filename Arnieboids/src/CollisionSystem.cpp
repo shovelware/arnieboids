@@ -14,22 +14,40 @@ void CollisionSystem::Check() const {
 	{
 		for (Ship* second : ships_)
 		{
-			if (first != second &&
-				checkPair(first, second))
+			//check if same ship
+			if (first != second) {
+				//do broadphase check with disance and bounding radius
+				if (thor::length(first->getPosition() - second->getPosition()) <=
+					first->getRadius() + second->getRadius())
+				{
+					//do narrowphase check with SAT
+					if (checkPair(first, second))
+					{
+						first->onCollide(second);
+						second->onCollide(first);
+						break;
+					}//end if(narrowphase)
+				}//end if(broadphase)
+			}//end if(same)
+		}//end for(Ship* second)
+
+		for (Bullet* bullet : bullets_) {
+			//check if bullet is inside bounding radius
+			if (thor::length(first->getPosition() - bullet->getPosition()) <=
+				first->getRadius())
 			{
-				first->onCollide(second);
-				second->onCollide(first);
-			}
+				//use SAT to check if collision occurred
+				if (checkPair(first, bullet)) {
+					first->onCollide(nullptr);
+
+				}
+			}//end if(broadphase)
 		}
 
 	}
 }
 
-bool CollisionSystem::checkPair(Ship* first, Ship* second) const {
-
-	if (thor::length(first->getPosition() - second->getPosition()) <=
-		first->getRadius() + second->getRadius())
-	{
+bool CollisionSystem::checkPair(sf::ConvexShape* first, sf::ConvexShape* second) const {
 		bool collisionOccured = true;
 		std::list<sf::Vector2f> axies;
 
@@ -65,37 +83,35 @@ bool CollisionSystem::checkPair(Ship* first, Ship* second) const {
 		}//foreach
 
 		return collisionOccured;
-	}
-	return false;
 }
 
-void CollisionSystem::getAxies(const Ship* const ship, std::list<sf::Vector2f>& axies) const {
-	size_t pointCount = ship->getPointCount();
+void CollisionSystem::getAxies(const sf::ConvexShape* const shape, std::list<sf::Vector2f>& axies) const {
+	size_t pointCount = shape->getPointCount();
 	for (size_t i = 0; i < pointCount; ++i)
 	{
-		sf::Vector2f p1 = ship->getPoint(i);
-		sf::Vector2f p2 = ship->getPoint(i + 1 == pointCount ? 0 : i + 1);	//wrap around end of point container
+		sf::Vector2f p1 = shape->getPoint(i);
+		sf::Vector2f p2 = shape->getPoint(i + 1 == pointCount ? 0 : i + 1);	//wrap around end of point container
 		sf::Vector2f edge = p1 - p2;
 		axies.push_back(sf::Vector2f(-edge.y, edge.x));
 	}
 }
 
-sf::Vector2f CollisionSystem::projectOntoAxis(const Ship* const ship, sf::Vector2f &axis) const {
+sf::Vector2f CollisionSystem::projectOntoAxis(const sf::ConvexShape* const shape, sf::Vector2f &axis) const {
 	if (thor::length(axis) != 1)
 	{
 		_ASSERT(thor::length(axis) != 0);
 		//normalize the axis
 		axis = thor::unitVector(axis);
 	}
-	sf::Vector2f shipPos = ship->getPosition();
-	float min = thor::dotProduct(axis, shipPos + ship->getPoint(0));
+	sf::Vector2f shipPos = shape->getPosition();
+	float min = thor::dotProduct(axis, shipPos + shape->getPoint(0));
 	float max = min;	//max and min points on the axis
 	float p;	//point on the axis
 
-	size_t pointCount = ship->getPointCount();
+	size_t pointCount = shape->getPointCount();
 	for (size_t i = 1; i < pointCount; ++i)
 	{
-		p = thor::dotProduct(axis, shipPos + ship->getPoint(i));
+		p = thor::dotProduct(axis, shipPos + shape->getPoint(i));
 
 		if (p < min)
 		{
