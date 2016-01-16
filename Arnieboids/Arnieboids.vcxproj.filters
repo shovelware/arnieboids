@@ -42,6 +42,15 @@
     <ClCompile Include="src\Missile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Asteroid.cpp">
+ <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\KeyInput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Star.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\CollisionSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -69,6 +78,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Missile.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Asteroid.hpp">
+  <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\KeyInput.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Star.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\CollisionSystem.hpp">

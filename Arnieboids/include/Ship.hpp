@@ -19,7 +19,7 @@ public:
 
 	virtual void onCollide(Ship* other) = 0;
 
-	//Reduces health by the specified amount
+	//! Reduces health by the specified amount
 	void takeDamage(unsigned int amount);
 
 	//! Returns true if health is zero
@@ -27,9 +27,28 @@ public:
 
 	float getRadius() const;
 
+	//! Apply acceleration in direction of forward vector
+	void thrust();
+
+	//! Turn ship left
+	void turnLeft();
+
+	//! Turn ship right
+	void turnRight();
+
+	//! Attempt to fire, returns success
+	bool trigger();
+
+	//! Returns forward direction of ship
+	sf::Vector2f getForward() const;
+
 protected:
-	//! Maxiumum length of velocity vector
+	//! Maximum length of velocity vector
 	const float MAX_SPEED_;
+
+	float refireTime_;
+	float coolDown_;
+	unsigned int ticks_; //ticks_ = (ticks_ + 1) % INT_MAX;
 
 	//! Delta position per update
 	sf::Vector2f velocity_;	
@@ -55,5 +74,8 @@ protected:
 	float boundingCircleRadius_;
 
 	void calculateBoundingCircle();
+
+	//! Ticks to seconds
+	float tickToSec(unsigned int ticks) const;
 };
 #endif

@@ -39,7 +39,7 @@ void CollisionSystem::Check() const {
 				//use SAT to check if collision occurred
 				if (checkPair(first, bullet)) {
 					first->onCollide(nullptr);
-
+					bullet->setActive(false);
 				}
 			}//end if(broadphase)
 		}

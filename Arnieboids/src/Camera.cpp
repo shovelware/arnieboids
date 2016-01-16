@@ -1,4 +1,4 @@
-#include "..\include\Camera.hpp"
+#include <include\Camera.hpp>
 
 Camera::Camera(sf::Vector2u screenSize) : 
 View(sf::Vector2f(screenSize.x / 2, screenSize.y / 2), sf::Vector2f(screenSize)),

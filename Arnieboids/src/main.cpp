@@ -12,11 +12,16 @@
 #pragma comment(lib, "sfml-window.lib")
 #endif
 
+
 #include <include/Game.hpp>
+
 
 int main()
 {
-	Game game = Game();
+	srand(time_t(NULL));
+
+	Game game;
+
 
 	return game.run();
 }

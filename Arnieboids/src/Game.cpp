@@ -1,5 +1,8 @@
 #include <include/Game.hpp>
 
+inline float randFloat(float MAX) { return static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / MAX)); };
+inline float randFloat(float MIN, float MAX) { return MIN + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (MAX - MIN))); };
+
 #pragma region PublicMemberFunctions
 Game::Game(unsigned int winWidth, unsigned int winHeight, unsigned int timePerTick) :
 window_(sf::VideoMode(winWidth, winHeight), "ArnieBoids", sf::Style::Default, sf::ContextSettings(0u, 0u, 8u)),	//AntiAliasing level: 8
@@ -11,7 +14,13 @@ tickClock_(),
 timePerTick_(timePerTick),
 timeOfLastTick_(tickClock_.now() - timePerTick_),
 collisionSystem_(ships_, bullets_)
+keyboard_()
 {
+	float w = winWidth;
+	float h = winHeight;
+
+	genStars(-w, w * 2, -h, h * 2, 1000U, 1, 5);
+
 	ships_.push_back(new SwarmBoid(sf::Vector2f(100.f, 100.f)));
 	ships_.push_back(new SwarmBoid(sf::Vector2f(300.f, 300.f)));
 	ships_.push_back(new SwarmBoid(sf::Vector2f(600.f, 400.f)));
@@ -23,7 +32,15 @@ collisionSystem_(ships_, bullets_)
 
 	ships_.push_back(new Player(sf::Vector2f(200.f, 200.f)));
 	camera_.setTarget(*ships_.rbegin());
+	controlled_ = (*ships_.rbegin());
 	SwarmBoid::setSwarmTarget(*ships_.rbegin());
+
+	ships_.push_back(new Asteroid(sf::Vector2f(rand() % 500, rand() % 500)));
+	ships_.push_back(new Asteroid(sf::Vector2f(rand() % 500, rand() % 500)));
+	ships_.push_back(new Asteroid(sf::Vector2f(rand() % 500, rand() % 500)));
+	ships_.push_back(new Asteroid(sf::Vector2f(rand() % 500, rand() % 500)));
+	ships_.push_back(new Asteroid(sf::Vector2f(rand() % 500, rand() % 500)));
+	ships_.push_back(new Asteroid(sf::Vector2f(rand() % 500, rand() % 500)));
 
 	bullets_.push_back(new Bullet(sf::Vector2f(100.f, 100.f), sf::Vector2f(1.f, 0.1f)));
 	bullets_.push_back(new Bullet(sf::Vector2f(1000.f, 1000.f), sf::Vector2f(-1.f, -1.f)));
@@ -31,6 +48,7 @@ collisionSystem_(ships_, bullets_)
 	bullets_.push_back(new Bullet(sf::Vector2f(0.f, 0.f), sf::Vector2f(6.f, 1.f)));
 
 	bullets_.push_back(new Missile(*ships_.rbegin(), sf::Vector2f(100.f, 100.f), sf::Vector2f(0.1f, 1.f)));
+
 }
 
 Game::~Game() {
@@ -115,16 +133,21 @@ void Game::update() {
 	collisionSystem_.Check();
 
 	camera_.update();
+	keyboard_.update();
 
 	for (auto itr = bullets_.begin(), end = bullets_.end();
-		itr != end;
-		++itr)
+	itr != end; /*No increment*/)
 	{
-		(*itr)->update();
+		if ((*itr)->isActive())
+		{
+			(*itr++)->update();
+		}
+		
+		else bullets_.erase(itr++);
 	}
 
 	for (auto itr = ships_.begin(), end = ships_.end();
-		itr != end;
+	itr != end;
 		++itr)
 	{
 		//remove ship if dead, update if not
@@ -136,11 +159,75 @@ void Game::update() {
 			(*itr)->update();
 		}
 	}
+
+	//Keyboard updates
+	if (keyboard_.isKeyDown(sf::Keyboard::Escape))
+	{
+		window_.close();
+	}
+
+	if (keyboard_.isKeyDown(sf::Keyboard::W) || keyboard_.isKeyDown(sf::Keyboard::Up))
+	{
+		controlled_->thrust();
+	}
+
+	if (keyboard_.isKeyDown(sf::Keyboard::D) || keyboard_.isKeyDown(sf::Keyboard::Right))
+	{
+		controlled_->turnRight();
+	}
+
+	if (keyboard_.isKeyDown(sf::Keyboard::A) || keyboard_.isKeyDown(sf::Keyboard::Left))
+	{
+		controlled_->turnLeft();
+	}
+
+	if (keyboard_.isKeyDown(sf::Keyboard::Space))
+	{
+		if (controlled_->trigger())
+		{
+			//Add a bullet here
+			bullets_.push_back(new Bullet(controlled_->getPosition(), controlled_->getForward()));
+		}
+	}
+}
+
+void Game::genStars(float minX, float maxX, float minY, float maxY, unsigned int amount, float minR, float maxR)
+{
+	if (minX <= maxX && minY <= maxY && minR <= maxR)
+	{
+		stars_.clear();
+
+		sf::Vector2f p;
+		float r;
+		sf::Color c;
+
+		for (unsigned int i = 0; i < amount; ++i)
+		{
+			p.x = randFloat(minX, maxX);
+			p.y = randFloat(minY, maxY);
+
+			r = randFloat(minR, maxR);
+
+			c.r = randFloat(128, 255);
+			c.g = randFloat(128, 255);
+			c.b = randFloat(128, 255);
+
+			stars_.push_back(Star(p, r, c));
+		}
+	}
+
 }
 
 void Game::draw() {
 	window_.clear();
 	window_.setView(camera_);
+
+	for (auto itr = stars_.begin(), end = stars_.end();
+	itr != end;
+		++itr)
+	{
+		window_.draw(*itr);
+	}
 
 	for (auto itr = bullets_.begin(), end = bullets_.end();
 		itr != end;

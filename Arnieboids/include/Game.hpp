@@ -11,11 +11,17 @@
 #include "SwarmBoid.hpp"
 #include "Bullet.hpp"
 #include "Missile.hpp"
+#include "KeyInput.hpp"
 #include "XController.hpp"
 #include "Camera.hpp"
+<<<<<<< HEAD
 #include "CollisionSystem.hpp"
 
 class Bullet;
+=======
+#include "Asteroid.hpp"
+#include "Star.hpp"
+>>>>>>> master
 
 /*!
  * Updates and draws all ships and bullets.
@@ -43,8 +49,18 @@ private:
 	//! All ships in the game
 	std::list<Ship*> ships_;
 
+	//! Ship affected by input
+	Ship* controlled_;
+
 	//! All bullets in the game
 	std::list<Bullet*> bullets_;
+
+	//! Background stars
+	std::list<Star> stars_;
+	void genStars(float minX, float maxX, float minY, float maxY, unsigned int amount, float minR, float maxR);
+
+	//! For keyboard input
+	KeyInput keyboard_;
 
 	//! For taking input from an Xbox controller
 	XController controller_;
