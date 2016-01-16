@@ -11,13 +11,15 @@ MAX_HEALTH_(maxHealth)
 	//	   / \
 	//	  /	  \
 	//	 /	   \
-	//	/_______\
+	//	/____\
 
 	setPoint(0u, sf::Vector2f(10, 0));
 	setPoint(1u, sf::Vector2f(20, 30));
 	setPoint(2u, sf::Vector2f(0, 30));
 
 	setOrigin(10.f, 15.f);
+
+	calculateBoundingCircle();
 
 	setFillColor(sf::Color::Blue);
 

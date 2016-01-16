@@ -46,6 +46,10 @@ bool Bullet::isActive() const
 	return active_;
 }
 
+void Bullet::setActive(bool active) {
+	active_ = active;
+}
+
 float Bullet::tickToSec(unsigned int ticks) const
 {
 	return (16.f / 1000.f) * ticks;

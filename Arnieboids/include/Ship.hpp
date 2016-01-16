@@ -25,6 +25,8 @@ public:
 	//! Returns true if health is zero
 	bool isDead() const;
 
+	float getRadius() const;
+
 	//! Apply acceleration in direction of forward vector
 	void thrust();
 
@@ -41,7 +43,7 @@ public:
 	sf::Vector2f getForward() const;
 
 protected:
-	//! Maxiumum length of velocity vector
+	//! Maximum length of velocity vector
 	const float MAX_SPEED_;
 
 	float refireTime_;
@@ -52,7 +54,7 @@ protected:
 	sf::Vector2f velocity_;	
 
 	//! Current health
-	unsigned int health_;
+	int health_;
 
 	//! Unit vector for ship's heading
 	sf::Vector2f forward_;
@@ -65,6 +67,13 @@ protected:
 
 	//! Clamps the length of the velocity_ vector to MAX_SPEED_
 	void clampToMaxSpeed();
+
+	//! Apply accelleration in direction of forward vector
+	void thrust();
+
+	float boundingCircleRadius_;
+
+	void calculateBoundingCircle();
 
 	//! Ticks to seconds
 	float tickToSec(unsigned int ticks) const;

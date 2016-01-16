@@ -13,6 +13,7 @@ controller_(),
 tickClock_(),
 timePerTick_(timePerTick),
 timeOfLastTick_(tickClock_.now() - timePerTick_),
+collisionSystem_(ships_, bullets_)
 keyboard_()
 {
 	float w = winWidth;
@@ -129,6 +130,7 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
+	collisionSystem_.Check();
 
 	camera_.update();
 	keyboard_.update();
@@ -148,7 +150,14 @@ void Game::update() {
 	itr != end;
 		++itr)
 	{
-		(*itr)->update();
+		//remove ship if dead, update if not
+		if ((*itr)->isDead())
+		{
+			itr = ships_.erase(itr);
+		}
+		else {
+			(*itr)->update();
+		}
 	}
 
 	//Keyboard updates

@@ -30,7 +30,11 @@ void Ship::takeDamage(unsigned amount) {
 }
 
 bool Ship::isDead() const {
-	return health_ == 0;
+	return health_ <= 0;
+}
+
+float Ship::getRadius() const {
+	return boundingCircleRadius_;
 }
 
 void Ship::clampToMaxSpeed() {
@@ -48,6 +52,19 @@ void Ship::thrust() {
 	velocity_.y += forward_.y * thrust_;
 
 	clampToMaxSpeed();
+}
+
+void Ship::calculateBoundingCircle() {
+	boundingCircleRadius_ = 0.f;
+	float newRadius;
+
+	for (size_t i = 0; i < getPointCount(); ++i) {
+		newRadius = thor::length(getPoint(i));
+		if (newRadius > boundingCircleRadius_)
+		{
+			boundingCircleRadius_ = newRadius;
+		}
+	}
 }
 
 void Ship::turnLeft()

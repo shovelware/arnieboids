@@ -13,6 +13,8 @@ public:
 	virtual void update();
 	//! Is the bullet active?
 	bool isActive() const;
+	
+	void setActive(bool active);
 
 protected:
 	//! How far the bullet travels each update

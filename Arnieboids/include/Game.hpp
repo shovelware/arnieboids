@@ -14,8 +14,14 @@
 #include "KeyInput.hpp"
 #include "XController.hpp"
 #include "Camera.hpp"
+<<<<<<< HEAD
+#include "CollisionSystem.hpp"
+
+class Bullet;
+=======
 #include "Asteroid.hpp"
 #include "Star.hpp"
+>>>>>>> master
 
 /*!
  * Updates and draws all ships and bullets.
@@ -61,6 +67,9 @@ private:
 
 	//! Camera that follows ships and has a HUD
 	Camera camera_;
+
+	//! Used to check for collision between shapes
+	CollisionSystem collisionSystem_;
 
 	std::chrono::steady_clock tickClock_;
 	std::chrono::milliseconds timePerTick_;	//!< Milliseconds per update/draw tick
