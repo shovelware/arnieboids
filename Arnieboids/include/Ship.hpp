@@ -68,9 +68,6 @@ protected:
 	//! Clamps the length of the velocity_ vector to MAX_SPEED_
 	void clampToMaxSpeed();
 
-	//! Apply accelleration in direction of forward vector
-	void thrust();
-
 	float boundingCircleRadius_;
 
 	void calculateBoundingCircle();

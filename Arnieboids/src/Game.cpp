@@ -13,7 +13,7 @@ controller_(),
 tickClock_(),
 timePerTick_(timePerTick),
 timeOfLastTick_(tickClock_.now() - timePerTick_),
-collisionSystem_(ships_, bullets_)
+collisionSystem_(ships_, bullets_),
 keyboard_()
 {
 	float w = winWidth;
