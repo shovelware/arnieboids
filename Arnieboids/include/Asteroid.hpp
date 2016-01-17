@@ -11,8 +11,8 @@ public:
 	 * \param direction The heading that the Asteroid will travel on
 	 * \spinSpeed How fast (in degrees per tick) that the asteroid will rotate
 	 */
-	Asteroid(sf::Vector2f const &position, sf::Vector2f const &direction, float spinSpeed = (rand() % 50 - 25) * 0.1f);
-	Asteroid(sf::Vector2f const &position, float spinSpeed = (rand() % 50 - 25) * 0.1f);
+	Asteroid(thor::ParticleSystem &particleSystem, sf::Vector2f const &position, sf::Vector2f const &direction, float spinSpeed = (rand() % 50 - 25) * 0.1f);
+	Asteroid(thor::ParticleSystem &particleSystem, sf::Vector2f const &position, float spinSpeed = (rand() % 50 - 25) * 0.1f);
 	~Asteroid();
 
 	//! Moves us forward and keps us spinning

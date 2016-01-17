@@ -4,17 +4,22 @@ inline float rand(int max) {
 	return rand() % max;
 }
 
-Asteroid::Asteroid(sf::Vector2f const& position, sf::Vector2f const& direction, float spinSpeed) :
-Ship(position, rand(50) * 0.1f),
+Asteroid::Asteroid(thor::ParticleSystem &particleSystem, sf::Vector2f const& position, sf::Vector2f const& direction, float spinSpeed) :
+Ship(particleSystem, position, rand(50) * 0.1f),
 rotationSpeed_(spinSpeed)
 {
 	forward_ = thor::unitVector(direction);
 
 	generateGeometry();
+
+	particleEmitter_.setEmissionRate(0.5f);
+	particleEmitter_.setParticleColor(getFillColor());
+	particleEmitter_.setParticleLifetime(thor::Distributions::uniform(sf::seconds(4.f), sf::seconds(8)));
+	particleEmitter_.setParticleScale(sf::Vector2f(0.5f, 0.5f));
 }
 
-Asteroid::Asteroid(sf::Vector2f const& position, float spinSpeed) :
-Ship(position, (rand() % 50) * 0.1f),
+Asteroid::Asteroid(thor::ParticleSystem &particleSystem, sf::Vector2f const& position, float spinSpeed) :
+Ship(particleSystem, position, (rand() % 50) * 0.1f),
 rotationSpeed_(spinSpeed)
 {
 	forward_.y = -cosf(thor::toRadian(rand(360)));
@@ -22,6 +27,11 @@ rotationSpeed_(spinSpeed)
 	forward_ = thor::unitVector(forward_);
 
 	generateGeometry();
+
+	particleEmitter_.setEmissionRate(0.5f);
+	particleEmitter_.setParticleColor(getFillColor());
+	particleEmitter_.setParticleLifetime(thor::Distributions::uniform(sf::seconds(4.f), sf::seconds(8)));
+	particleEmitter_.setParticleScale(sf::Vector2f(0.5f, 0.5f));
 }
 
 Asteroid::~Asteroid() {
@@ -30,6 +40,8 @@ Asteroid::~Asteroid() {
 void Asteroid::update() {
 	move(forward_);
 	rotate(rotationSpeed_);
+
+	particleEmitter_.setParticlePosition(getPosition());
 }
 
 void Asteroid::onCollide(Ship* other) {

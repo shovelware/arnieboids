@@ -1,6 +1,6 @@
 #include <include/Ship.hpp>
 
-Ship::Ship(sf::Vector2f const &position, float maxSpeed, unsigned int health) :
+Ship::Ship(thor::ParticleSystem &particleSystem, sf::Vector2f const &position, float maxSpeed, unsigned int health) :
 MAX_SPEED_(maxSpeed),
 velocity_(0.f, 0.f),
 health_(health),
@@ -12,10 +12,21 @@ coolDown_(0),
 ticks_(0)
 {
 	setPosition(position);
+	
+	//hold connection to particle system
+	connection_ = particleSystem.addEmitter(thor::refEmitter(particleEmitter_));
+	//Derived classes' ctor should specify most details of emitter
+	particleEmitter_.setParticleLifetime(sf::seconds(1.f));
+	particleEmitter_.setParticleVelocity(sf::Vector2f());
+	particleEmitter_.setEmissionRate(20.f);
+	particleEmitter_.setParticleRotationSpeed(thor::Distributions::uniform(-100.f, 100.f));
+	particleEmitter_.setParticleScale(sf::Vector2f(0.2f, 0.2f));
 }
 
 Ship::~Ship() {
-	
+	//disconnect from particle system
+	printf("dc\n");
+	connection_.disconnect();
 }
 
 void Ship::takeDamage(unsigned amount) {
@@ -96,4 +107,9 @@ sf::Vector2f Ship::getForward() const
 float Ship::tickToSec(unsigned int ticks) const
 {
 	return (16.f / 1000.f) * ticks;
+}
+
+void Ship::updateParticleEmitter() {
+	particleEmitter_.setParticlePosition(getPosition());
+	particleEmitter_.setParticleVelocity(-forward_ * (thor::length(velocity_) * 25.f));
 }

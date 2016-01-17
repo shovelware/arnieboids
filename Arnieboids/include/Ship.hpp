@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 
 #include <Thor/Vectors.hpp>
+#include <Thor/Particles.hpp>
+#include <Thor/Math.hpp>
 
 /*!
  * \brief Base Ship class.
@@ -12,7 +14,7 @@
  */
 class Ship : public sf::ConvexShape {
 public:
-	Ship(sf::Vector2f const &position, float maxSpeed, unsigned int health = 1u);
+	Ship(thor::ParticleSystem &particleSystem, sf::Vector2f const &position, float maxSpeed, unsigned int health = 1u);
 	~Ship();
 
 	virtual void update() = 0;	//!< Hides sf::Shape::update()
@@ -68,5 +70,14 @@ protected:
 
 	//! Ticks to seconds
 	float tickToSec(unsigned int ticks) const;
+
+	//! Does nothing on it's own. Derived classes should play with this.
+	thor::UniversalEmitter particleEmitter_;
+
+	void updateParticleEmitter();
+
+private:
+	//! The ship's connection to the Game's particle system.
+	thor::Connection connection_;
 };
 #endif
