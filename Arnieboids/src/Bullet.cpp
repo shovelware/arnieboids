@@ -14,7 +14,7 @@ ticks_(0)
 	setPoint(2u, sf::Vector2f(5, 5));
 	setPoint(3u, sf::Vector2f(0, 5));
 
-	setOrigin(2.5f, 2.5f);
+	setOrigin(getLocalBounds().width * 0.5f, getLocalBounds().height * 0.5f);
 
 	setFillColor(sf::Color::Magenta);
 

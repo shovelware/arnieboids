@@ -1,6 +1,6 @@
 #include <include/Missile.hpp>
 
-Missile::Missile(const Ship* const target, sf::Vector2f const& position, sf::Vector2f const& direction, const float maxSpeed, const float acceleration, const float turnSpeed) :
+Missile::Missile(thor::ParticleSystem& particleSystem, const Ship* const target, sf::Vector2f const& position, sf::Vector2f const& direction, const float maxSpeed, const float acceleration, const float turnSpeed) :
 Bullet(position, direction, 0.f),
 TARGET_(target),
 MAX_SPEED_(maxSpeed),
@@ -16,16 +16,25 @@ isAccelerating_(true)
 	setPoint(3u, sf::Vector2f(6, 5));
 	setPoint(4u, sf::Vector2f(3, 0));
 
-	setOrigin(7.5f, 2.5f);
+	setOrigin(getLocalBounds().width * 0.5f, getLocalBounds().height * 0.5f);
 
 	setFillColor(sf::Color(100, 0, 0));
 
 	setOutlineColor(sf::Color::Red);
 
 	setRotation(thor::toDegree(atan2(forward_.y, forward_.x)));	//get forward vector as angle in degrees
+
+	particleEmitter_.setParticleColor(getOutlineColor());
+	particleEmitter_.setParticleScale(sf::Vector2f(0.1f, 0.1f));
+	particleEmitter_.setEmissionRate(30.f);
+	particleEmitter_.setParticleLifetime(sf::seconds(0.3f));
+	connection_ = particleSystem.addEmitter(thor::refEmitter(particleEmitter_));
 }
 
-Missile::~Missile() {}
+Missile::~Missile() {
+	//disconnect emitter from particle system
+	connection_.disconnect();
+}
 
 // returns sin(theta)*length(a)*length(b), where theta = the angle between vectors a,b
 inline float perpDot(const sf::Vector2f& a, const sf::Vector2f& b)
@@ -62,4 +71,12 @@ void Missile::update() {
 	forward_.x = sinf(rotRads);
 
 	move(forward_ * speed_);
+
+	updateParticleEmitter();
+}
+
+void Missile::updateParticleEmitter() {
+	particleEmitter_.setParticlePosition(getPosition() + (-forward_ * getLocalBounds().height * 0.5f));
+	particleEmitter_.setParticleRotation(getRotation());
+	//particleEmitter_.setParticleVelocity(-forward_ * speed_);
 }

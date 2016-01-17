@@ -24,7 +24,7 @@ Ship(particleSystem, position, 3.f)
 	setPoint(4u, sf::Vector2f(20, 20));
 	setPoint(5u, sf::Vector2f(10, 20));
 
-	setOrigin(15.f, 5.f);
+	setOrigin(getLocalBounds().width * 0.5f, getLocalBounds().height * 0.5f);
 
 	setFillColor(sf::Color(0, 100, 2));
 

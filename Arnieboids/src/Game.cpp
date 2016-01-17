@@ -37,6 +37,9 @@ particleTexture_()
 	controlled_ = (*ships_.rbegin());
 	SwarmBoid::setSwarmTarget(*ships_.rbegin());
 
+	bullets_.push_back(new Missile(particleSystem_, *ships_.rbegin(), sf::Vector2f(100.f, 100.f), sf::Vector2f(0.1f, 1.f)));
+	bullets_.push_back(new Missile(particleSystem_, *ships_.rbegin(), sf::Vector2f(500.f, 500.f), sf::Vector2f(-1.f, 0.f)));
+
 	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
 	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
 	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
@@ -48,8 +51,6 @@ particleTexture_()
 	bullets_.push_back(new Bullet(sf::Vector2f(1000.f, 1000.f), sf::Vector2f(-1.f, -1.f)));
 	bullets_.push_back(new Bullet(sf::Vector2f(0.f, 0.f), sf::Vector2f(200.f, 200.f)));
 	bullets_.push_back(new Bullet(sf::Vector2f(0.f, 0.f), sf::Vector2f(6.f, 1.f)));
-
-	bullets_.push_back(new Missile(*ships_.rbegin(), sf::Vector2f(100.f, 100.f), sf::Vector2f(0.1f, 1.f)));
 
 	//fade particles out at end of life
 	particleSystem_.addAffector(thor::AnimationAffector(thor::FadeAnimation(0.f, 0.25f)));
@@ -147,12 +148,15 @@ void Game::update() {
 	for (auto itr = bullets_.begin(), end = bullets_.end();
 	itr != end; /*No increment*/)
 	{
-		if ((*itr)->isActive())
-		{
+		//if ((*itr)->isActive())
+		//
 			(*itr++)->update();
-		}
+		//}
 		
-		else bullets_.erase(itr++);
+		//else {
+		//	delete *itr;
+		//	bullets_.erase(itr++);
+		//}
 	}
 
 	for (auto itr = ships_.begin(), end = ships_.end();
