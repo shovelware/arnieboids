@@ -111,5 +111,5 @@ float Ship::tickToSec(unsigned int ticks) const
 
 void Ship::updateParticleEmitter() {
 	particleEmitter_.setParticlePosition(getPosition() + (-forward_ * getLocalBounds().height * 0.5f));
-	particleEmitter_.setParticleVelocity(-forward_ * (thor::length(velocity_) * 25.f));
+	particleEmitter_.setParticleVelocity(thor::Distributions::deflect(-forward_ * (thor::length(velocity_) * 25.f), 15.f));
 }

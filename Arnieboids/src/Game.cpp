@@ -148,15 +148,15 @@ void Game::update() {
 	for (auto itr = bullets_.begin(), end = bullets_.end();
 	itr != end; /*No increment*/)
 	{
-		//if ((*itr)->isActive())
-		//
-			(*itr++)->update();
-		//}
+		if ((*itr)->isActive()) {
 		
-		//else {
-		//	delete *itr;
-		//	bullets_.erase(itr++);
-		//}
+			(*itr++)->update();
+		}
+		
+		else {
+			delete *itr;
+			bullets_.erase(itr++);
+		}
 	}
 
 	for (auto itr = ships_.begin(), end = ships_.end();
@@ -166,6 +166,15 @@ void Game::update() {
 		//remove ship if dead, update if not
 		if ((*itr)->isDead())
 		{
+			//generate a particle explosion at the dead ship's position
+			thor::UniversalEmitter emitter;
+			emitter.setParticlePosition((*itr)->getPosition());
+			emitter.setEmissionRate(100.f);
+			emitter.setParticleScale(sf::Vector2f(0.25f, 0.25f));
+			emitter.setParticleColor((*itr)->getFillColor());
+			emitter.setParticleVelocity([](){ return thor::Distributions::deflect(sf::Vector2f(1.f,1.f), 360.f)() * thor::Distributions::uniform(50.f, 100.f)(); });
+			particleSystem_.addEmitter(emitter, sf::seconds(0.1f));
+
 			delete *itr;
 			itr = ships_.erase(itr);
 		}
