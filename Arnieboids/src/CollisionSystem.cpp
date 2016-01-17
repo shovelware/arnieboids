@@ -16,9 +16,8 @@ void CollisionSystem::Check() const {
 		{
 			//check if same ship
 			if (first != second) {
-				//do broadphase check with disance and bounding radius
-				if (thor::length(first->getPosition() - second->getPosition()) <=
-					first->getRadius() + second->getRadius())
+				//do broadphase: check if bounding rects intersect
+				if (first->getGlobalBounds().intersects(second->getGlobalBounds()))
 				{
 					//do narrowphase check with SAT
 					if (checkPair(first, second))
@@ -32,9 +31,8 @@ void CollisionSystem::Check() const {
 		}//end for(Ship* second)
 
 		for (Bullet* bullet : bullets_) {
-			//check if bullet is inside bounding radius
-			if (thor::length(first->getPosition() - bullet->getPosition()) <=
-				first->getRadius())
+			//check if bullet intersects bounds
+			if (first->getGlobalBounds().intersects(bullet->getGlobalBounds()))
 			{
 				//use SAT to check if collision occurred
 				if (checkPair(first, bullet)) {

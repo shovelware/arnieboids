@@ -25,8 +25,6 @@ public:
 	//! Returns true if health is zero
 	bool isDead() const;
 
-	float getRadius() const;
-
 	//! Apply acceleration in direction of forward vector
 	void thrust();
 
@@ -67,10 +65,6 @@ protected:
 
 	//! Clamps the length of the velocity_ vector to MAX_SPEED_
 	void clampToMaxSpeed();
-
-	float boundingCircleRadius_;
-
-	void calculateBoundingCircle();
 
 	//! Ticks to seconds
 	float tickToSec(unsigned int ticks) const;

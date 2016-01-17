@@ -19,8 +19,6 @@ MAX_HEALTH_(maxHealth)
 
 	setOrigin(10.f, 15.f);
 
-	calculateBoundingCircle();
-
 	setFillColor(sf::Color::Blue);
 
 	setOutlineThickness(1.f);
