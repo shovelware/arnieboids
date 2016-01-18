@@ -154,6 +154,23 @@ void Game::update() {
 		}
 		
 		else {
+		
+			float emissionRate;
+			if(dynamic_cast<Missile*>(*itr)) {
+				emissionRate = 100.f;
+			} else {
+				emissionRate = 20.f;
+			}
+		
+		    //generate a particle explosion at the dead ship's position
+			thor::UniversalEmitter emitter;
+			emitter.setParticlePosition((*itr)->getPosition());
+			emitter.setEmissionRate(100.f);
+			emitter.setParticleScale(sf::Vector2f(0.25f, 0.25f));
+			emitter.setParticleColor((*itr)->getFillColor());
+			emitter.setParticleVelocity([](){ return thor::Distributions::deflect(sf::Vector2f(1.f,1.f), 360.f)() * thor::Distributions::uniform(50.f, 100.f)(); });
+			particleSystem_.addEmitter(emitter, sf::seconds(0.1f));
+			
 			delete *itr;
 			bullets_.erase(itr++);
 		}

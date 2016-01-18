@@ -32,6 +32,8 @@ Ship(particleSystem, position, 3.f)
 	setOutlineColor(sf::Color::Green);
 
 	particleEmitter_.setParticleColor(getOutlineColor());
+	particleEmitter_.setParticleLifetime(sf::seconds(0.25f));
+	particleAngleVariance_ = 45.f;
 
 	swarm_.push_back(this);
 }
