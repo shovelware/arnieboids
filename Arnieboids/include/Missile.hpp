@@ -1,6 +1,8 @@
 #ifndef _MISSILE_H
 #define _MISSILE_H
 
+#include <Thor/Particles.hpp>
+
 #include "Bullet.hpp"
 
 #include "Ship.hpp"
@@ -12,7 +14,7 @@ public:
 	 * \param position Initial position
 	 * \param direction Launch direction
 	 */
-	Missile(const Ship* const target, sf::Vector2f  const &position, sf::Vector2f const &direction, const float maxSpeed = 5.f, const float acceleration = 0.1f, const float turnSpeed = 2.f);
+	Missile(thor::ParticleSystem& particleSystem, const Ship* const target, sf::Vector2f  const &position, sf::Vector2f const &direction, const float maxSpeed = 4.f, const float acceleration = 0.1f, const float turnSpeed = 2.f);
 	~Missile();
 
 	//! Turns to face target while thrusting forward.
@@ -32,5 +34,14 @@ protected:
 
 	//! True if the missile has yet to reach max speed.
 	bool isAccelerating_;
+
+	//! Emitter for creating particles
+	thor::UniversalEmitter particleEmitter_;
+
+	void updateParticleEmitter();
+
+private:
+	//! Connection of emitter to particle system
+	thor::Connection connection_;
 };
 #endif

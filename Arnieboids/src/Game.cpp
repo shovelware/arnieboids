@@ -14,41 +14,49 @@ tickClock_(),
 timePerTick_(timePerTick),
 timeOfLastTick_(tickClock_.now() - timePerTick_),
 collisionSystem_(ships_, bullets_),
-keyboard_()
+keyboard_(),
+particleSystem_(),
+particleTexture_()
 {
 	float w = winWidth;
 	float h = winHeight;
 
 	genStars(-w, w * 2, -h, h * 2, 1000U, 1, 5);
 
-	ships_.push_back(new SwarmBoid(sf::Vector2f(100.f, 100.f)));
-	ships_.push_back(new SwarmBoid(sf::Vector2f(300.f, 300.f)));
-	ships_.push_back(new SwarmBoid(sf::Vector2f(600.f, 400.f)));
-	ships_.push_back(new SwarmBoid(sf::Vector2f(700.f, 300.f)));
-	ships_.push_back(new SwarmBoid(sf::Vector2f(160.f, 333.f)));
-	ships_.push_back(new SwarmBoid(sf::Vector2f(360.f, 800.f)));
-	ships_.push_back(new SwarmBoid(sf::Vector2f(660.f, 100.f)));
-	ships_.push_back(new SwarmBoid(sf::Vector2f(760.f, 100.f)));
+	ships_.push_back(new SwarmBoid(particleSystem_, sf::Vector2f(100.f, 100.f)));
+	ships_.push_back(new SwarmBoid(particleSystem_, sf::Vector2f(300.f, 300.f)));
+	ships_.push_back(new SwarmBoid(particleSystem_, sf::Vector2f(600.f, 400.f)));
+	ships_.push_back(new SwarmBoid(particleSystem_, sf::Vector2f(700.f, 300.f)));
+	ships_.push_back(new SwarmBoid(particleSystem_, sf::Vector2f(160.f, 333.f)));
+	ships_.push_back(new SwarmBoid(particleSystem_, sf::Vector2f(360.f, 800.f)));
+	ships_.push_back(new SwarmBoid(particleSystem_, sf::Vector2f(660.f, 100.f)));
+	ships_.push_back(new SwarmBoid(particleSystem_, sf::Vector2f(760.f, 100.f)));
 
-	ships_.push_back(new Player(sf::Vector2f(200.f, 200.f)));
+	ships_.push_back(new Player(particleSystem_, sf::Vector2f(200.f, 200.f)));
 	camera_.setTarget(*ships_.rbegin());
 	controlled_ = (*ships_.rbegin());
 	SwarmBoid::setSwarmTarget(*ships_.rbegin());
 
-	ships_.push_back(new Asteroid(sf::Vector2f(rand() % 500, rand() % 500)));
-	ships_.push_back(new Asteroid(sf::Vector2f(rand() % 500, rand() % 500)));
-	ships_.push_back(new Asteroid(sf::Vector2f(rand() % 500, rand() % 500)));
-	ships_.push_back(new Asteroid(sf::Vector2f(rand() % 500, rand() % 500)));
-	ships_.push_back(new Asteroid(sf::Vector2f(rand() % 500, rand() % 500)));
-	ships_.push_back(new Asteroid(sf::Vector2f(rand() % 500, rand() % 500)));
+	bullets_.push_back(new Missile(particleSystem_, *ships_.rbegin(), sf::Vector2f(100.f, 100.f), sf::Vector2f(0.1f, 1.f)));
+	bullets_.push_back(new Missile(particleSystem_, *ships_.rbegin(), sf::Vector2f(500.f, 500.f), sf::Vector2f(-1.f, 0.f)));
+
+	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
+	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
+	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
+	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
+	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
+	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
 
 	bullets_.push_back(new Bullet(sf::Vector2f(100.f, 100.f), sf::Vector2f(1.f, 0.1f)));
 	bullets_.push_back(new Bullet(sf::Vector2f(1000.f, 1000.f), sf::Vector2f(-1.f, -1.f)));
 	bullets_.push_back(new Bullet(sf::Vector2f(0.f, 0.f), sf::Vector2f(200.f, 200.f)));
 	bullets_.push_back(new Bullet(sf::Vector2f(0.f, 0.f), sf::Vector2f(6.f, 1.f)));
 
-	bullets_.push_back(new Missile(*ships_.rbegin(), sf::Vector2f(100.f, 100.f), sf::Vector2f(0.1f, 1.f)));
+	//fade particles out at end of life
+	particleSystem_.addAffector(thor::AnimationAffector(thor::FadeAnimation(0.f, 0.25f)));
 
+	particleTexture_.loadFromFile("./particle.png");
+	particleSystem_.setTexture(particleTexture_);
 }
 
 Game::~Game() {
@@ -132,18 +140,23 @@ void Game::handleEvents() {
 void Game::update() {
 	collisionSystem_.Check();
 
+	particleSystem_.update(sf::milliseconds(16));
+
 	camera_.update();
 	keyboard_.update();
 
 	for (auto itr = bullets_.begin(), end = bullets_.end();
 	itr != end; /*No increment*/)
 	{
-		if ((*itr)->isActive())
-		{
+		if ((*itr)->isActive()) {
+		
 			(*itr++)->update();
 		}
 		
-		else bullets_.erase(itr++);
+		else {
+			delete *itr;
+			bullets_.erase(itr++);
+		}
 	}
 
 	for (auto itr = ships_.begin(), end = ships_.end();
@@ -153,6 +166,16 @@ void Game::update() {
 		//remove ship if dead, update if not
 		if ((*itr)->isDead())
 		{
+			//generate a particle explosion at the dead ship's position
+			thor::UniversalEmitter emitter;
+			emitter.setParticlePosition((*itr)->getPosition());
+			emitter.setEmissionRate(100.f);
+			emitter.setParticleScale(sf::Vector2f(0.25f, 0.25f));
+			emitter.setParticleColor((*itr)->getFillColor());
+			emitter.setParticleVelocity([](){ return thor::Distributions::deflect(sf::Vector2f(1.f,1.f), 360.f)() * thor::Distributions::uniform(50.f, 100.f)(); });
+			particleSystem_.addEmitter(emitter, sf::seconds(0.1f));
+
+			delete *itr;
 			itr = ships_.erase(itr);
 		}
 		else {
@@ -222,6 +245,7 @@ void Game::draw() {
 	window_.clear();
 	window_.setView(camera_);
 
+	//draw stars
 	for (auto itr = stars_.begin(), end = stars_.end();
 	itr != end;
 		++itr)
@@ -229,6 +253,10 @@ void Game::draw() {
 		window_.draw(*itr);
 	}
 
+	//draw particles
+	window_.draw(particleSystem_);
+
+	//drawm bullets
 	for (auto itr = bullets_.begin(), end = bullets_.end();
 		itr != end;
 		++itr)
@@ -236,6 +264,7 @@ void Game::draw() {
 		window_.draw(**itr);
 	}
 
+	//draw ships
 	for (auto itr = ships_.begin(), end = ships_.end();
 		itr != end;
 		++itr)

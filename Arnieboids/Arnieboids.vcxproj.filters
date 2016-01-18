@@ -43,7 +43,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Asteroid.cpp">
- <Filter>Source Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="include\KeyInput.cpp">
       <Filter>Source Files</Filter>
@@ -81,7 +81,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Asteroid.hpp">
-  <Filter>Header Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\KeyInput.hpp">
       <Filter>Header Files</Filter>
@@ -92,5 +92,10 @@
     <ClInclude Include="include\CollisionSystem.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="particle.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

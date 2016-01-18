@@ -5,6 +5,8 @@
 #include <list>
 
 #include <SFML/Graphics.hpp>
+#include <Thor/Particles.hpp>
+#include <Thor/Animations.hpp>
 
 #include "Ship.hpp"
 #include "Player.hpp"
@@ -65,6 +67,12 @@ private:
 
 	//! Used to check for collision between shapes
 	CollisionSystem collisionSystem_;
+
+	//! Manages all particles
+	thor::ParticleSystem particleSystem_;
+
+	//! Texture for all particles
+	sf::Texture particleTexture_;
 
 	std::chrono::steady_clock tickClock_;
 	std::chrono::milliseconds timePerTick_;	//!< Milliseconds per update/draw tick

@@ -108,6 +108,9 @@ xcopy $(SFML)\bin\*-d-2.dll $(TargetDir) /Y /D</Command>
     <ClInclude Include="include\SwarmBoid.hpp" />
     <ClInclude Include="include\XController.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="particle.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

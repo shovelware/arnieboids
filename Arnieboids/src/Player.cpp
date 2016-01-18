@@ -1,8 +1,8 @@
 #include <include/Player.hpp>
 #include <iostream>
 
-Player::Player(sf::Vector2f const& position, unsigned int maxHealth) :
-Ship(position, 4.f),
+Player::Player(thor::ParticleSystem &particleSystem, sf::Vector2f const& position, unsigned int maxHealth) :
+Ship(particleSystem, position, 4.f),
 MAX_HEALTH_(maxHealth)
 {
 	setPointCount(3u);
@@ -11,13 +11,11 @@ MAX_HEALTH_(maxHealth)
 	//	   / \
 	//	  /	  \
 	//	 /	   \
-	//	/____\
+	//	/_______\
 
-	setPoint(0u, sf::Vector2f(10, 0));
-	setPoint(1u, sf::Vector2f(20, 30));
-	setPoint(2u, sf::Vector2f(0, 30));
-
-	setOrigin(10.f, 15.f);
+	setPoint(0u, sf::Vector2f(0, -15));
+	setPoint(1u, sf::Vector2f(10, 15));
+	setPoint(2u, sf::Vector2f(-10, 15));
 
 	setFillColor(sf::Color::Blue);
 
@@ -25,6 +23,8 @@ MAX_HEALTH_(maxHealth)
 	setOutlineColor(sf::Color::Cyan);
 
 	refireTime_ = .5f;
+
+	particleEmitter_.setParticleColor(getOutlineColor());
 }
 
 Player::~Player() {
@@ -38,6 +38,8 @@ void Player::update() {
 
 	//Cool weapon
 	coolDown_ -= tickToSec(1);
+
+	updateParticleEmitter();
 }
 
 void Player::onCollide(Ship* other) {

@@ -5,8 +5,8 @@ std::list<SwarmBoid*> SwarmBoid::swarm_ = std::list<SwarmBoid*>();
 float SwarmBoid::swarmThresholdRadius_ = 200.f;
 Ship* SwarmBoid::swarmTarget_ = nullptr;
 
-SwarmBoid::SwarmBoid(sf::Vector2f position) :
-Ship(position, 3.f)
+SwarmBoid::SwarmBoid(thor::ParticleSystem &particleSystem, sf::Vector2f position) :
+Ship(particleSystem, position, 3.f)
 {
 
 	setPointCount(6u);
@@ -24,12 +24,14 @@ Ship(position, 3.f)
 	setPoint(4u, sf::Vector2f(20, 20));
 	setPoint(5u, sf::Vector2f(10, 20));
 
-	setOrigin(15.f, 5.f);
+	setOrigin(getLocalBounds().width * 0.5f, getLocalBounds().height * 0.5f);
 
 	setFillColor(sf::Color(0, 100, 2));
 
 	setOutlineThickness(1.f);
 	setOutlineColor(sf::Color::Green);
+
+	particleEmitter_.setParticleColor(getOutlineColor());
 
 	swarm_.push_back(this);
 }
@@ -41,6 +43,8 @@ SwarmBoid::~SwarmBoid() {
 
 void SwarmBoid::update() {
 	swarm();
+
+	updateParticleEmitter();
 }
 
 void SwarmBoid::onCollide(Ship* other) {

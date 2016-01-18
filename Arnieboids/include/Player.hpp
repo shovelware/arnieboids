@@ -5,7 +5,7 @@
 
 class Player : public Ship {
 public:
-	Player(sf::Vector2f const &position, unsigned int maxHealth = 10U);
+	Player(thor::ParticleSystem &particleSystem, sf::Vector2f const &position, unsigned int maxHealth = 10U);
 	~Player();
 
 
@@ -14,6 +14,7 @@ public:
 
 	//! Does nothing
 	void onCollide(Ship* other) override;
+
 private:
 	const unsigned int MAX_HEALTH_;
 };

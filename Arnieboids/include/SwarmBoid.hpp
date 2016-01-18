@@ -7,7 +7,7 @@
 
 class SwarmBoid : public Ship {
 public:
-	SwarmBoid(sf::Vector2f position);
+	SwarmBoid(thor::ParticleSystem &particleSystem, sf::Vector2f position);
 	~SwarmBoid();
 #
 	//! Calls swarm()
