@@ -29,6 +29,8 @@ isAccelerating_(true)
 	particleEmitter_.setEmissionRate(30.f);
 	particleEmitter_.setParticleLifetime(sf::seconds(0.3f));
 	connection_ = particleSystem.addEmitter(thor::refEmitter(particleEmitter_));
+
+	lifeTime_ = 10;
 }
 
 Missile::~Missile() {
@@ -43,36 +45,49 @@ inline float perpDot(const sf::Vector2f& a, const sf::Vector2f& b)
 }
 
 void Missile::update() {
-	//find out which way we should turn to face target
-	float d = perpDot(TARGET_->getPosition() - this->getPosition(), forward_);
-	if (d > 0.f) {
-		//turn clockwise
-		rotate(TURN_SPEED_);
-	} else {
-		//turn counter-clockwise
-		rotate(-TURN_SPEED_);
-	}
 
-	//accelerate to top speed
-	if (isAccelerating_) {
-		speed_ += ACCELERATION_;
-		if (speed_ > MAX_SPEED_) {
-			speed_ = MAX_SPEED_;
-			isAccelerating_ = false;
+	if (active_)
+	{
+		//find out which way we should turn to face target
+		float d = perpDot(TARGET_->getPosition() - this->getPosition(), forward_);
+		if (d > 0.f) {
+			//turn clockwise
+			rotate(TURN_SPEED_);
 		}
+		else {
+			//turn counter-clockwise
+			rotate(-TURN_SPEED_);
+		}
+
+		//accelerate to top speed
+		if (isAccelerating_) {
+			speed_ += ACCELERATION_;
+			if (speed_ > MAX_SPEED_) {
+				speed_ = MAX_SPEED_;
+				isAccelerating_ = false;
+			}
+		}
+
+
+		//Get rotation in radians
+		float rotRads = getRotation() * 0.017f;
+
+		//Calculate forward vector
+		forward_.y = -cosf(rotRads);
+		forward_.x = sinf(rotRads);
+
+		move(forward_ * speed_);
+
+
+		ticks_ = (ticks_ + 1) % INT_MAX;
+
+		if (tickToSec(ticks_) >= lifeTime_)
+		{
+			active_ = false;
+		}
+
+		updateParticleEmitter();
 	}
-
-
-	//Get rotation in radians
-	float rotRads = getRotation() * 0.017f;
-
-	//Calculate forward vector
-	forward_.y = -cosf(rotRads);
-	forward_.x = sinf(rotRads);
-
-	move(forward_ * speed_);
-
-	updateParticleEmitter();
 }
 
 void Missile::updateParticleEmitter() {
