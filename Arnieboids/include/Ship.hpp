@@ -75,6 +75,8 @@ protected:
 	thor::UniversalEmitter particleEmitter_;
 
 	void updateParticleEmitter();
+	
+	float particleAngleVariance_;
 
 private:
 	//! The ship's connection to the Game's particle system.

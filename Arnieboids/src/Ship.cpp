@@ -9,7 +9,8 @@ turnSpeed_(2.f),
 thrust_(0.1f),
 refireTime_(2.f),
 coolDown_(0),
-ticks_(0)
+ticks_(0),
+particleAngleVariance_(15.f)
 {
 	setPosition(position);
 	
@@ -111,5 +112,5 @@ float Ship::tickToSec(unsigned int ticks) const
 
 void Ship::updateParticleEmitter() {
 	particleEmitter_.setParticlePosition(getPosition() + (-forward_ * getLocalBounds().height * 0.5f));
-	particleEmitter_.setParticleVelocity(thor::Distributions::deflect(-forward_ * (thor::length(velocity_) * 25.f), 15.f));
+	particleEmitter_.setParticleVelocity(thor::Distributions::deflect(-forward_ * (thor::length(velocity_) * 25.f), particleAngleVariance_));
 }
