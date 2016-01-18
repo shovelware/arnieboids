@@ -215,14 +215,13 @@ void Game::handleEvents() {
 	{
 		camMove.x += 1;
 	}
-
+	//Actual camera move
 	if (camMove != sf::Vector2f(0, 0))
 	{
 		camMove = thor::unitVector(camMove);
 		camMove *= camSpeed;
 		camera_.move(camMove);
 	}
-
 	//L : Reset camera move
 	if (keyboard_.isKeyPressed(sf::Keyboard::L))
 	{
@@ -231,7 +230,6 @@ void Game::handleEvents() {
 			camera_.moveReset();
 		}
 	}
-
 	//M : Toggle camera follow
 	if (keyboard_.isKeyPressed(sf::Keyboard::M))
 	{
