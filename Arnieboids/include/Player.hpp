@@ -8,7 +8,6 @@ public:
 	Player(thor::ParticleSystem &particleSystem, sf::Vector2f const &position, unsigned int maxHealth = 10U);
 	~Player();
 
-
 	//! Moves by velocity and cools gun.
 	void update() override;
 

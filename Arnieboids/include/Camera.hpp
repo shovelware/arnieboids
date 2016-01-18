@@ -17,7 +17,9 @@ public:
 
 	void setTarget(Ship* target);
 	Ship* getTarget();
-	void clearTarget();
+	
+	//! Clears the camera's target, can save camera transform
+	void clearTarget(bool savexf);
 
 	/*!
 	* Updates camera's center to where the target is
@@ -25,19 +27,27 @@ public:
 	*/
 	void update();
 
-	//! Not implemented!
-	void move();
+	//! Moves controls for the camera
+	void move(sf::Vector2f xf);
+	void moveReset();
 
-	//! Not implemented!
+	//! Zoom controls for camera
 	void zoomIn();
 	void zoomOut();
-	void zoomSet();
+	void zoomSet(float mult);
 	void zoomReset();
 
 	//! Not implemented!
 	void drawHUD();
+
+	float getZoomPercent() const;
 private:
 	Ship* target_;			//!< The target followed ship
 	sf::Vector2f screenSize_; //!< Keep a record of the screen size for resets
+
+	float zoomFactor_; //!< The internal factor of the zoom
+	float zoomStep_; //!< Zoom step [0.25 == 25%]
+
+	sf::Vector2f move_; //!< Vector to move by
 };
 #endif

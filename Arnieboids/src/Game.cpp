@@ -5,7 +5,7 @@ inline float randFloat(float MIN, float MAX) { return MIN + static_cast <float> 
 
 #pragma region PublicMemberFunctions
 Game::Game(unsigned int winWidth, unsigned int winHeight, unsigned int timePerTick) :
-window_(sf::VideoMode(winWidth, winHeight), "ArnieBoids", sf::Style::Default, sf::ContextSettings(0u, 0u, 8u)),	//AntiAliasing level: 8
+window_(sf::VideoMode(winWidth, winHeight), "ArnieBoids", sf::Style::Titlebar, sf::ContextSettings(0u, 0u, 8u)),	//AntiAliasing level: 8
 camera_(sf::Vector2u(winWidth, winHeight)),
 ships_(),
 bullets_(),
@@ -21,7 +21,7 @@ particleTexture_()
 	float w = winWidth;
 	float h = winHeight;
 
-	genStars(-w, w * 2, -h, h * 2, 1000U, 1, 5);
+	genStars(-w, w * 2, -h, h * 2, 420U, 1, 5);
 
 	ships_.push_back(new SwarmBoid(particleSystem_, sf::Vector2f(100.f, 100.f)));
 	ships_.push_back(new SwarmBoid(particleSystem_, sf::Vector2f(300.f, 300.f)));
@@ -135,6 +135,114 @@ void Game::handleEvents() {
 		default: break;
 		}
 	}//end while
+
+	 //Keyboard
+
+	 //Escape : Close Window
+	if (keyboard_.isKeyDown(sf::Keyboard::Escape))
+	{
+		window_.close();
+	}
+
+	//F5 : Reset game NOT IMPLEMENTED
+	if (keyboard_.isKeyDown(sf::Keyboard::F5))
+	{
+		//reset();
+	}
+
+	//Up, W : Thrust
+	if (keyboard_.isKeyDown(sf::Keyboard::W) || keyboard_.isKeyDown(sf::Keyboard::Up))
+	{
+		controlled_->thrust();
+	}
+	//Right, D : Turn CW
+	if (keyboard_.isKeyDown(sf::Keyboard::D) || keyboard_.isKeyDown(sf::Keyboard::Right))
+	{
+		controlled_->turnRight();
+	}
+	//Left, A : Turn CCW
+	if (keyboard_.isKeyDown(sf::Keyboard::A) || keyboard_.isKeyDown(sf::Keyboard::Left))
+	{
+		controlled_->turnLeft();
+	}
+
+	//Space : Fire
+	if (keyboard_.isKeyDown(sf::Keyboard::Space))
+	{
+		if (controlled_->trigger())
+		{
+			//Add a bullet here
+			bullets_.push_back(new Bullet(controlled_->getPosition(), controlled_->getForward()));
+		}
+	}
+
+	//I : Zoom in
+	if (keyboard_.isKeyDown(sf::Keyboard::I))
+	{
+		camera_.zoomIn();
+	}
+	//O : Zoom Out
+	if (keyboard_.isKeyDown(sf::Keyboard::O))
+	{
+		camera_.zoomOut();
+	}
+	//P : Reset Zoom
+	if (keyboard_.isKeyPressed(sf::Keyboard::P))
+	{
+		camera_.zoomReset();
+	}
+
+	float camSpeed = 5;
+	sf::Vector2f camMove(0, 0);
+
+	//U : Move camera up
+	if (keyboard_.isKeyDown(sf::Keyboard::U))
+	{
+		camMove.y -= 1;
+	}
+	//H : Move camera left
+	if (keyboard_.isKeyDown(sf::Keyboard::H))
+	{
+		camMove.x -= 1;
+	}
+	//J : Move camera down
+	if (keyboard_.isKeyDown(sf::Keyboard::J))
+	{
+		camMove.y += 1;
+	}
+	//K : Move camera right
+	if (keyboard_.isKeyDown(sf::Keyboard::K))
+	{
+		camMove.x += 1;
+	}
+
+	if (camMove != sf::Vector2f(0, 0))
+	{
+		camMove = thor::unitVector(camMove);
+		camMove *= camSpeed;
+		camera_.move(camMove);
+	}
+
+	//L : Reset camera move
+	if (keyboard_.isKeyPressed(sf::Keyboard::L))
+	{
+		if (camera_.getTarget() != nullptr)
+		{
+			camera_.moveReset();
+		}
+	}
+
+	//M : Toggle camera follow
+	if (keyboard_.isKeyPressed(sf::Keyboard::M))
+	{
+		if (camera_.getTarget() == nullptr)
+		{
+			camera_.setTarget(controlled_);
+			camera_.moveReset();
+		}
+
+		else camera_.clearTarget(true);
+	}
 }
 
 void Game::update() {
@@ -182,36 +290,6 @@ void Game::update() {
 			(*itr)->update();
 		}
 	}
-
-	//Keyboard updates
-	if (keyboard_.isKeyDown(sf::Keyboard::Escape))
-	{
-		window_.close();
-	}
-
-	if (keyboard_.isKeyDown(sf::Keyboard::W) || keyboard_.isKeyDown(sf::Keyboard::Up))
-	{
-		controlled_->thrust();
-	}
-
-	if (keyboard_.isKeyDown(sf::Keyboard::D) || keyboard_.isKeyDown(sf::Keyboard::Right))
-	{
-		controlled_->turnRight();
-	}
-
-	if (keyboard_.isKeyDown(sf::Keyboard::A) || keyboard_.isKeyDown(sf::Keyboard::Left))
-	{
-		controlled_->turnLeft();
-	}
-
-	if (keyboard_.isKeyDown(sf::Keyboard::Space))
-	{
-		if (controlled_->trigger())
-		{
-			//Add a bullet here
-			bullets_.push_back(new Bullet(controlled_->getPosition(), controlled_->getForward()));
-		}
-	}
 }
 
 void Game::genStars(float minX, float maxX, float minY, float maxY, unsigned int amount, float minR, float maxR)
@@ -231,9 +309,9 @@ void Game::genStars(float minX, float maxX, float minY, float maxY, unsigned int
 
 			r = randFloat(minR, maxR);
 
-			c.r = randFloat(128, 255);
+			c.r = randFloat(64, 128);
 			c.g = randFloat(128, 255);
-			c.b = randFloat(128, 255);
+			c.b = randFloat(64, 128);
 
 			stars_.push_back(Star(p, r, c));
 		}
