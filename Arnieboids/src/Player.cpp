@@ -32,14 +32,13 @@ Player::~Player() {
 }
 
 void Player::update() {
+	Ship::update();
 	move(velocity_);
 
 	ticks_ = (ticks_ + 1) % INT_MAX;
 
 	//Cool weapon
 	coolDown_ -= tickToSec(1);
-
-	updateParticleEmitter();
 }
 
 void Player::onCollide(Ship* other) {

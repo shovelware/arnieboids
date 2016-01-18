@@ -5,6 +5,6 @@ Star::Star(sf::Vector2f position, float radius, sf::Color col) : CircleShape(rad
 	setPosition(position);
 	setFillColor(col);
 
-	setOutlineThickness(-radius * .1f);
-	setOutlineColor(col + sf::Color(196, 0, 196));
+	setOutlineThickness(-radius * .2f);
+	setOutlineColor(col - sf::Color(196, 0, 196));
 }

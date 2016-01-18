@@ -44,9 +44,8 @@ SwarmBoid::~SwarmBoid() {
 }
 
 void SwarmBoid::update() {
+	Ship::update();
 	swarm();
-
-	updateParticleEmitter();
 }
 
 void SwarmBoid::onCollide(Ship* other) {

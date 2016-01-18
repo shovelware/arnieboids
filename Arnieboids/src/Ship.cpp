@@ -3,12 +3,14 @@
 Ship::Ship(thor::ParticleSystem &particleSystem, sf::Vector2f const &position, float maxSpeed, unsigned int health) :
 MAX_SPEED_(maxSpeed),
 velocity_(0.f, 0.f),
+accel_(0.f, 0.f),
 health_(health),
 forward_(0.f, -1.f),
 turnSpeed_(2.f),
 thrust_(0.1f),
 refireTime_(2.f),
 coolDown_(0),
+radarRange_(500),
 ticks_(0),
 particleAngleVariance_(15.f)
 {
@@ -26,8 +28,19 @@ particleAngleVariance_(15.f)
 
 Ship::~Ship() {
 	//disconnect from particle system
-	printf("dc\n");
 	connection_.disconnect();
+}
+
+void Ship::update()
+{
+	//Apply delta velocity
+	velocity_ += accel_;
+	clampToMaxSpeed();
+
+	updateParticleEmitter();
+
+	accel_.x = 0;
+	accel_.y = 0;
 }
 
 void Ship::takeDamage(unsigned amount) {
@@ -55,11 +68,17 @@ void Ship::clampToMaxSpeed() {
 
 void Ship::thrust() {
 
-	//Calculate and pplay delta velocity
-	velocity_.x += forward_.x * thrust_;
-	velocity_.y += forward_.y * thrust_;
+	//Clear previous accel
+	accel_.x += forward_.x * thrust_;
+	accel_.y += forward_.y * thrust_;
+}
 
-	clampToMaxSpeed();
+void Ship::brake() {
+	if (velocity_.x != 0 || velocity_.y != 0)
+	{
+		accel_.x -= velocity_.x * thrust_ * 0.5f;
+		accel_.y -= velocity_.y * thrust_ * 0.5f;
+	}
 }
 
 void Ship::turnLeft()
@@ -105,12 +124,47 @@ sf::Vector2f Ship::getForward() const
 	return forward_;
 }
 
+void Ship::setRadarRange(float range)
+{
+	radarRange_ = range;
+}
+
+float Ship::getRadarRange() const
+{
+	return radarRange_;
+}
+
 float Ship::tickToSec(unsigned int ticks) const
 {
 	return (16.f / 1000.f) * ticks;
 }
 
-void Ship::updateParticleEmitter() {
-	particleEmitter_.setParticlePosition(getPosition() + (-forward_ * getLocalBounds().height * 0.5f));
-	particleEmitter_.setParticleVelocity(thor::Distributions::deflect(-forward_ * (thor::length(velocity_) * 25.f), particleAngleVariance_));
+void Ship::updateParticleEmitter() 
+{
+
+	float acc = thor::length(accel_) * 100;
+
+	particleEmitter_.setEmissionRate(acc);
+
+	if (acc != 0)
+	{
+		sf::Vector2f vAcc = thor::unitVector(accel_);
+		sf::Vector2f vEng = thor::unitVector(-forward_);
+
+		//If our accel is not from engine, draw RCS particles
+		if (acos(thor::dotProduct(vAcc, vEng)) > 10)
+		{
+			particleEmitter_.setParticlePosition(getPosition() + (thor::unitVector(accel_) * getLocalBounds().height * 0.5f));
+			particleEmitter_.setParticleVelocity(thor::Distributions::deflect(-forward_ * (acc * 10.f), particleAngleVariance_));
+			particleEmitter_.setParticleScale(sf::Vector2f(0.1f, 0.1f));
+		}
+
+		//Otherwise draw regular engine particles
+		else
+		{
+			particleEmitter_.setParticlePosition(getPosition() + (-forward_ * getLocalBounds().height * 0.5f));
+			particleEmitter_.setParticleVelocity(thor::Distributions::deflect(thor::unitVector(accel_) * (acc * 10.f), particleAngleVariance_));
+			particleEmitter_.setParticleScale(sf::Vector2f(0.2f, 0.2f));
+		}
+	}
 }

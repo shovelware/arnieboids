@@ -13,13 +13,13 @@ class Camera : public sf::View
 {
 public:
 	Camera(sf::Vector2u screenSize);
-	Camera(sf::Vector2u screenSize, Ship* target);
 
 	void setTarget(Ship* target);
 	Ship* getTarget();
 	
 	//! Clears the camera's target, can save camera transform
 	void clearTarget(bool savexf);
+	void loadFont(std::string filename);
 
 	/*!
 	* Updates camera's center to where the target is
@@ -38,7 +38,8 @@ public:
 	void zoomReset();
 
 	//! Not implemented!
-	void drawHUD();
+	void drawHUD(sf::RenderTarget& rentrg);
+	void drawRadar(sf::RenderTarget& rentrg, sf::Vector2f centre, float radius);
 
 	float getZoomPercent() const;
 private:
@@ -49,5 +50,7 @@ private:
 	float zoomStep_; //!< Zoom step [0.25 == 25%]
 
 	sf::Vector2f move_; //!< Vector to move by
+
+	sf::Font* font_; //!< Font to draw hud with
 };
 #endif

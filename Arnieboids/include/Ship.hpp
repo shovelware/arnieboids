@@ -17,7 +17,7 @@ public:
 	Ship(thor::ParticleSystem &particleSystem, sf::Vector2f const &position, float maxSpeed, unsigned int health = 1u);
 	~Ship();
 
-	virtual void update() = 0;	//!< Hides sf::Shape::update()
+	virtual void update();	//!< Hides sf::Shape::update()
 
 	virtual void onCollide(Ship* other) = 0;
 
@@ -29,6 +29,9 @@ public:
 
 	//! Apply acceleration in direction of forward vector
 	void thrust();
+
+	//! Apply deceleration if thrust is present
+	void brake();
 
 	//! Turn ship left
 	void turnLeft();
@@ -42,6 +45,10 @@ public:
 	//! Returns forward direction of ship
 	sf::Vector2f getForward() const;
 
+	//! Returns radar radius
+	void setRadarRange(float range);
+	float getRadarRange() const;
+
 protected:
 	//! Maximum length of velocity vector
 	const float MAX_SPEED_;
@@ -51,7 +58,10 @@ protected:
 	unsigned int ticks_; //ticks_ = (ticks_ + 1) % INT_MAX;
 
 	//! Delta position per update
-	sf::Vector2f velocity_;	
+	sf::Vector2f velocity_;
+
+	//! Delta velocity after update !velocity_ += accel_ in update!
+	sf::Vector2f accel_;
 
 	//! Current health
 	int health_;
@@ -68,13 +78,16 @@ protected:
 	//! Clamps the length of the velocity_ vector to MAX_SPEED_
 	void clampToMaxSpeed();
 
+	//! Ship's radar radius
+	float radarRange_;
+
 	//! Ticks to seconds
 	float tickToSec(unsigned int ticks) const;
 
 	//! Does nothing on it's own. Derived classes should play with this.
 	thor::UniversalEmitter particleEmitter_;
 
-	void updateParticleEmitter();
+	virtual void updateParticleEmitter();
 	
 	float particleAngleVariance_;
 

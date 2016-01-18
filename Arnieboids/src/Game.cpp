@@ -34,6 +34,9 @@ particleTexture_()
 
 	ships_.push_back(new Player(particleSystem_, sf::Vector2f(200.f, 200.f)));
 	camera_.setTarget(*ships_.rbegin());
+
+	camera_.loadFont("CODE Bold.otf");
+
 	controlled_ = (*ships_.rbegin());
 	SwarmBoid::setSwarmTarget(*ships_.rbegin());
 
@@ -164,6 +167,11 @@ void Game::handleEvents() {
 	if (keyboard_.isKeyDown(sf::Keyboard::A) || keyboard_.isKeyDown(sf::Keyboard::Left))
 	{
 		controlled_->turnLeft();
+	}
+	//Down, S : Brake
+	if (keyboard_.isKeyDown(sf::Keyboard::S) || keyboard_.isKeyDown(sf::Keyboard::Down))
+	{
+		controlled_->brake();
 	}
 
 	//Space : Fire
@@ -336,6 +344,7 @@ void Game::genStars(float minX, float maxX, float minY, float maxY, unsigned int
 
 void Game::draw() {
 	window_.clear();
+
 	window_.setView(camera_);
 
 	//draw stars
@@ -349,7 +358,7 @@ void Game::draw() {
 	//draw particles
 	window_.draw(particleSystem_);
 
-	//drawm bullets
+	//draw bullets
 	for (auto itr = bullets_.begin(), end = bullets_.end();
 		itr != end;
 		++itr)
@@ -364,6 +373,8 @@ void Game::draw() {
 	{
 		window_.draw(**itr);
 	}
+
+		camera_.drawHUD(window_);
 
 	window_.display();
 }
