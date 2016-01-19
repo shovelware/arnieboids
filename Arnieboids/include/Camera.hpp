@@ -12,7 +12,7 @@
 class Camera : public sf::View
 {
 public:
-	Camera(sf::Vector2u screenSize);
+	Camera(sf::RenderTarget& target);
 
 	void setTarget(Ship* target);
 	Ship* getTarget();
@@ -37,9 +37,9 @@ public:
 	void zoomSet(float mult);
 	void zoomReset();
 
-	//! Not implemented!
-	void drawHUD(sf::RenderTarget& rentrg);
-	void drawRadar(sf::RenderTarget& rentrg, sf::Vector2f centre, float radius);
+	//! HUD Drawing controls, both of these change render target for their duration
+	void drawHUD();
+	void drawRadar(std::list<Ship*>& objList, sf::Vector2f centre, float radius);
 
 	float getZoomPercent() const;
 private:
@@ -51,6 +51,15 @@ private:
 
 	sf::Vector2f move_; //!< Vector to move by
 
-	sf::Font* font_; //!< Font to draw hud with
+	sf::Font* font_; //!< Font to draw HUD with
+	sf::Text text_; //!< HUD is drawn with a single text
+	sf::RenderTarget& rentrg_; //!< HUD is drawn to this target
+
+	int radarSize_; //!< Radar size within HUD
+	sf::Vector2f radarPos_; //!< Radar position within HUD
+
+	void drawText(std::string info, sf::Vector2f pos, sf::Color color);
+	void drawRadarObj(sf::ConvexShape* shape); //!< 
+	sf::Vector2f worldToRadar(sf::Vector2f const& worldPos);
 };
 #endif

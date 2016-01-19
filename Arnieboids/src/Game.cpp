@@ -6,7 +6,7 @@ inline float randFloat(float MIN, float MAX) { return MIN + static_cast <float> 
 #pragma region PublicMemberFunctions
 Game::Game(unsigned int winWidth, unsigned int winHeight, unsigned int timePerTick) :
 window_(sf::VideoMode(winWidth, winHeight), "ArnieBoids", sf::Style::Titlebar, sf::ContextSettings(0u, 0u, 8u)),	//AntiAliasing level: 8
-camera_(sf::Vector2u(winWidth, winHeight)),
+camera_(window_),
 ships_(),
 bullets_(),
 controller_(),
@@ -374,7 +374,8 @@ void Game::draw() {
 		window_.draw(**itr);
 	}
 
-		camera_.drawHUD(window_);
+		camera_.drawHUD();
+		camera_.drawRadar(ships_, sf::Vector2f(0, 0), 100);
 
 	window_.display();
 }
