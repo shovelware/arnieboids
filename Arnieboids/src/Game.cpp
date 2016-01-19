@@ -1,8 +1,5 @@
 #include <include/Game.hpp>
 
-inline float randFloat(float MAX) { return static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / MAX)); };
-inline float randFloat(float MIN, float MAX) { return MIN + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (MAX - MIN))); };
-
 #pragma region PublicMemberFunctions
 Game::Game(unsigned int winWidth, unsigned int winHeight, unsigned int timePerTick) :
 window_(sf::VideoMode(winWidth, winHeight), "ArnieBoids", sf::Style::Titlebar, sf::ContextSettings(0u, 0u, 8u)),	//AntiAliasing level: 8
@@ -16,12 +13,13 @@ timeOfLastTick_(tickClock_.now() - timePerTick_),
 collisionSystem_(ships_, bullets_),
 keyboard_(),
 particleSystem_(),
-particleTexture_()
+particleTexture_(),
+backdrop_(sf::Vector2f(winWidth * 3, winHeight * 3))
 {
-	float w = winWidth;
-	float h = winHeight;
-
-	genStars(-w, w * 2, -h, h * 2, 420U, 1, 5);
+	//float w = winWidth;
+	//float h = winHeight;
+	//
+	//genStars(-w, w * 2, -h, h * 2, 420U, 1, 5);
 
 	ships_.push_back(new SwarmBoid(particleSystem_, sf::Vector2f(100.f, 100.f)));
 	ships_.push_back(new SwarmBoid(particleSystem_, sf::Vector2f(300.f, 300.f)));
@@ -315,45 +313,12 @@ void Game::update() {
 	}
 }
 
-void Game::genStars(float minX, float maxX, float minY, float maxY, unsigned int amount, float minR, float maxR)
-{
-	if (minX <= maxX && minY <= maxY && minR <= maxR)
-	{
-		stars_.clear();
-
-		sf::Vector2f p;
-		float r;
-		sf::Color c;
-
-		for (unsigned int i = 0; i < amount; ++i)
-		{
-			p.x = randFloat(minX, maxX);
-			p.y = randFloat(minY, maxY);
-
-			r = randFloat(minR, maxR);
-
-			c.r = randFloat(64, 128);
-			c.g = randFloat(128, 255);
-			c.b = randFloat(64, 128);
-
-			stars_.push_back(Star(p, r, c));
-		}
-	}
-
-}
-
 void Game::draw() {
 	window_.clear();
 
 	window_.setView(camera_);
 
-	//draw stars
-	for (auto itr = stars_.begin(), end = stars_.end();
-	itr != end;
-		++itr)
-	{
-		window_.draw(*itr);
-	}
+	backdrop_.draw(window_);
 
 	//draw particles
 	window_.draw(particleSystem_);
