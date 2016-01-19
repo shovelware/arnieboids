@@ -18,6 +18,7 @@
 #include "Camera.hpp"
 #include "CollisionSystem.hpp"
 #include "Asteroid.hpp"
+#include "Predator.hpp"
 #include "Star.hpp"
 #include "TiledBackdrop.hpp"
 
@@ -73,6 +74,8 @@ private:
 
 	//! Texture for all particles
 	sf::Texture particleTexture_;
+
+	std::function<void(Bullet*)> fireBulletCallback_;
 
 	std::chrono::steady_clock tickClock_;
 	std::chrono::milliseconds timePerTick_;	//!< Milliseconds per update/draw tick

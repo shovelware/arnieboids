@@ -21,6 +21,9 @@ backdrop_(sf::Vector2f(winWidth * 3, winHeight * 3))
 	//
 	//genStars(-w, w * 2, -h, h * 2, 420U, 1, 5);
 
+	//define function for adding bullets to list
+	fireBulletCallback_ = [this](Bullet* bullet){ bullets_.push_back(bullet); };
+
 	ships_.push_back(new SwarmBoid(particleSystem_, sf::Vector2f(100.f, 100.f)));
 	ships_.push_back(new SwarmBoid(particleSystem_, sf::Vector2f(300.f, 300.f)));
 	ships_.push_back(new SwarmBoid(particleSystem_, sf::Vector2f(600.f, 400.f)));
@@ -47,6 +50,8 @@ backdrop_(sf::Vector2f(winWidth * 3, winHeight * 3))
 	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
 	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
 	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
+
+	ships_.push_back(new Predator(particleSystem_, fireBulletCallback_, sf::Vector2f()));
 
 	bullets_.push_back(new Bullet(sf::Vector2f(100.f, 100.f), sf::Vector2f(1.f, 0.1f)));
 	bullets_.push_back(new Bullet(sf::Vector2f(1000.f, 1000.f), sf::Vector2f(-1.f, -1.f)));
