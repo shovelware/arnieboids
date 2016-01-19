@@ -19,6 +19,7 @@
 #include "CollisionSystem.hpp"
 #include "Asteroid.hpp"
 #include "Star.hpp"
+#include "TiledBackdrop.hpp"
 
 /*!
  * Updates and draws all ships and bullets.
@@ -52,10 +53,6 @@ private:
 	//! All bullets in the game
 	std::list<Bullet*> bullets_;
 
-	//! Background stars
-	std::list<Star> stars_;
-	void genStars(float minX, float maxX, float minY, float maxY, unsigned int amount, float minR, float maxR);
-
 	//! For keyboard input
 	KeyInput keyboard_;
 
@@ -64,6 +61,9 @@ private:
 
 	//! Camera that follows ships and has a HUD
 	Camera camera_;
+
+	//! Background of stars
+	TiledBackdrop backdrop_;
 
 	//! Used to check for collision between shapes
 	CollisionSystem collisionSystem_;
