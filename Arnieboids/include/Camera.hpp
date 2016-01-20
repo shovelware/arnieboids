@@ -61,5 +61,6 @@ private:
 	void drawText(std::string info, sf::Vector2f pos, sf::Color color);
 	void drawRadarObj(sf::ConvexShape* shape); //!< 
 	sf::Vector2f worldToRadar(sf::Vector2f const& worldPos);
+	sf::Vector2f translateVector(sf::Vector2f pos, sf::FloatRect src, sf::FloatRect dest);
 };
 #endif
