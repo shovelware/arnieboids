@@ -161,13 +161,14 @@ void Camera::drawRadar(std::list<Ship*>& objList, sf::Vector2f centre, float rad
 		radarBG.setOrigin(sf::Vector2f(radarBG.getRadius(), radarBG.getRadius()));
 		rentrg_.draw(radarBG);
 
-		//Radar always draws transparent in the top 200*200 of the screen
+		//Radar always draws transparent in the top 128*128 of the screen
 		//Radar is scaled to keep range in 100 and ships are scaled down
 		for (Ship* s : objList)
 		{
 			if (s != target_)
 			{
-				if (thor::length(s->getPosition() - target_->getPosition()) < target_->getRadarRange())
+				//If the object is within radar range
+				//if (thor::length(target_->getPosition() - s->getPosition()) <= target_->getRadarRange())
 				{
 					drawRadarObj(s);
 				}
@@ -203,24 +204,41 @@ void Camera::drawRadarObj(sf::ConvexShape * shape)
 {
 	if (target_ != nullptr)
 	{
-		int shipSize = 2;
+		//Get radar position
+		sf::Vector2f targetShipPos(worldToRadar(target_->getPosition()));
+		sf::Vector2f radarShipPos(worldToRadar(shape->getPosition()));
+		float radarDist = thor::length(radarShipPos - targetShipPos);
+			
+		float maxSize = radarSize_ / 20.f;
+		float genSize = (radarDist  / 10.f);
+		float shipSize = ((genSize < maxSize && genSize != 0)? genSize : maxSize);
+		//If it's within the circle
 
-		sf::CircleShape shipShape(shipSize);
+		if (radarDist < radarSize_ - genSize)
+		{
+			//Figure size based on distance
+			//shipSize = 4;
 
-		shipShape.setOrigin(sf::Vector2f(shipSize, shipSize));
-		shipShape.setPosition(radarPos_ + worldToRadar(shape->getPosition()));
+			//Create shape
+			sf::CircleShape shipShape(genSize);
 
-		sf::Color alphaFill(shape->getFillColor());
-		alphaFill.a = 128;
-		shipShape.setFillColor(alphaFill);
+			//Set origin and position
+			shipShape.setOrigin(sf::Vector2f(shipShape.getRadius(), shipShape.getRadius()));
+			shipShape.setPosition(radarPos_ + (radarShipPos - targetShipPos));
 
-		sf::Color alphaOutline(shape->getOutlineColor());
-		alphaOutline.a = 128;
-		shipShape.setOutlineColor(alphaOutline);
+			//Set fill
+			sf::Color alphaFill(shape->getFillColor());
+			alphaFill.a = 128;
+			shipShape.setFillColor(alphaFill);
 
-		shipShape.setOutlineThickness(-1);
+			//Set outline
+			sf::Color alphaOutline(shape->getOutlineColor());
+			alphaOutline.a = 128;
+			shipShape.setOutlineColor(alphaOutline);
+			shipShape.setOutlineThickness(-1);
 
-		rentrg_.draw(shipShape);
+			rentrg_.draw(shipShape);
+		}
 	}
 }
 
@@ -228,27 +246,29 @@ sf::Vector2f Camera::worldToRadar(sf::Vector2f const& worldPos)
 {
 	if (target_)
 	{
-		/*	// Complete this function so that it returns normalized coordinates (coordinates in the interval [0, 1]) for pixel coordinates (x, y).
-		pair<float, float> f1(unsigned int x, unsigned int y, unsigned int screenWidth, unsigned int screenHeight)
-		{
-			// = minimum normalised range + (total normalised range / total pixel range) * pixel coordinate)
-			//i.e. interval of [-1,1] is = -1 + (2 / screenWidth) * x;
-			float newX = 0 + (1.0 / (screenWidth > 0 ? screenWidth : 1)) * x;
-			float newY = 0 + (1.0 / (screenHeight > 0 ? screenHeight : 1)) * y;
+		//Translates from world space to range space
+		//Then from range to radar display
+		//Returns co-ords of vector relative to radar display centre
+		float range = target_->getRadarRange();		
 
-			return make_pair(newX, newY);
-		}*/
+		sf::FloatRect worldSpace(-screenSize_.x * 1.5f, -screenSize_.y * 1.5f, screenSize_.x * 3.f, screenSize_.y * 3.f);
+		sf::FloatRect rangeSpace(-range / 2, -range / 2, range / 2, range / 2);
+		sf::FloatRect displaySpace(-radarSize_, -radarSize_, radarSize_, radarSize_);
 
-		//takes a world pos (-size <-> size)
-		//and converts it into radarPos (-radarSize <-> radarSize)
+		sf::Vector2f radarRangePos(translateVector(worldPos, worldSpace, rangeSpace));
 
-		float range = target_->getRadarRange();
-
-		sf::Vector2f radarPos(0, 0);
-
-		radarPos.x = (radarSize_ / screenSize_.x) * (worldPos.x - target_->getPosition().x);
-		radarPos.y = (radarSize_ / screenSize_.y) * (worldPos.y - target_->getPosition().y);
+		sf::Vector2f radarPos(translateVector(radarRangePos, rangeSpace, displaySpace));
 
 		return radarPos;
 	}
 }
+	sf::Vector2f Camera::translateVector(sf::Vector2f pos, sf::FloatRect src, sf::FloatRect dest)
+	{
+		sf::Vector2f result(0, 0);
+
+		//res = (src - src_min) / (src_max - src_min) * (res_max - res_min) + res_min
+		result.x = (pos.x - src.left) / (src.width - src.left) * (dest.width - dest.left) + dest.left;
+		result.y = (pos.y - src.top) / (src.height - src.top) * (dest.height - dest.top) + dest.top;
+
+		return result;
+	}
