@@ -14,11 +14,13 @@ public:
 	 * \param position Initial position
 	 * \param direction Launch direction
 	 */
-	Missile(thor::ParticleSystem& particleSystem, const Ship* const target, sf::Vector2f  const &position, sf::Vector2f const &direction, const float maxSpeed = 4.f, const float acceleration = 0.1f, const float turnSpeed = 2.f);
+	Missile(thor::ParticleSystem& particleSystem, std::function<void()> destructCallback, const Ship* const target, sf::Vector2f  const &position, sf::Vector2f const &direction, const float maxSpeed = 4.f, const float acceleration = 0.1f, const float turnSpeed = 1.f);
 	~Missile();
 
 	//! Turns to face target while thrusting forward.
 	virtual void update() override;
+
+	void setForward(sf::Vector2f const &direction);
 protected:
 	//! Ship to be tracked.
 	const Ship* const TARGET_;
@@ -43,5 +45,8 @@ protected:
 private:
 	//! Connection of emitter to particle system
 	thor::Connection connection_;
+
+	//! Used to notify firing ship that this missile has exploded
+	const std::function<void()> destructCallback_;
 };
 #endif

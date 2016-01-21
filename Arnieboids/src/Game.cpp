@@ -16,10 +16,15 @@ particleSystem_(),
 particleTexture_(),
 backdrop_(sf::Vector2f(winWidth * 3, winHeight * 3))
 {
+	srand(time(NULL));
 	//float w = winWidth;
 	//float h = winHeight;
 	//
 	//genStars(-w, w * 2, -h, h * 2, 420U, 1, 5);
+
+	//define function for adding bullets to list
+	fireBulletCallback_ = [this](Bullet* bullet){ bullets_.push_back(bullet); };
+	spawnShipCallback_ = [this](Ship * ship){ ships_.push_back(ship); };
 
 	ships_.push_back(new SwarmBoid(particleSystem_, sf::Vector2f(100.f, 100.f)));
 	ships_.push_back(new SwarmBoid(particleSystem_, sf::Vector2f(300.f, 300.f)));
@@ -31,22 +36,28 @@ backdrop_(sf::Vector2f(winWidth * 3, winHeight * 3))
 	ships_.push_back(new SwarmBoid(particleSystem_, sf::Vector2f(760.f, 100.f)));
 
 	ships_.push_back(new Player(particleSystem_, sf::Vector2f(200.f, 200.f)));
-	camera_.setTarget(*ships_.rbegin());
+	Ship* player = *ships_.rbegin();
+	camera_.setTarget(player);
 
 	camera_.loadFont("CODE Bold.otf");
 
-	controlled_ = (*ships_.rbegin());
-	SwarmBoid::setSwarmTarget(*ships_.rbegin());
+	controlled_ = player;
+	SwarmBoid::setSwarmTarget(player);
+	Predator::setPrey(player);
+	Mothership::setTarget(player);
 
-	bullets_.push_back(new Missile(particleSystem_, *ships_.rbegin(), sf::Vector2f(100.f, 100.f), sf::Vector2f(0.1f, 1.f)));
-	bullets_.push_back(new Missile(particleSystem_, *ships_.rbegin(), sf::Vector2f(500.f, 500.f), sf::Vector2f(-1.f, 0.f)));
+	//ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
+	//ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
+	//ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
+	//ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
+	//ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
+	//ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
 
-	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
-	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
-	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
-	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
-	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
-	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
+	//for (int i = 0; i < 10; ++i)
+	//ships_.push_back(new Predator(particleSystem_, fireBulletCallback_, sf::Vector2f(rand() % 1000, rand() % 1000)));
+
+	for (int i = 0; i < 5; ++i)
+		ships_.push_back(new Mothership(particleSystem_, fireBulletCallback_, spawnShipCallback_, sf::Vector2f(rand() % 500, rand() % 500)));
 
 	bullets_.push_back(new Bullet(sf::Vector2f(100.f, 100.f), sf::Vector2f(1.f, 0.1f)));
 	bullets_.push_back(new Bullet(sf::Vector2f(1000.f, 1000.f), sf::Vector2f(-1.f, -1.f)));

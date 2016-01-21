@@ -80,15 +80,15 @@ void SwarmBoid::swarm() {
 	//get average
 	sum /= static_cast<float>(count);
 
-	velocity_ += sum;
+	turnToward(sum);
 
-	forward_ = thor::unitVector(velocity_);
-
-	setRotation(atan2(forward_.y, forward_.x) * 57.296f);
+	velocity_ += forward_ * thrust_;
+	clampToMaxSpeed();
 
 	thrust();
-
 	move(velocity_);
+
+	updateParticleEmitter();
 
 	//borders();
 }
