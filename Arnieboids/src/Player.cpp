@@ -2,8 +2,7 @@
 #include <iostream>
 
 Player::Player(thor::ParticleSystem &particleSystem, sf::Vector2f const& position, unsigned int maxHealth) :
-Ship(particleSystem, position, 4.f),
-MAX_HEALTH_(maxHealth)
+Ship(particleSystem, position, 4.f, maxHealth)
 {
 	setPointCount(3u);
 

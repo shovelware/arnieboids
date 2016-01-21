@@ -45,13 +45,20 @@ public:
 	//! Returns forward direction of ship
 	sf::Vector2f getForward() const;
 
-	//! Returns radar radius
+	//! Radar radius accessors
 	void setRadarRange(float range);
 	float getRadarRange() const;
+
+	//! Health accessors
+	int getHealth() const;
+	void addHealth(unsigned int health);
+	unsigned int getMaxHealth() const;
 
 protected:
 	//! Maximum length of velocity vector
 	const float MAX_SPEED_;
+
+	const unsigned int MAX_HEALTH_;
 
 	float refireTime_;
 	float coolDown_;

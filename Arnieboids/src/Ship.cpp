@@ -2,9 +2,10 @@
 
 Ship::Ship(thor::ParticleSystem &particleSystem, sf::Vector2f const &position, float maxSpeed, unsigned int health) :
 MAX_SPEED_(maxSpeed),
+MAX_HEALTH_(health),
 velocity_(0.f, 0.f),
 accel_(0.f, 0.f),
-health_(health),
+health_(MAX_HEALTH_),
 forward_(0.f, -1.f),
 turnSpeed_(2.f),
 thrust_(0.1f),
@@ -132,6 +133,27 @@ void Ship::setRadarRange(float range)
 float Ship::getRadarRange() const
 {
 	return radarRange_;
+}
+
+int Ship::getHealth() const
+{
+	return health_;
+}
+
+void Ship::addHealth(unsigned int health)
+{
+	//If the addition is less than max
+	if (health_ + health < MAX_HEALTH_)
+	{
+		health_ += health;
+	}
+
+	else health_ = MAX_HEALTH_;
+}
+
+unsigned int Ship::getMaxHealth() const
+{
+	return MAX_HEALTH_;
 }
 
 float Ship::tickToSec(unsigned int ticks) const

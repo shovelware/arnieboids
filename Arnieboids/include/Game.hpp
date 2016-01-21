@@ -20,6 +20,7 @@
 #include "Asteroid.hpp"
 #include "Star.hpp"
 #include "TiledBackdrop.hpp"
+#include "Pickup.hpp"
 
 /*!
  * Updates and draws all ships and bullets.
@@ -52,6 +53,9 @@ private:
 
 	//! All bullets in the game
 	std::list<Bullet*> bullets_;
+
+	//! All pickups in the game
+	std::list<Pickup*> pickups_;
 
 	//! For keyboard input
 	KeyInput keyboard_;

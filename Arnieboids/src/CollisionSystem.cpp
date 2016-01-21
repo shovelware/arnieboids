@@ -1,8 +1,9 @@
 #include <include/CollisionSystem.hpp>
 
-CollisionSystem::CollisionSystem(std::list<Ship*>& shipList, std::list<Bullet*>& bulletList) :
+CollisionSystem::CollisionSystem(std::list<Ship*>& shipList, std::list<Bullet*>& bulletList, std::list<Pickup*>& pickupList) :
 ships_(shipList),
-bullets_(bulletList)
+bullets_(bulletList),
+pickups_(pickupList)
 {
 }
 
@@ -40,9 +41,23 @@ void CollisionSystem::Check() const {
 					bullet->setActive(false);
 				}
 			}//end if(broadphase)
-		}
+		}//end for bullets
 
-	}
+		//For each ship with pickups
+		for (Pickup* pickup : pickups_) {
+			if (first->getGlobalBounds().intersects(pickup->getGlobalBounds()))
+			{
+				if (checkPair(first, pickup))
+				{
+					if (!pickup->isOwned())
+					{
+						pickup->take(first);
+					}
+				}//fine
+			}//broad
+		}//end for pickups
+
+	}//end for ships
 }
 
 bool CollisionSystem::checkPair(sf::ConvexShape* first, sf::ConvexShape* second) const {

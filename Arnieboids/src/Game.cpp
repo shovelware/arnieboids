@@ -10,7 +10,7 @@ controller_(),
 tickClock_(),
 timePerTick_(timePerTick),
 timeOfLastTick_(tickClock_.now() - timePerTick_),
-collisionSystem_(ships_, bullets_),
+collisionSystem_(ships_, bullets_, pickups_),
 keyboard_(),
 particleSystem_(),
 particleTexture_(),
@@ -31,6 +31,8 @@ backdrop_(sf::Vector2f(winWidth * 3, winHeight * 3))
 	ships_.push_back(new SwarmBoid(particleSystem_, sf::Vector2f(760.f, 100.f)));
 
 	ships_.push_back(new Player(particleSystem_, sf::Vector2f(200.f, 200.f)));
+
+	pickups_.push_back(new Pickup(sf::Vector2f(150, 150), 4));
 	camera_.setTarget(*ships_.rbegin());
 
 	camera_.loadFont("CODE Bold.otf");
@@ -70,6 +72,13 @@ Game::~Game() {
 
 	for (auto itr = ships_.begin(), end = ships_.end();
 		itr != end;
+		++itr)
+	{
+		delete *itr;
+	}
+
+	for (auto itr = pickups_.begin(), end = pickups_.end();
+	itr != end;
 		++itr)
 	{
 		delete *itr;
@@ -182,6 +191,12 @@ void Game::handleEvents() {
 		}
 	}
 
+	//V : Damage self
+	if (keyboard_.isKeyPressed(sf::Keyboard::V))
+	{
+		controlled_->takeDamage(1);
+	}
+
 	//I : Zoom in
 	if (keyboard_.isKeyDown(sf::Keyboard::I))
 	{
@@ -289,8 +304,7 @@ void Game::update() {
 	}
 
 	for (auto itr = ships_.begin(), end = ships_.end();
-	itr != end;
-		++itr)
+	itr != end; /*No increment*/)
 	{
 		//remove ship if dead, update if not
 		if ((*itr)->isDead())
@@ -305,10 +319,25 @@ void Game::update() {
 			particleSystem_.addEmitter(emitter, sf::seconds(0.1f));
 
 			delete *itr;
-			itr = ships_.erase(itr);
+			itr = ships_.erase(itr++);
 		}
 		else {
-			(*itr)->update();
+			(*itr++)->update();
+		}
+	}
+
+	for (auto itr = pickups_.begin(), end = pickups_.end();
+	itr != end; /*No increment*/)
+	{
+		//Remove pickup if inactive
+		if (!(*itr)->isActive())
+		{
+			delete *itr;
+			itr = pickups_.erase(itr++);
+		}
+
+		else {
+			(*itr++)->update();
 		}
 	}
 }
@@ -334,6 +363,14 @@ void Game::draw() {
 	//draw ships
 	for (auto itr = ships_.begin(), end = ships_.end();
 		itr != end;
+		++itr)
+	{
+		window_.draw(**itr);
+	}
+
+	//draw pickups
+	for (auto itr = pickups_.begin(), end = pickups_.end();
+	itr != end;
 		++itr)
 	{
 		window_.draw(**itr);

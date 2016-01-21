@@ -15,6 +15,5 @@ public:
 	void onCollide(Ship* other) override;
 
 private:
-	const unsigned int MAX_HEALTH_;
 };
 #endif

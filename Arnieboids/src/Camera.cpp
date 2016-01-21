@@ -119,6 +119,9 @@ void Camera::drawHUD()
 			//text_.setString(std::string(std::to_string(target_->getRadarRange()) + "sm"));
 
 			//Health bar
+			drawText(std::string("H: ") + std::to_string(target_->getHealth()) + std::string("/") + std::to_string(target_->getMaxHealth()),
+				sf::Vector2f(0, screenSize_.y - 60),
+				sf::Color::Red);
 			//Fire capabilities bar
 			//Accel bar
 			
@@ -161,6 +164,7 @@ void Camera::drawRadar(std::list<Ship*>& objList, sf::Vector2f centre, float rad
 		radarBG.setOrigin(sf::Vector2f(radarBG.getRadius(), radarBG.getRadius()));
 		rentrg_.draw(radarBG);
 
+
 		//Radar always draws transparent in the top 128*128 of the screen
 		//Radar is scaled to keep range in 100 and ships are scaled down
 		for (Ship* s : objList)
@@ -175,7 +179,11 @@ void Camera::drawRadar(std::list<Ship*>& objList, sf::Vector2f centre, float rad
 			}
 		}
 
-		drawRadarObj(target_);
+		radarBG.setRadius(2);
+		radarBG.setOrigin(sf::Vector2f(radarBG.getRadius(), radarBG.getRadius()));
+		radarBG.setFillColor(target_->getFillColor());
+		radarBG.setOutlineColor(target_->getOutlineColor());
+		rentrg_.draw(radarBG);
 	}
 
 

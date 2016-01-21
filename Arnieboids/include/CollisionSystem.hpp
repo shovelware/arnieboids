@@ -4,10 +4,11 @@
 #include <list>
 #include "Ship.hpp"
 #include "Bullet.hpp"
+#include "Pickup.hpp"
 
 class CollisionSystem {
 public:
-	CollisionSystem(std::list<Ship*>& shipList, std::list<Bullet*>& bulletList);
+	CollisionSystem(std::list<Ship*>& shipList, std::list<Bullet*>& bulletList, std::list<Pickup*>& pickupList);
 	~CollisionSystem();
 
 	void Check() const;
@@ -15,6 +16,7 @@ public:
 private:
 	std::list<Ship*>& ships_;
 	std::list<Bullet*>& bullets_;
+	std::list<Pickup*>& pickups_;
 
 	//! Check two ships for collision
 	bool checkPair(sf::ConvexShape* first, sf::ConvexShape* second) const;
