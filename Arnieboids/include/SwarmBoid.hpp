@@ -31,5 +31,7 @@ private:
 	void swarm();
 
 	sf::Vector2f LenardJonesPotential(const Ship * const other, int& count) const;
+
+	sf::Vector2f extrapolate(sf::Vector2f const& position, sf::Vector2f const &direction, float distance) const;
 };
 #endif

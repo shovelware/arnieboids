@@ -50,7 +50,7 @@ void SwarmBoid::update() {
 
 void SwarmBoid::onCollide(Ship* other) {
 	
-	takeDamage(1u);
+	//takeDamage(1u);
 }
 
 void SwarmBoid::setSwarmTarget(Ship* target) {
@@ -115,6 +115,12 @@ sf::Vector2f SwarmBoid::LenardJonesPotential(const Ship* const other, int& count
 	R = this->getPosition() - other->getPosition();
 	D = thor::length(R);
 
+	//if swarming toward target and distance to target is too far away for kamikaze...
+	if (other == swarmTarget_ && D > 100){
+		R = getPosition() - extrapolate(other->getPosition(), other->getForward(), thor::length(other->getVelocity()) * D);
+		D = thor::length(R);
+	}
+
 	if (D > 1)	//1 instead of 0, just in case of rounding errors
 	{
 		++count;
@@ -139,4 +145,8 @@ sf::Vector2f SwarmBoid::LenardJonesPotential(const Ship* const other, int& count
 
 	return R;
 
+}
+
+sf::Vector2f SwarmBoid::extrapolate(sf::Vector2f const& position, sf::Vector2f const& direction, float distance) const {
+	return position + (thor::unitVector(direction) * distance);
 }
