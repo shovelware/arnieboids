@@ -41,12 +41,14 @@ Mothership::~Mothership() {
 }
 
 void Mothership::update() {
+	//spawn a ship if it is time to do so
 	if (++ticksSinceLastSpawn_ >= ticksPerSpawn_)
 	{
-		//spawnShip_(new Predator(particleSystem_, fireBullet_, getPosition()));
+		spawnShip_(new Predator(particleSystem_, fireBullet_, getPosition()));
 		ticksSinceLastSpawn_ = 0u;
 	}
 
+	//wander or evade
 	switch (calculateState())
 	{
 	case WANDER:

@@ -2,6 +2,7 @@
 #define _MOTHERSHIP_H
 
 #include "Predator.hpp"
+#include "SwarmBoid.hpp"
 #include "Missile.hpp"
 
 class Mothership : public Ship {
