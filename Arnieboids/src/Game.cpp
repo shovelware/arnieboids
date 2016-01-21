@@ -41,12 +41,12 @@ backdrop_(sf::Vector2f(winWidth * 3, winHeight * 3))
 	Predator::setPrey(player);
 	Mothership::setTarget(player);
 
-	//ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
-	//ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
-	//ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
-	//ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
-	//ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
-	//ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
+	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
+	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
+	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
+	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
+	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
+	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
 
 	//for (int i = 0; i < 10; ++i)
 	//ships_.push_back(new Predator(particleSystem_, fireBulletCallback_, sf::Vector2f(rand() % 1000, rand() % 1000)));
@@ -54,15 +54,10 @@ backdrop_(sf::Vector2f(winWidth * 3, winHeight * 3))
 	for (int i = 0; i < 5; ++i)
 		ships_.push_back(new Mothership(particleSystem_, fireBulletCallback_, spawnShipCallback_, sf::Vector2f(rand() % 500, rand() % 500)));
 
-	bullets_.push_back(new Bullet(sf::Vector2f(100.f, 100.f), sf::Vector2f(1.f, 0.1f)));
-	bullets_.push_back(new Bullet(sf::Vector2f(1000.f, 1000.f), sf::Vector2f(-1.f, -1.f)));
-	bullets_.push_back(new Bullet(sf::Vector2f(0.f, 0.f), sf::Vector2f(200.f, 200.f)));
-	bullets_.push_back(new Bullet(sf::Vector2f(0.f, 0.f), sf::Vector2f(6.f, 1.f)));
-
 	//fade particles out at end of life
 	particleSystem_.addAffector(thor::AnimationAffector(thor::FadeAnimation(0.f, 0.25f)));
 
-	particleTexture_.loadFromFile("./particle.png");
+	particleTexture_.loadFromFile("./particlez.png");
 	particleSystem_.setTexture(particleTexture_);
 }
 

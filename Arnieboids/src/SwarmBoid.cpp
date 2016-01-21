@@ -49,7 +49,8 @@ void SwarmBoid::update() {
 }
 
 void SwarmBoid::onCollide(Ship* other) {
-	//takeDamage(1u);
+	
+	takeDamage(1u);
 }
 
 void SwarmBoid::setSwarmTarget(Ship* target) {
