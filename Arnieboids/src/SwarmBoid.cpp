@@ -120,7 +120,7 @@ sf::Vector2f SwarmBoid::LenardJonesPotential(const Ship* const other, int& count
 	D = thor::length(R);
 
 	//if swarming toward target and distance to target is too far away for kamikaze...
-	if (other == swarmTarget_ && D > 100){
+	if (other == swarmTarget_ && D > 100 && D < 600){
 		R = getPosition() - extrapolate(other->getPosition(), other->getForward(), thor::length(other->getVelocity()) * D);
 		D = thor::length(R);
 	}
