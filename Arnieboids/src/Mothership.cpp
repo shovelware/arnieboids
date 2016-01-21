@@ -159,7 +159,7 @@ void Mothership::missileDestructed() {
 }
 
 sf::Vector2f Mothership::separation() const {
-	static float desiredSeparation = 100;
+	static float desiredSeparation = 100.f;
 
 	sf::Vector2f steer(0, 0);
 	float count = 0;
@@ -198,7 +198,7 @@ sf::Vector2f Mothership::separation() const {
 }
 
 sf::Vector2f Mothership::cohesion() const {
-	static float neighbourDist = 500;
+	static float neighbourDist = 1000.f;
 	sf::Vector2f sum(0, 0);
 	float count = 0;
 
@@ -231,7 +231,7 @@ sf::Vector2f Mothership::cohesion() const {
 }
 
 sf::Vector2f Mothership::alignment() const {
-	static float neighbourDist = 500;
+	static float neighbourDist = 500.f;
 
 	sf::Vector2f sum(0, 0);
 	float count = 0;

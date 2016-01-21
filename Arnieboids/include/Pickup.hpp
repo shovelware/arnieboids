@@ -16,8 +16,12 @@ public:
 	bool isActive();
 	bool isOwned() const;
 
+	//! Used to play as sound in Game::update() when power up is collected
+	bool wasPickedUpLastTick();
+
 private:
 	Ship* owner_;
+	bool pickedUp_;
 
 	void setShape(float radius);
 

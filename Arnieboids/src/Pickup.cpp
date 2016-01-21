@@ -53,7 +53,8 @@ void Pickup::update()
 
 		//Otherwise just follow our owner
 		setPosition(owner_->getPosition());
-		setRotation(owner_->getRotation());
+		//setRotation(owner_->getRotation());
+		rotate(-1.f);
 	}
 }
 
@@ -124,6 +125,15 @@ void Pickup::setShape(float radius)
 bool Pickup::isOwned() const
 {
 	return (owner_ != nullptr);
+}
+
+bool Pickup::wasPickedUpLastTick() {
+	if (isOwned() && !pickedUp_)
+	{
+		pickedUp_ = true;
+		return true;
+	}
+	return false;
 }
 
 float Pickup::tickToSec(unsigned int ticks) const

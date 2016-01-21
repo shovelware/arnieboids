@@ -5,6 +5,7 @@
 #include <list>
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <Thor/Particles.hpp>
 #include <Thor/Animations.hpp>
 
@@ -101,6 +102,10 @@ private:
 
 	//! Adds a swarm of [amount] boids in circle around [pos] with [radius]
 	void addBoidSwarm(sf::Vector2f const &pos, float amount, float radius);
+
+	sf::SoundBuffer erasedSBuffer_, mineSBuffer_, planSBuffer_;
+	sf::Sound erasedSound_, mineSound_, planSound_;
+	sf::Music bgMusic_;
 
 	/*!
 	 * Polls the RenderWindow for events and

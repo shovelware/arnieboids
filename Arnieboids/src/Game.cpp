@@ -151,7 +151,7 @@ void Game::reset()
 	const int minSwarms = 1;
 	const int maxSwarms = 5;
 	const int minBoids = 5;
-	const int maxBoids = 50;
+	const int maxBoids = 25;
 	const int minSwarmRad = 100;
 	const int maxSwarmRad = 250;
 
@@ -162,7 +162,7 @@ void Game::reset()
 	const int maxPickups = 8;
 
 	const int minRoids = 4;
-	const int maxRoids = 4;
+	const int maxRoids = 20;
 
 	//Add several swarms (at least min, up to max)
 	int swarms = randFloat(maxSwarms - minSwarms) + minSwarms;
