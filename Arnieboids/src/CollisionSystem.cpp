@@ -37,7 +37,7 @@ void CollisionSystem::Check() const {
 			{
 				//use SAT to check if collision occurred
 				if (checkPair(first, bullet)) {
-					first->onCollide(nullptr);
+					first->takeDamage(bullet->getDamage());
 					bullet->setActive(false);
 				}
 			}//end if(broadphase)
@@ -48,7 +48,7 @@ void CollisionSystem::Check() const {
 			if (first->getGlobalBounds().intersects(pickup->getGlobalBounds()))
 			{
 				//Check if it's a player
-				if (dynamic_cast<Player*>(first) /*|| dynamic_cast<Predator*>(first)*/)
+				if (dynamic_cast<Player*>(first) || dynamic_cast<Predator*>(first))
 				{
 					if (checkPair(first, pickup))
 					{

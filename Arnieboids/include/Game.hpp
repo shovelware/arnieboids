@@ -48,6 +48,9 @@ private:
 	//! Window that everything will be drawn to
 	sf::RenderWindow& window_;
 
+	//! Game bounds
+	sf::FloatRect gameBounds_;
+
 	//! All ships in the game
 	std::list<Ship*> ships_;
 
@@ -87,6 +90,18 @@ private:
 	std::chrono::steady_clock tickClock_;
 	std::chrono::milliseconds timePerTick_;	//!< Milliseconds per update/draw tick
 	std::chrono::time_point<std::chrono::system_clock> timeOfLastTick_;	//!< Time at which the last update/draw tick occurred.
+
+	//! Resets behaviours dependant on player existing
+	void playerDeath();
+
+	//! Clears the game of entities
+	void clearLists();
+
+	//! Resets the game
+	void reset();
+
+	//! Adds a swarm of [amount] boids in circle around [pos] with [radius]
+	void addBoidSwarm(sf::Vector2f const &pos, float amount, float radius);
 
 	sf::SoundBuffer erasedSBuffer_, mineSBuffer_, planSBuffer_, backSBuffer_;
 	sf::Sound erasedSound_, mineSound_, planSound_, backSound_;

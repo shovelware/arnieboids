@@ -33,6 +33,7 @@ destructCallback_(destructCallback)
 	connection_ = particleSystem.addEmitter(thor::refEmitter(particleEmitter_));
 
 	lifeTime_ = 10;
+	damage_ = 2;
 }
 
 Missile::~Missile() {

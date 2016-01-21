@@ -39,8 +39,15 @@ void Predator::update() {
 	turnToward(desiredPosition);
 	thrust();
 
-	sf::Vector2f displacement = prey_->getPosition() - this->getPosition();
-	float dotProd = thor::dotProduct(forward_, thor::unitVector(displacement));
+	sf::Vector2f displacement(0, 0);
+	float dotProd = 0;
+
+	if (prey_)
+	{
+		displacement = prey_->getPosition() - this->getPosition();
+		dotProd = thor::dotProduct(forward_, thor::unitVector(displacement));
+	}
+
 	if (dotProd > 0.99)
 	{
 		if (trigger())
@@ -86,13 +93,16 @@ sf::Vector2f Predator::separation() const {
 	}//end for
 
 	//Avoid colliding with prey_
-	sf::Vector2f diff = this->getPosition() - prey_->getPosition();
-	float distance = thor::length(diff);
-	if (distance < desiredSeparation) {
-		diff = thor::unitVector(diff);
-		diff /= distance;
-		steer += diff;
-		++count;
+		if (prey_)
+		{
+		sf::Vector2f diff = this->getPosition() - prey_->getPosition();
+		float distance = thor::length(diff);
+		if (distance < desiredSeparation) {
+			diff = thor::unitVector(diff);
+			diff /= distance;
+			steer += diff;
+			++count;
+			}
 	}
 
 	//average out the steering
@@ -217,7 +227,11 @@ sf::Vector2f Predator::flock() const {
 	sep *= 2.5f;
 	ali *= 0.5f;
 	coh *= 1.0f;
-	sf::Vector2f pry = thor::unitVector(prey_->getPosition() - getPosition());
+	sf::Vector2f pry(0, 0);
+	if (prey_)
+	{
+		sf::Vector2f pry = thor::unitVector(prey_->getPosition() - getPosition());
+	}
 	pry *= 5.0f;
 
 	sf::Vector2f total = sep + ali + coh + pry;

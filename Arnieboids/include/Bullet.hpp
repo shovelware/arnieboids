@@ -18,9 +18,14 @@ public:
 
 	void setActive(bool active);
 
+	int getDamage() const;
+
 protected:
 	//! How far the bullet travels each update
 	float speed_;
+
+	//! How much damage a bullet does
+	int damage_;
 
 	//! Ticks since bullet has spawned
 	unsigned int ticks_;

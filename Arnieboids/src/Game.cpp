@@ -1,5 +1,8 @@
 #include <include/Game.hpp>
 
+inline float randFloat(float MAX) { return static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / MAX)); };
+inline float randFloat(float MIN, float MAX) { return MIN + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (MAX - MIN))); };
+
 #pragma region PublicMemberFunctions
 Game::Game(sf::RenderWindow &window, unsigned int timePerTick) :
 window_(window),
@@ -14,6 +17,7 @@ collisionSystem_(ships_, bullets_, pickups_),
 keyboard_(),
 particleSystem_(),
 particleTexture_(),
+gameBounds_(-(window.getSize().x * 1.5f), -(window.getSize().y * 1.5f), window.getSize().x  * 1.5f, window.getSize().y  * 1.5f),
 backdrop_(sf::Vector2f(window.getSize()) * 3.f)
 {
 	srand(time(NULL));
@@ -25,34 +29,7 @@ backdrop_(sf::Vector2f(window.getSize()) * 3.f)
 	//define function for adding bullets to list
 	fireBulletCallback_ = [this](Bullet* bullet){ bullets_.push_back(bullet); };
 	spawnShipCallback_ = [this](Ship * ship){ ships_.push_back(ship); };
-
-	for (int i = 0; i < 50; ++i)
-	ships_.push_back(new SwarmBoid(particleSystem_, sf::Vector2f(rand() % 1000, rand() % 1000)));
-
-	ships_.push_back(new Player(particleSystem_, sf::Vector2f(200.f, 200.f)));
-
-	pickups_.push_back(new Pickup(sf::Vector2f(150, 150), 4));
-	Ship* player = *ships_.rbegin();
-	camera_.setTarget(player);
 	camera_.loadFont("CODE Bold.otf");
-
-	controlled_ = player;
-	SwarmBoid::setSwarmTarget(player);
-	Predator::setPrey(player);
-	Mothership::setTarget(player);
-
-	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
-	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
-	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
-	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
-	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
-	ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
-
-	//for (int i = 0; i < 10; ++i)
-	//ships_.push_back(new Predator(particleSystem_, fireBulletCallback_, sf::Vector2f(rand() % 1000, rand() % 1000)));
-
-	for (int i = 0; i < 5; ++i)
-		ships_.push_back(new Mothership(particleSystem_, fireBulletCallback_, spawnShipCallback_, sf::Vector2f(rand() % 500, rand() % 500)));
 
 	//fade particles out at end of life
 	particleSystem_.addAffector(thor::AnimationAffector(thor::FadeAnimation(0.f, 0.25f)));
@@ -75,6 +52,8 @@ backdrop_(sf::Vector2f(window.getSize()) * 3.f)
 	bgMusic_.openFromFile("./sound/music.ogg");
 	bgMusic_.setLoop(true);
 	bgMusic_.play();
+
+	reset();
 }
 
 Game::~Game() {
@@ -125,6 +104,154 @@ int Game::run() {
 #pragma endregion
 
 #pragma region PrivateMemberFunctions
+void Game::playerDeath()
+{
+	backSound_.play();
+	camera_.clearTarget(true);
+	controlled_ = nullptr;
+	SwarmBoid::setSwarmTarget(nullptr);
+	Predator::setPrey(nullptr);
+	Mothership::setTarget(nullptr);
+}
+
+void Game::clearLists()
+{
+	for (auto itr = bullets_.begin(), end = bullets_.end();
+	itr != end;
+		++itr)
+	{
+		delete *itr;
+	}
+
+	bullets_.clear();
+
+	for (auto itr = ships_.begin(), end = ships_.end();
+	itr != end;
+		++itr)
+	{
+		delete *itr;
+	}
+
+	ships_.clear();
+
+
+	for (auto itr = pickups_.begin(), end = pickups_.end();
+	itr != end;
+		++itr)
+	{
+		delete *itr;
+	}
+
+	pickups_.clear();
+}
+
+void Game::reset()
+{
+	//Clean up previous game
+	clearLists();
+	particleSystem_.clearParticles();
+
+	//Add a player
+	ships_.push_back(new Player(particleSystem_, sf::Vector2f(200.f, 200.f)));
+	Ship* player = *ships_.rbegin();
+
+	//Target camera, controls, ai to player
+	camera_.clearTarget(false);
+	camera_.moveReset();
+	camera_.setTarget(player);
+	controlled_ = player;
+	SwarmBoid::setSwarmTarget(player);
+	Predator::setPrey(player);
+	Mothership::setTarget(player);
+
+	//! Game setup variables
+	const int minSwarms = 1;
+	const int maxSwarms = 5;
+	const int minBoids = 5;
+	const int maxBoids = 25;
+	const int minSwarmRad = 100;
+	const int maxSwarmRad = 250;
+
+	const int minMothers = 2;
+	const int maxMothers = 4;
+
+	const int minPickups = 4;
+	const int maxPickups = 8;
+
+	const int minRoids = 4;
+	const int maxRoids = 20;
+
+	//Add several swarms (at least min, up to max)
+	int swarms = randFloat(maxSwarms - minSwarms) + minSwarms;
+	
+	sf::Vector2f swarmPos(0, 0);
+	for (int i = 0; i < swarms; ++i)
+	{
+		swarmPos = sf::Vector2f(randFloat(gameBounds_.left, gameBounds_.width), randFloat(gameBounds_.top, gameBounds_.height));
+
+		float thisSwarmNum = randFloat(0, maxBoids - minBoids) + minBoids;
+		float thisSwarmRad = randFloat(0, maxSwarmRad - minSwarmRad) + minSwarmRad;
+		addBoidSwarm(swarmPos, thisSwarmNum, thisSwarmRad);
+	}
+
+	//Add some motherships
+	int motherShips = randFloat(maxMothers-minMothers) + minMothers;
+
+	sf::Vector2f motherPos(0, 0);
+
+	for (int i = 0; i < motherShips; ++i)
+	{
+		motherPos = sf::Vector2f(randFloat(gameBounds_.left, gameBounds_.width), randFloat(gameBounds_.top, gameBounds_.height));
+
+		ships_.push_back(new Mothership(particleSystem_, fireBulletCallback_, spawnShipCallback_, motherPos));
+		(*--ships_.end())->setRotation(randFloat(0, 360));
+	}
+
+	//Add a few pickups
+	int pickups = randFloat(maxPickups - minPickups) + minPickups;
+
+	sf::Vector2f pickupPos(0, 0);
+
+	for (int i = 0; i < pickups; ++i)
+	{
+		pickupPos = sf::Vector2f(randFloat(gameBounds_.left, gameBounds_.width), randFloat(gameBounds_.top, gameBounds_.height));
+
+		pickups_.push_back(new Pickup(pickupPos, 5));
+	}
+
+	////Add some asteroids
+	int roids = randFloat(maxRoids - minRoids) + minRoids;
+
+	sf::Vector2f roidPos(0, 0);
+	sf::Vector2f roidDir(0, -1);
+	float roidSpinSpd = 0.25f;
+
+	for (int i = 0; i < roids; ++i)
+	{
+		roidPos = sf::Vector2f(randFloat(gameBounds_.left, gameBounds_.width), randFloat(gameBounds_.top, gameBounds_.height));
+		roidDir = thor::unitVector(sf::Vector2f(randFloat(-1, 1), randFloat(-1, 1)));
+		float thisRoidSpinSpd = randFloat(0.25f, 1.f) + roidSpinSpd;
+
+		ships_.push_back(new Asteroid(particleSystem_, roidPos, roidDir, thisRoidSpinSpd));
+	}
+}
+
+void Game::addBoidSwarm(sf::Vector2f const & pos, float amount, float radius)
+{
+	sf::Vector2f boidPos(0, 0);
+	float boidDist = 0;
+
+	for (int i = 0; i <= amount; ++i)
+	{
+		boidDist = randFloat(radius);
+
+		boidPos.x = boidDist * (cos((thor::Pi / 180) * randFloat(360)));
+		boidPos.y = boidDist * (sin((thor::Pi / 180) * randFloat(360)));
+
+		ships_.push_back(new SwarmBoid(particleSystem_, pos + boidPos));
+	}
+}
+
 void Game::handleEvents() {
 	sf::Event evnt;
 	while (window_.pollEvent(evnt))
@@ -170,46 +297,50 @@ void Game::handleEvents() {
 	}
 
 	//F5 : Reset game NOT IMPLEMENTED
-	if (keyboard_.isKeyDown(sf::Keyboard::F5))
+	if (keyboard_.isKeyPressed(sf::Keyboard::F5))
 	{
-		//reset();
+		reset();
 	}
 
-	//Up, W : Thrust
-	if (keyboard_.isKeyDown(sf::Keyboard::W) || keyboard_.isKeyDown(sf::Keyboard::Up))
+	//If we have a ship to control
+	if (controlled_ != nullptr)
 	{
-		controlled_->thrust();
-	}
-	//Right, D : Turn CW
-	if (keyboard_.isKeyDown(sf::Keyboard::D) || keyboard_.isKeyDown(sf::Keyboard::Right))
-	{
-		controlled_->turnRight();
-	}
-	//Left, A : Turn CCW
-	if (keyboard_.isKeyDown(sf::Keyboard::A) || keyboard_.isKeyDown(sf::Keyboard::Left))
-	{
-		controlled_->turnLeft();
-	}
-	//Down, S : Brake
-	if (keyboard_.isKeyDown(sf::Keyboard::S) || keyboard_.isKeyDown(sf::Keyboard::Down))
-	{
-		controlled_->brake();
-	}
-
-	//Space : Fire
-	if (keyboard_.isKeyDown(sf::Keyboard::Space))
-	{
-		if (controlled_->trigger())
+		//Up, W : Thrust
+		if (keyboard_.isKeyDown(sf::Keyboard::W) || keyboard_.isKeyDown(sf::Keyboard::Up))
 		{
-			//Add a bullet here
-			bullets_.push_back(new Bullet(controlled_->getPosition(), controlled_->getForward(), 16.f + thor::length(controlled_->getVelocity())));
+			controlled_->thrust();
 		}
-	}
+		//Right, D : Turn CW
+		if (keyboard_.isKeyDown(sf::Keyboard::D) || keyboard_.isKeyDown(sf::Keyboard::Right))
+		{
+			controlled_->turnRight();
+		}
+		//Left, A : Turn CCW
+		if (keyboard_.isKeyDown(sf::Keyboard::A) || keyboard_.isKeyDown(sf::Keyboard::Left))
+		{
+			controlled_->turnLeft();
+		}
+		//Down, S : Brake
+		if (keyboard_.isKeyDown(sf::Keyboard::S) || keyboard_.isKeyDown(sf::Keyboard::Down))
+		{
+			controlled_->brake();
+		}
 
-	//V : Damage self
-	if (keyboard_.isKeyPressed(sf::Keyboard::V))
-	{
-		controlled_->takeDamage(1);
+		//Space : Fire
+		if (keyboard_.isKeyDown(sf::Keyboard::Space))
+		{
+			if (controlled_->trigger())
+			{
+				//Add a bullet here
+				bullets_.push_back(new Bullet(controlled_->getPosition() + controlled_->getForward() * 8.f, controlled_->getForward(), 16.f + thor::length(controlled_->getVelocity())));
+			}
+		}
+
+		//V : Damage self
+		if (keyboard_.isKeyPressed(sf::Keyboard::V))
+		{
+			controlled_->takeDamage(1);
+		}
 	}
 
 	//I : Zoom in
@@ -271,8 +402,11 @@ void Game::handleEvents() {
 	{
 		if (camera_.getTarget() == nullptr)
 		{
-			camera_.setTarget(controlled_);
-			camera_.moveReset();
+			if (controlled_ != nullptr)
+			{
+				camera_.setTarget(controlled_);
+				camera_.moveReset();
+			}
 		}
 
 		else camera_.clearTarget(true);
@@ -333,13 +467,14 @@ void Game::update() {
 			emitter.setParticleVelocity([](){ return thor::Distributions::deflect(sf::Vector2f(1.f,1.f), 360.f)() * thor::Distributions::uniform(50.f, 100.f)(); });
 			particleSystem_.addEmitter(emitter, sf::seconds(0.1f));
 
-			if (dynamic_cast<Mothership*>(*itr))
+			//If the player dies
+			if (*itr == controlled_)
+			{
+				playerDeath();
+			}
+			else if (dynamic_cast<Mothership*>(*itr))
 			{
 				erasedSound_.play();
-			}
-			else if (dynamic_cast<Player*>(*itr))
-			{
-				backSound_.play();
 			}
 
 			delete *itr;
@@ -410,3 +545,4 @@ void Game::draw() {
 	window_.display();
 }
 #pragma endregion
+

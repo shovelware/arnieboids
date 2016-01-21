@@ -4,6 +4,7 @@
 #include <list>
 #include "Ship.hpp"
 #include "Player.hpp"
+#include "Predator.hpp"
 #include "Bullet.hpp"
 #include "Pickup.hpp"
 
