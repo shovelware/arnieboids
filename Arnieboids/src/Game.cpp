@@ -54,7 +54,7 @@ backdrop_(sf::Vector2f(winWidth * 3, winHeight * 3))
 	//ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
 	//ships_.push_back(new Asteroid(particleSystem_, sf::Vector2f(rand() % 500, rand() % 500)));
 
-	for (int i = 0; i < 50; ++i)
+	for (int i = 0; i < 10; ++i)
 	ships_.push_back(new Predator(particleSystem_, fireBulletCallback_, sf::Vector2f(rand() % 500, rand() % 500)));
 
 	bullets_.push_back(new Bullet(sf::Vector2f(100.f, 100.f), sf::Vector2f(1.f, 0.1f)));

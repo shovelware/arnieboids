@@ -27,6 +27,7 @@ fireCallback_(fireCallback)
 	flock_.insert(flock_.end(), this);
 
 	velocity_ = thor::Distributions::deflect(sf::Vector2f(1, 1), 360)();
+	turnSpeed_ *= 2;
 }
 
 Predator::~Predator() {
@@ -34,8 +35,21 @@ Predator::~Predator() {
 }
 
 void Predator::update() {
-	turnToward(flock());
+	sf::Vector2f desiredPosition = flock();
+	turnToward(desiredPosition);
 	thrust();
+
+	sf::Vector2f displacement = prey_->getPosition() - this->getPosition();
+	if (thor::length(displacement) < 100)
+	{
+		brake();
+		brake();
+	}
+	float dotProd = thor::dotProduct(forward_, thor::unitVector(displacement));
+	if (dotProd > 0.99)
+	{
+		fireCallback_(new Bullet(getPosition(), forward_));
+	}
 	Ship::update();
 	move(velocity_);
 }
@@ -111,20 +125,20 @@ sf::Vector2f Predator::cohesion() const {
 			float distance = thor::length(this->getPosition() - flockMember->getPosition());
 			if (distance < neighbourDist)
 			{
-				sum += this->getPosition() - flockMember->getPosition();
+				sum += flockMember->getPosition();
 				++count;
 			}
 		}
 	}
 
-	//Tend toward prey_
-	sum += prey_->getPosition();
-	++count;
+	////Tend toward prey_
+	//sum += prey_->getPosition();
+	//++count;
 
 	if (count > 1)
 	{
 		sum /= count;
-		sum = thor::unitVector(sum) * thrust_;
+		sum = thor::unitVector(sum) * MAX_SPEED_;
 		
 		return sum;
 	}
@@ -154,18 +168,18 @@ sf::Vector2f Predator::alignment() const {
 		}
 	}
 
-	//Align to prey_
-	float distance = thor::length(this->getPosition() - prey_->getPosition());
-	if (distance < neighbourDist)
-	{
-		sum += prey_->getForward();
-		++count;
-	}
+	////Align to prey_
+	//float distance = thor::length(this->getPosition() - prey_->getPosition());
+	//if (distance < neighbourDist)
+	//{
+	//	sum += prey_->getForward();
+	//	++count;
+	//}
 
 	sf::Vector2f steer(0, 0);
 
 	//If there are flock members close enough for alignment...
-	if (count > 0)
+	if (count > 0 && thor::length(sum) > 0)
 	{
 		sum /= count;
 
@@ -198,9 +212,18 @@ sf::Vector2f Predator::flock() const {
 	sf::Vector2f coh = cohesion();
 
 	//Arbitrarily weight these forces
-	sep *= 3.0f;
-	ali *= 1.0f;
-	coh *= 2.0f;
+	sep *= 2.5f;
+	ali *= 0.5f;
+	coh *= 1.0f;
+	sf::Vector2f pry = thor::unitVector(prey_->getPosition() - getPosition());
+	pry *= 5.0f;
 
-	return sep + ali + coh;
+	sf::Vector2f total = sep + ali + coh + pry;
+
+	if (thor::length(total) > 0)
+	{
+		total = thor::unitVector(total);
+	}
+
+	return total;
 }
