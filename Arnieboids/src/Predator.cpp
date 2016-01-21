@@ -40,11 +40,6 @@ void Predator::update() {
 	thrust();
 
 	sf::Vector2f displacement = prey_->getPosition() - this->getPosition();
-	if (thor::length(displacement) < 100)
-	{
-		brake();
-		brake();
-	}
 	float dotProd = thor::dotProduct(forward_, thor::unitVector(displacement));
 	if (dotProd > 0.99)
 	{
