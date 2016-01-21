@@ -14,6 +14,7 @@
  */
 class Ship : public sf::ConvexShape {
 public:
+	sf::RectangleShape debug_rect_;
 	Ship(thor::ParticleSystem &particleSystem, sf::Vector2f const &position, float maxSpeed, unsigned int health = 1u);
 	~Ship();
 
@@ -22,7 +23,7 @@ public:
 	virtual void onCollide(Ship* other) = 0;
 
 	//! Reduces health by the specified amount
-	void takeDamage(unsigned int amount);
+	void takeDamage(unsigned int amount = 1u);
 
 	//! Returns true if health is zero
 	bool isDead() const;

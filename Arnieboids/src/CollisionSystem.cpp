@@ -120,6 +120,7 @@ sf::Vector2f CollisionSystem::projectOntoAxis(const sf::ConvexShape* const shape
 		//normalize the axis
 		axis = thor::unitVector(axis);
 	}
+
 	sf::Vector2f shipPos = shape->getPosition();
 	float min = thor::dotProduct(axis, shipPos + shape->getPoint(0));
 	float max = min;	//max and min points on the axis

@@ -1,4 +1,5 @@
 #include <include/Asteroid.hpp>
+#include <include/Player.hpp>
 
 inline float rand(int max) {
 	return rand() % max;
@@ -45,6 +46,8 @@ void Asteroid::update() {
 }
 
 void Asteroid::onCollide(Ship* other) {
+	if (!dynamic_cast<Player*>(other))
+		other->takeDamage();
 }
 
 void Asteroid::generateGeometry() {

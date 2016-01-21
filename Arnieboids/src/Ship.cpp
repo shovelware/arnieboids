@@ -31,6 +31,10 @@ particleAngleVariance_(15.f)
 	particleEmitter_.setEmissionRate(20.f);
 	particleEmitter_.setParticleRotationSpeed(thor::Distributions::uniform(-100.f, 100.f));
 	particleEmitter_.setParticleScale(sf::Vector2f(0.2f, 0.2f));
+
+	debug_rect_ = sf::RectangleShape(sf::Vector2f(1, 1));
+	debug_rect_.setOutlineColor(sf::Color::Magenta);
+	debug_rect_.setOutlineThickness(0.1f);
 }
 
 Ship::~Ship() {
@@ -51,6 +55,8 @@ void Ship::update()
 
 	accel_.x = 0;
 	accel_.y = 0;
+
+	debug_rect_.setPosition(getPosition() - sf::Vector2f(0.5f, 0.5f));
 }
 
 void Ship::takeDamage(unsigned amount) {

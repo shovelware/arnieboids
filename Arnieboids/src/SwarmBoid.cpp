@@ -1,4 +1,5 @@
 #include <include/SwarmBoid.hpp>
+#include <include/Player.hpp>
 
 //define static members
 std::list<SwarmBoid*> SwarmBoid::swarm_ = std::list<SwarmBoid*>();
@@ -51,9 +52,9 @@ void SwarmBoid::update() {
 void SwarmBoid::onCollide(Ship* other) {
 
 	//Don't take damage from other boids
-	if (!dynamic_cast<SwarmBoid*>(other))
+	if (dynamic_cast<Player*>(other))
 	{
-		takeDamage(1u);
+		takeDamage();
 	}
 }
 
@@ -87,10 +88,9 @@ void SwarmBoid::swarm() {
 
 	turnToward(sum);
 
-	velocity_ += forward_ * thrust_;
+	thrust();
 	clampToMaxSpeed();
 
-	thrust();
 	move(velocity_);
 
 	updateParticleEmitter();

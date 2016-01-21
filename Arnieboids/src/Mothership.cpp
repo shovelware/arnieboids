@@ -1,4 +1,5 @@
 #include <include/Mothership.hpp>
+#include <include/Player.hpp>
 
 Ship* Mothership::target_ = nullptr;
 
@@ -77,6 +78,10 @@ void Mothership::update() {
 }
 
 void Mothership::onCollide(Ship* other) {
+	if (dynamic_cast<Player*>(other))
+	{
+		takeDamage();
+	}
 }
 
 void Mothership::setTarget(Ship* target) {

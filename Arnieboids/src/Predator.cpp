@@ -1,4 +1,5 @@
 #include <include/Predator.hpp>
+#include <include/Player.hpp>
 
 std::list<Predator*> Predator::flock_ = std::list<Predator*>();
 Ship* Predator::prey_ = nullptr;
@@ -216,6 +217,10 @@ sf::Vector2f Predator::seek(sf::Vector2f const& pos) const {
 }
 
 void Predator::onCollide(Ship* other) {
+	if (dynamic_cast<Player*>(other))
+	{
+		takeDamage();
+	}
 }
 
 sf::Vector2f Predator::flock() const {

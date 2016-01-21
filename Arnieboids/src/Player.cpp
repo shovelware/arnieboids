@@ -1,5 +1,6 @@
 #include <include/Player.hpp>
 #include <iostream>
+#include <include/Asteroid.hpp>
 
 Player::Player(thor::ParticleSystem &particleSystem, sf::Vector2f const& position, unsigned int maxHealth) :
 Ship(particleSystem, position, 4.f, maxHealth)
@@ -12,9 +13,11 @@ Ship(particleSystem, position, 4.f, maxHealth)
 	//	 /	   \
 	//	/_______\
 
-	setPoint(0u, sf::Vector2f(0, -15));
-	setPoint(1u, sf::Vector2f(10, 15));
-	setPoint(2u, sf::Vector2f(-10, 15));
+	setPoint(0u, sf::Vector2f(10, 0));
+	setPoint(1u, sf::Vector2f(20, 30));
+	setPoint(2u, sf::Vector2f(0, 30));
+
+	setOrigin(getLocalBounds().width * 0.5f, getLocalBounds().height * 0.5f);
 
 	setFillColor(sf::Color::Blue);
 
@@ -42,4 +45,6 @@ void Player::update() {
 }
 
 void Player::onCollide(Ship* other) {
+	if (!dynamic_cast<Asteroid*>(other))
+		takeDamage();
 }

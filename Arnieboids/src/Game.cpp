@@ -529,6 +529,7 @@ void Game::draw() {
 		++itr)
 	{
 		window_.draw(**itr);
+		window_.draw((*itr)->debug_rect_);
 	}
 
 	//draw pickups
