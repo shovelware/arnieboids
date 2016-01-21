@@ -52,10 +52,11 @@ void Mothership::update() {
 	switch (calculateState())
 	{
 	case WANDER:
-		wander();
+		turnToward(wander());
+		turnToward(flock());
 		break;
 	case EVADE:
-		evade();
+		turnToward(evade());
 		if (trigger())
 			fire();
 		break;
@@ -101,7 +102,7 @@ Mothership::State Mothership::calculateState() const {
 	return WANDER;
 }
 
-void Mothership::evade() {
+sf::Vector2f Mothership::evade() const {
 	static float desiredSeparation = 1000;
 
 	sf::Vector2f steer(0, 0);
@@ -123,10 +124,10 @@ void Mothership::evade() {
 		//steer -= velocity_;
 	}
 
-	turnToward(steer);
+	return steer;
 }
 
-void Mothership::wander() {
+sf::Vector2f Mothership::wander() {
 	sf::Vector2f displacement = getPosition() - wanderWaypoint_;
 	float distance = thor::length(displacement);
 	if (distance < 100 || distance > 1000)
@@ -134,7 +135,7 @@ void Mothership::wander() {
 		wanderWaypoint_ = getPosition() + thor::Distributions::deflect(forward_ * 1000.f, 90)();
 	}
 
-	turnToward(displacement);
+	return displacement;
 }
 
 void Mothership::fire() {
@@ -155,4 +156,132 @@ void Mothership::fire() {
 void Mothership::missileDestructed() {
 	_ASSERT(liveMissiles_ > 0);
 	--liveMissiles_;
+}
+
+sf::Vector2f Mothership::separation() const {
+	static float desiredSeparation = 100;
+
+	sf::Vector2f steer(0, 0);
+	float count = 0;
+
+	for (auto itr = flock_.begin();
+		itr != flock_.end();
+		++itr)
+	{
+		Mothership* flockMember = *itr;
+		if (this != flockMember) {
+			sf::Vector2f diff = this->getPosition() - flockMember->getPosition();
+			float distance = thor::length(diff);
+			if (distance < desiredSeparation)
+			{
+				diff = thor::unitVector(diff);
+				diff /= distance;
+				steer += diff;
+				++count;
+			}
+		}//end if(this != *itr)
+	}//end for
+
+	//average out the steering
+	if (count > 1)
+	{
+		steer /= count;
+	}
+
+	if (thor::length(steer) > 0)
+	{
+		steer = thor::unitVector(steer);
+		steer *= MAX_SPEED_;
+	}
+
+	return steer;
+}
+
+sf::Vector2f Mothership::cohesion() const {
+	static float neighbourDist = 500;
+	sf::Vector2f sum(0, 0);
+	float count = 0;
+
+	for (auto itr = flock_.begin();
+		itr != flock_.end();
+		++itr)
+	{
+		Mothership* flockMember = *itr;
+		if (this != flockMember) {
+			//Is the flockmember close enough to us?
+			float distance = thor::length(this->getPosition() - flockMember->getPosition());
+			if (distance < neighbourDist)
+			{
+				sum += flockMember->getPosition();
+				++count;
+			}
+		}
+	}
+
+	if (count > 1)
+	{
+		sum /= count;
+		sum = thor::unitVector(sum) * MAX_SPEED_;
+
+		return sum;
+	}
+
+	return sf::Vector2f(0, 0);
+
+}
+
+sf::Vector2f Mothership::alignment() const {
+	static float neighbourDist = 500;
+
+	sf::Vector2f sum(0, 0);
+	float count = 0;
+	for (auto itr = flock_.begin();
+		itr != flock_.end();
+		++itr)
+	{
+		Mothership* flockMember = *itr;
+		if (this != flockMember) {
+			//Is the flockmember close enough?
+			float distance = thor::length(this->getPosition() - flockMember->getPosition());
+			if (distance < neighbourDist)
+			{
+				sum += flockMember->getForward();
+				++count;
+			}
+		}
+	}
+
+	sf::Vector2f steer(0, 0);
+
+	//If there are flock members close enough for alignment...
+	if (count > 0 && thor::length(sum) > 0)
+	{
+		sum /= count;
+
+		sum = thor::unitVector(sum);
+
+		return sum;
+	}
+
+	return steer;
+}
+
+sf::Vector2f Mothership::flock() const {
+	sf::Vector2f sep = separation();
+	sf::Vector2f ali = alignment();
+	sf::Vector2f coh = cohesion();
+
+	//Arbitrarily weight these forces
+	sep *= 2.5f;
+	ali *= 0.5f;
+	coh *= 1.0f;
+
+	sf::Vector2f total = sep + ali + coh;
+
+	if (thor::length(total) > 0)
+	{
+		total = thor::unitVector(total);
+	}
+
+	return total;
 }
