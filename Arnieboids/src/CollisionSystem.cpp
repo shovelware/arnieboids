@@ -47,13 +47,17 @@ void CollisionSystem::Check() const {
 		for (Pickup* pickup : pickups_) {
 			if (first->getGlobalBounds().intersects(pickup->getGlobalBounds()))
 			{
-				if (checkPair(first, pickup))
+				//Check if it's a player
+				if (dynamic_cast<Player*>(first) /*|| dynamic_cast<Predator*>(first)*/)
 				{
-					if (!pickup->isOwned())
+					if (checkPair(first, pickup))
 					{
-						pickup->take(first);
-					}
-				}//fine
+						if (!pickup->isOwned())
+						{
+							pickup->take(first);
+						}
+					}//fine
+				}//player check
 			}//broad
 		}//end for pickups
 

@@ -3,6 +3,7 @@
 
 #include <list>
 #include "Ship.hpp"
+#include "Player.hpp"
 #include "Bullet.hpp"
 #include "Pickup.hpp"
 

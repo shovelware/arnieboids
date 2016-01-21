@@ -34,6 +34,9 @@ Ship::~Ship() {
 
 void Ship::update()
 {
+	//Apply friction	
+	velocity_ *= 0.99f;
+
 	//Apply delta velocity
 	velocity_ += accel_;
 	clampToMaxSpeed();
