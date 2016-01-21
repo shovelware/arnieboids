@@ -43,8 +43,15 @@ void Predator::update() {
 	float dotProd = thor::dotProduct(forward_, thor::unitVector(displacement));
 	if (dotProd > 0.99)
 	{
-		fireCallback_(new Bullet(getPosition(), forward_));
+		if (trigger())
+			fireCallback_(new Bullet(getPosition(), forward_));
 	}
+
+	ticks_ = (ticks_ + 1) % INT_MAX;
+
+	//Cool weapon
+	coolDown_ -= tickToSec(1);
+
 	Ship::update();
 	move(velocity_);
 }
