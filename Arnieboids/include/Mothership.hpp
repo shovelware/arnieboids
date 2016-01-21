@@ -43,5 +43,10 @@ private:
 	void evade();
 	void wander();
 	sf::Vector2f wanderWaypoint_;
+
+	void fire();
+	const unsigned int MAX_LIVE_MISSILES;
+	unsigned int liveMissiles_;
+	void missileDestructed();
 };
 #endif

@@ -8,13 +8,10 @@ particleSystem_(particleSystem),
 ticksSinceLastSpawn_(rand() % 100),	//offset spawn times a bit
 ticksPerSpawn_(1000u),
 fireBullet_(fireCallback),
-spawnShip_(spawnCallback)
+spawnShip_(spawnCallback),
+MAX_LIVE_MISSILES(4u)
 {
 	setPointCount(6u);
-
-	float radius = 50;
-	float deltaTheta = thor::toRadian(static_cast<float>(360 / 7));
-	float theta = 0;
 
 	setPoint(0u, sf::Vector2f(0, -60));
 	setPoint(1u, sf::Vector2f(20, -20));
@@ -57,7 +54,16 @@ void Mothership::update() {
 		break;
 	case EVADE:
 		evade();
+		if (trigger())
+			fire();
 		break;
+	}
+
+	ticks_ = (ticks_ + 1) % INT_MAX;
+
+	//Cool weapon
+	if (coolDown_ > 0) {
+		coolDown_ -= tickToSec(1);
 	}
 
 	thrust();
@@ -127,4 +133,24 @@ void Mothership::wander() {
 	}
 
 	turnToward(displacement);
+}
+
+void Mothership::fire() {
+	if (liveMissiles_ < MAX_LIVE_MISSILES)
+	{
+		fireBullet_(new Missile(
+			particleSystem_,	//particle system to connect the missile's emitter to
+			std::bind(&Mothership::missileDestructed, this),	//called when the missile is destructed
+			target_,	//target for the missile
+			getPosition(),	//spawn position
+			forward_	//spawn direction
+			));
+
+		++liveMissiles_;
+	}
+}
+
+void Mothership::missileDestructed() {
+	_ASSERT(liveMissiles_ > 0);
+	--liveMissiles_;
 }
