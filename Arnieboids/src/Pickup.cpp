@@ -53,7 +53,8 @@ void Pickup::update()
 
 		//Otherwise just follow our owner
 		setPosition(owner_->getPosition());
-		setRotation(owner_->getRotation());
+		//setRotation(owner_->getRotation());
+		rotate(-1.f);
 	}
 }
 

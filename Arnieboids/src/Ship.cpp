@@ -203,7 +203,7 @@ void Ship::updateParticleEmitter()
 		//If our accel is not from engine, draw RCS particles
 		if (acos(thor::dotProduct(vAcc, vEng)) > 10)
 		{
-			particleEmitter_.setParticlePosition(getPosition() + (thor::unitVector(accel_) * getLocalBounds().height * 0.5f));
+			particleEmitter_.setParticlePosition(getPosition() + (thor::unitVector(accel_) * getLocalBounds().height * 0.4f));
 			particleEmitter_.setParticleVelocity(thor::Distributions::deflect(-forward_ * (acc * 10.f), particleAngleVariance_));
 			particleEmitter_.setParticleScale(sf::Vector2f(0.1f, 0.1f));
 		}
@@ -211,7 +211,7 @@ void Ship::updateParticleEmitter()
 		//Otherwise draw regular engine particles
 		else
 		{
-			particleEmitter_.setParticlePosition(getPosition() + (-forward_ * getLocalBounds().height * 0.5f));
+			particleEmitter_.setParticlePosition(getPosition() + (-forward_ * getLocalBounds().height * 0.4f));
 			particleEmitter_.setParticleVelocity(thor::Distributions::deflect(thor::unitVector(accel_) * (acc * 10.f), particleAngleVariance_));
 			particleEmitter_.setParticleScale(sf::Vector2f(0.2f, 0.2f));
 		}

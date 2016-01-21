@@ -24,6 +24,7 @@ Ship(particleSystem, position, 4.f, maxHealth)
 	refireTime_ = .5f;
 
 	particleEmitter_.setParticleColor(getOutlineColor());
+	particleAngleVariance_ = 35.f;
 }
 
 Player::~Player() {
