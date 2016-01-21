@@ -49,8 +49,12 @@ void SwarmBoid::update() {
 }
 
 void SwarmBoid::onCollide(Ship* other) {
-	
-	takeDamage(1u);
+
+	//Don't take damage from other boids
+	if (!dynamic_cast<SwarmBoid*>(other))
+	{
+		takeDamage(1u);
+	}
 }
 
 void SwarmBoid::setSwarmTarget(Ship* target) {

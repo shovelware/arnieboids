@@ -5,7 +5,8 @@ forward_(thor::unitVector(direction)),
 speed_(speed),
 lifeTime_(1),
 active_(true),
-ticks_(0)
+ticks_(0),
+damage_(1)
 {
 	setPointCount(4u);
 
@@ -48,6 +49,11 @@ bool Bullet::isActive() const
 
 void Bullet::setActive(bool active) {
 	active_ = active;
+}
+
+int Bullet::getDamage() const
+{
+	return damage_;
 }
 
 float Bullet::tickToSec(unsigned int ticks) const
