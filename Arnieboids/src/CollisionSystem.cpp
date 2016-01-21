@@ -36,10 +36,15 @@ void CollisionSystem::Check() const {
 			if (first->getGlobalBounds().intersects(bullet->getGlobalBounds()))
 			{
 				//use SAT to check if collision occurred
-				if (checkPair(first, bullet)) {
-					first->takeDamage(bullet->getDamage());
-					bullet->setActive(false);
-				}
+				//if (checkPair(first, bullet)) {
+					Player* p = dynamic_cast<Player*>(first);
+					if ((p && bullet->getFaction() == Bullet::Faction::ENEMY) ||
+						(!p && bullet->getFaction() == Bullet::Faction::PLAYER)) {
+
+  						first->takeDamage(bullet->getDamage());
+						bullet->setActive(false);
+					}
+				//}
 			}//end if(broadphase)
 		}//end for bullets
 
@@ -47,17 +52,25 @@ void CollisionSystem::Check() const {
 		for (Pickup* pickup : pickups_) {
 			if (first->getGlobalBounds().intersects(pickup->getGlobalBounds()))
 			{
-				//Check if it's a player
-				if (dynamic_cast<Player*>(first) || dynamic_cast<Predator*>(first))
-				{
 					if (checkPair(first, pickup))
 					{
-						if (!pickup->isOwned())
+						//Check if it's a player
+						if (dynamic_cast<Player*>(first) || dynamic_cast<Predator*>(first))
 						{
-							pickup->take(first);
+							if (!pickup->isOwned())
+							{
+								pickup->take(first);
+							}
+							else if (first != pickup->getOwner())
+							{
+								first->takeDamage();
+							}
+						}
+						else if (pickup->isOwned() && first != pickup->getOwner())
+						{
+							first->takeDamage();
 						}
 					}//fine
-				}//player check
 			}//broad
 		}//end for pickups
 

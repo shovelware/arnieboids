@@ -9,22 +9,9 @@ TURN_SPEED_(turnSpeed),
 isAccelerating_(true),
 destructCallback_(destructCallback)
 {
-	setPointCount(5u);
-
-	setPoint(0u, sf::Vector2f(0, 10));
-	setPoint(1u, sf::Vector2f(0, 30));
-	setPoint(2u, sf::Vector2f(8, 30));
-	setPoint(3u, sf::Vector2f(8, 10));
-	setPoint(4u, sf::Vector2f(4, 0));
-
-	setOrigin(getLocalBounds().width * 0.5f, getLocalBounds().height * 0.5f);
-
 	setFillColor(sf::Color(100, 0, 0));
 
 	setOutlineColor(sf::Color::Red);
-
-	forward_ = direction;
-	setRotation(thor::toDegree(atan2(forward_.y, forward_.x)));	//get forward vector as angle in degrees
 
 	particleEmitter_.setParticleColor(getOutlineColor());
 	particleEmitter_.setParticleScale(sf::Vector2f(0.1f, 0.1f));

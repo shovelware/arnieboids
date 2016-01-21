@@ -10,7 +10,7 @@ ticksSinceLastSpawn_(rand() % 100),	//offset spawn times a bit
 ticksPerSpawn_(1000u),
 fireBullet_(fireCallback),
 spawnShip_(spawnCallback),
-MAX_LIVE_MISSILES(4u)
+MAX_LIVE_MISSILES(5u)
 {
 	setPointCount(6u);
 

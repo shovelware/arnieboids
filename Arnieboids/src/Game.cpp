@@ -84,9 +84,9 @@ int Game::run() {
 	while (window_.isOpen()) {
 
 		//If time since last tick is greater or equal to the time per tick...
-		while (tickClock_.now() - timeOfLastTick_ >= timePerTick_)
+		if (tickClock_.now() - timeOfLastTick_ >= timePerTick_)
 		{
-			timeOfLastTick_ += timePerTick_;
+			timeOfLastTick_ = tickClock_.now();
 
 			//Handle events from the RenderWindow
 			handleEvents();
@@ -166,7 +166,7 @@ void Game::reset()
 
 	//! Game setup variables
 	const int minSwarms = 1;
-	const int maxSwarms = 5;
+	const int maxSwarms = 4;
 	const int minBoids = 5;
 	const int maxBoids = 25;
 	const int minSwarmRad = 100;
@@ -296,7 +296,7 @@ void Game::handleEvents() {
 		window_.close();
 	}
 
-	//F5 : Reset game NOT IMPLEMENTED
+	//F5 : Reset game
 	if (keyboard_.isKeyPressed(sf::Keyboard::F5))
 	{
 		reset();
@@ -332,7 +332,9 @@ void Game::handleEvents() {
 			if (controlled_->trigger())
 			{
 				//Add a bullet here
-				bullets_.push_back(new Bullet(controlled_->getPosition() + controlled_->getForward() * 8.f, controlled_->getForward(), 16.f + thor::length(controlled_->getVelocity())));
+				Bullet * newBullet = new Bullet(controlled_->getPosition() + controlled_->getForward() * 8.f, controlled_->getForward(), 8.f + thor::length(controlled_->getVelocity()));
+				newBullet->setFaction(Bullet::PLAYER);
+				fireBulletCallback_(newBullet);
 			}
 		}
 
@@ -461,11 +463,21 @@ void Game::update() {
 			//generate a particle explosion at the dead ship's position
 			thor::UniversalEmitter emitter;
 			emitter.setParticlePosition((*itr)->getPosition());
-			emitter.setEmissionRate(100.f);
 			emitter.setParticleScale(sf::Vector2f(0.25f, 0.25f));
 			emitter.setParticleColor((*itr)->getFillColor());
 			emitter.setParticleVelocity([](){ return thor::Distributions::deflect(sf::Vector2f(1.f,1.f), 360.f)() * thor::Distributions::uniform(50.f, 100.f)(); });
-			particleSystem_.addEmitter(emitter, sf::seconds(0.1f));
+			
+			//make a more fancy explosion for player ship
+			if (*itr == controlled_) {
+				emitter.setEmissionRate(1000.f);
+				emitter.setParticleLifetime(thor::Distributions::uniform(sf::seconds(0.5f), sf::seconds(1.f)));
+				particleSystem_.addEmitter(emitter, sf::seconds(1.f));
+			}
+			else {
+				emitter.setEmissionRate(100.f);
+				particleSystem_.addEmitter(emitter, sf::seconds(0.1f));
+			}
+
 
 			//If the player dies
 			if (*itr == controlled_)

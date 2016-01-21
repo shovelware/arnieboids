@@ -6,7 +6,7 @@ inline float rand(int max) {
 }
 
 Asteroid::Asteroid(thor::ParticleSystem &particleSystem, sf::Vector2f const& position, sf::Vector2f const& direction, float spinSpeed) :
-Ship(particleSystem, position, rand(50) * 0.1f),
+Ship(particleSystem, position, rand(50) * 0.1f, 150),
 rotationSpeed_(spinSpeed)
 {
 	forward_ = thor::unitVector(direction);
@@ -20,7 +20,7 @@ rotationSpeed_(spinSpeed)
 }
 
 Asteroid::Asteroid(thor::ParticleSystem &particleSystem, sf::Vector2f const& position, float spinSpeed) :
-Ship(particleSystem, position, (rand() % 50) * 0.1f),
+Ship(particleSystem, position, (rand() % 50) * 0.1f, 150),
 rotationSpeed_(spinSpeed)
 {
 	forward_.y = -cosf(thor::toRadian(rand(360)));
@@ -46,8 +46,11 @@ void Asteroid::update() {
 }
 
 void Asteroid::onCollide(Ship* other) {
-	if (!dynamic_cast<Player*>(other))
-		other->takeDamage();
+	if (!dynamic_cast<Asteroid*>(other))
+		forward_ += other->getVelocity();
+
+	forward_ = thor::unitVector(forward_);
+	other->takeDamage();
 }
 
 void Asteroid::generateGeometry() {

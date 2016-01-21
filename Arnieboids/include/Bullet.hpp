@@ -20,6 +20,14 @@ public:
 
 	int getDamage() const;
 
+	enum Faction {
+		PLAYER,
+		ENEMY
+	};
+
+	Faction getFaction() const;
+	void setFaction(Faction faction);
+
 protected:
 	//! How far the bullet travels each update
 	float speed_;
@@ -39,6 +47,8 @@ protected:
 
 	//! Ticks to seconds
 	float tickToSec(unsigned int ticks) const;
+
+	Faction faction_;
 
 };
 #endif

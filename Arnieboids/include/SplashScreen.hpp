@@ -9,6 +9,7 @@ public:
 	SplashScreen() {}
 	~SplashScreen() {}
 
+	//! This is not how to use unique pointers!
 	void run(std::unique_ptr<Game> &game, sf::RenderWindow &window) {
 		sf::Texture texture;
 		texture.loadFromFile("./loading.png");

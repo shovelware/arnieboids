@@ -14,7 +14,7 @@ public:
 	 * \param position Initial position
 	 * \param direction Launch direction
 	 */
-	Missile(thor::ParticleSystem& particleSystem, std::function<void()> destructCallback, const Ship* const target, sf::Vector2f  const &position, sf::Vector2f const &direction, const float maxSpeed = 4.f, const float acceleration = 0.1f, const float turnSpeed = 1.f);
+	Missile(thor::ParticleSystem& particleSystem, std::function<void()> destructCallback, const Ship* const target, sf::Vector2f  const &position, sf::Vector2f const &direction, const float maxSpeed = 4.f, const float acceleration = 0.1f, const float turnSpeed = 2.f);
 	~Missile();
 
 	//! Turns to face target while thrusting forward.

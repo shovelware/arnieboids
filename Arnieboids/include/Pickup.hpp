@@ -15,6 +15,7 @@ public:
 
 	bool isActive();
 	bool isOwned() const;
+	Ship* getOwner() const;
 
 	//! Used to play as sound in Game::update() when power up is collected
 	bool wasPickedUpLastTick();

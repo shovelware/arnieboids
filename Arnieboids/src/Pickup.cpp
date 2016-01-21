@@ -127,6 +127,10 @@ bool Pickup::isOwned() const
 	return (owner_ != nullptr);
 }
 
+Ship* Pickup::getOwner() const {
+	return owner_;
+}
+
 bool Pickup::wasPickedUpLastTick() {
 	if (isOwned() && !pickedUp_)
 	{
