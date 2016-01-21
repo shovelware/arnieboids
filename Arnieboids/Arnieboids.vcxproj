@@ -116,6 +116,7 @@ xcopy "$(THOR)\bin\thor.dll" "$(TargetDir)" /Y /D</Command>
     <ClInclude Include="include\Predator.hpp" />
     <ClInclude Include="include\Ship.hpp" />
     <ClInclude Include="include\Player.hpp" />
+    <ClInclude Include="include\SplashScreen.hpp" />
     <ClInclude Include="include\Star.hpp" />
     <ClInclude Include="include\SwarmBoid.hpp" />
     <ClInclude Include="include\TiledBackdrop.hpp" />

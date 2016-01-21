@@ -33,7 +33,7 @@
  */
 class Game {
 public:
-	Game(unsigned int winWidth = 800U, unsigned int winHeight = 800U, unsigned int timePerTick = 16U);
+	Game(sf::RenderWindow &window, unsigned int timePerTick = 16U);
 	~Game();
 
 	/*!
@@ -46,7 +46,7 @@ public:
 
 private:
 	//! Window that everything will be drawn to
-	sf::RenderWindow window_;
+	sf::RenderWindow& window_;
 
 	//! All ships in the game
 	std::list<Ship*> ships_;
@@ -88,8 +88,8 @@ private:
 	std::chrono::milliseconds timePerTick_;	//!< Milliseconds per update/draw tick
 	std::chrono::time_point<std::chrono::system_clock> timeOfLastTick_;	//!< Time at which the last update/draw tick occurred.
 
-	sf::SoundBuffer erasedSBuffer_, mineSBuffer_, planSBuffer_;
-	sf::Sound erasedSound_, mineSound_, planSound_;
+	sf::SoundBuffer erasedSBuffer_, mineSBuffer_, planSBuffer_, backSBuffer_;
+	sf::Sound erasedSound_, mineSound_, planSound_, backSound_;
 	sf::Music bgMusic_;
 
 	/*!

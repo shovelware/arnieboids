@@ -1,8 +1,8 @@
 #include <include/Game.hpp>
 
 #pragma region PublicMemberFunctions
-Game::Game(unsigned int winWidth, unsigned int winHeight, unsigned int timePerTick) :
-window_(sf::VideoMode(winWidth, winHeight), "ArnieBoids", sf::Style::Titlebar, sf::ContextSettings(0u, 0u, 8u)),	//AntiAliasing level: 8
+Game::Game(sf::RenderWindow &window, unsigned int timePerTick) :
+window_(window),
 camera_(window_),
 ships_(),
 bullets_(),
@@ -14,7 +14,7 @@ collisionSystem_(ships_, bullets_, pickups_),
 keyboard_(),
 particleSystem_(),
 particleTexture_(),
-backdrop_(sf::Vector2f(winWidth * 3, winHeight * 3))
+backdrop_(sf::Vector2f(window.getSize()) * 3.f)
 {
 	srand(time(NULL));
 	//float w = winWidth;
@@ -63,10 +63,12 @@ backdrop_(sf::Vector2f(winWidth * 3, winHeight * 3))
 	erasedSBuffer_.loadFromFile("./sound/erased.ogg");
 	mineSBuffer_.loadFromFile("./sound/you_are_mine.ogg");
 	planSBuffer_.loadFromFile("./sound/the_plan.ogg");
+	backSBuffer_.loadFromFile("./sound/ill_be_back.ogg");
 
 	erasedSound_.setBuffer(erasedSBuffer_);
 	mineSound_.setBuffer(mineSBuffer_);
 	planSound_.setBuffer(planSBuffer_);
+	backSound_.setBuffer(backSBuffer_);
 
 	planSound_.play();
 
@@ -334,6 +336,10 @@ void Game::update() {
 			if (dynamic_cast<Mothership*>(*itr))
 			{
 				erasedSound_.play();
+			}
+			else if (dynamic_cast<Player*>(*itr))
+			{
+				backSound_.play();
 			}
 
 			delete *itr;

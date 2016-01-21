@@ -18,14 +18,18 @@
 
 
 #include <include/Game.hpp>
+#include <include/SplashScreen.hpp>
 
 
 int main()
 {
-	srand(time_t(NULL));
+	sf::RenderWindow window = sf::RenderWindow(sf::VideoMode(800u, 800u), L"ArnieBoids", sf::Style::Titlebar, sf::ContextSettings(0u, 0u, 8u));	//8x antialiasing
 
-	Game game;
+	std::unique_ptr<Game> game;
 
+	SplashScreen splash;
 
-	return game.run();
+	splash.run(game, window);
+
+	return game->run();
 }
