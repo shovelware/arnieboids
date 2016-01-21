@@ -59,6 +59,20 @@ backdrop_(sf::Vector2f(winWidth * 3, winHeight * 3))
 
 	particleTexture_.loadFromFile("./particlez.png");
 	particleSystem_.setTexture(particleTexture_);
+
+	erasedSBuffer_.loadFromFile("./sound/erased.ogg");
+	mineSBuffer_.loadFromFile("./sound/you_are_mine.ogg");
+	planSBuffer_.loadFromFile("./sound/the_plan.ogg");
+
+	erasedSound_.setBuffer(erasedSBuffer_);
+	mineSound_.setBuffer(mineSBuffer_);
+	planSound_.setBuffer(planSBuffer_);
+
+	planSound_.play();
+
+	bgMusic_.openFromFile("./sound/music.ogg");
+	bgMusic_.setLoop(true);
+	bgMusic_.play();
 }
 
 Game::~Game() {
@@ -317,6 +331,11 @@ void Game::update() {
 			emitter.setParticleVelocity([](){ return thor::Distributions::deflect(sf::Vector2f(1.f,1.f), 360.f)() * thor::Distributions::uniform(50.f, 100.f)(); });
 			particleSystem_.addEmitter(emitter, sf::seconds(0.1f));
 
+			if (dynamic_cast<Mothership*>(*itr))
+			{
+				erasedSound_.play();
+			}
+
 			delete *itr;
 			itr = ships_.erase(itr++);
 		}
@@ -336,6 +355,10 @@ void Game::update() {
 		}
 
 		else {
+			if ((*itr)->wasPickedUpLastTick())
+			{
+				mineSound_.play();
+			}
 			(*itr++)->update();
 		}
 	}

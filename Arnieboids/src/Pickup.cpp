@@ -126,6 +126,15 @@ bool Pickup::isOwned() const
 	return (owner_ != nullptr);
 }
 
+bool Pickup::wasPickedUpLastTick() {
+	if (isOwned() && !pickedUp_)
+	{
+		pickedUp_ = true;
+		return true;
+	}
+	return false;
+}
+
 float Pickup::tickToSec(unsigned int ticks) const
 {
 	return (16.f / 1000.f) * ticks;

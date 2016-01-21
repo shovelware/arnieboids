@@ -5,6 +5,7 @@
 #include <list>
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <Thor/Particles.hpp>
 #include <Thor/Animations.hpp>
 
@@ -86,6 +87,10 @@ private:
 	std::chrono::steady_clock tickClock_;
 	std::chrono::milliseconds timePerTick_;	//!< Milliseconds per update/draw tick
 	std::chrono::time_point<std::chrono::system_clock> timeOfLastTick_;	//!< Time at which the last update/draw tick occurred.
+
+	sf::SoundBuffer erasedSBuffer_, mineSBuffer_, planSBuffer_;
+	sf::Sound erasedSound_, mineSound_, planSound_;
+	sf::Music bgMusic_;
 
 	/*!
 	 * Polls the RenderWindow for events and
