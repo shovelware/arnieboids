@@ -1,5 +1,11 @@
 #include <include/Ship.hpp>
 
+// returns sin(theta)*length(a)*length(b), where theta = the angle between vectors a,b
+inline float perpDot(const sf::Vector2f& a, const sf::Vector2f& b)
+{
+	return (a.y*b.x) - (a.x*b.y);
+}
+
 Ship::Ship(thor::ParticleSystem &particleSystem, sf::Vector2f const &position, float maxSpeed, unsigned int health) :
 MAX_SPEED_(maxSpeed),
 MAX_HEALTH_(health),
@@ -87,26 +93,26 @@ void Ship::brake() {
 
 void Ship::turnLeft()
 {
+	rotate(-turnSpeed_);
+
 	//Get rotation in radians
 	float rotRads = thor::toRadian(getRotation());
 
 	//Calculate forward vector
 	forward_.y = -cosf(rotRads);
 	forward_.x = sinf(rotRads);
-
-	rotate(-turnSpeed_);
 }
 
 void Ship::turnRight()
 {
+	rotate(turnSpeed_);
+
 	//Get rotation in radians
 	float rotRads = thor::toRadian(getRotation());
 
 	//Calculate forward vector
 	forward_.y = -cosf(rotRads);
 	forward_.x = sinf(rotRads);
-
-	rotate(turnSpeed_);
 }
 
 bool Ship::trigger()
@@ -123,9 +129,27 @@ bool Ship::trigger()
 	return fired;
 }
 
+void Ship::turnToward(sf::Vector2f const& direction) {
+	//find out which way we should turn to face target
+	float d = perpDot(direction, forward_);
+	if (d > 0.f) {
+		//turn clockwise
+		turnRight();
+	}
+	else {
+		//turn counter-clockwise
+		turnLeft();
+	}
+}
+
 sf::Vector2f Ship::getForward() const
 {
 	return forward_;
+}
+
+sf::Vector2f Ship::getVelocity() const
+{
+	return velocity_;
 }
 
 void Ship::setRadarRange(float range)

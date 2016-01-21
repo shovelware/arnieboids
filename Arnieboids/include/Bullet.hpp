@@ -7,7 +7,7 @@
 
 class Bullet : public sf::ConvexShape {
 public:
-	Bullet(sf::Vector2f const &position, sf::Vector2f const &direction, const float speed = 5.f);
+	Bullet(sf::Vector2f const &position, sf::Vector2f const &direction, const float speed = 10.f);
 	~Bullet();
 
 	//! Moves the bullet forward and checks if it has exceeded time to live

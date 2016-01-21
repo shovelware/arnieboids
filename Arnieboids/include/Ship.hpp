@@ -42,8 +42,16 @@ public:
 	//! Attempt to fire, returns success
 	bool trigger();
 
+	/*!
+	 * Turns toward a given direction
+	 */
+	void turnToward(sf::Vector2f const &direction);
+
 	//! Returns forward direction of ship
 	sf::Vector2f getForward() const;
+
+	//! Returns velocity
+	sf::Vector2f getVelocity() const;
 
 	//! Radar radius accessors
 	void setRadarRange(float range);

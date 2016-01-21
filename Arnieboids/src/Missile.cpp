@@ -1,12 +1,13 @@
 #include <include/Missile.hpp>
 
-Missile::Missile(thor::ParticleSystem& particleSystem, const Ship* const target, sf::Vector2f const& position, sf::Vector2f const& direction, const float maxSpeed, const float acceleration, const float turnSpeed) :
+Missile::Missile(thor::ParticleSystem& particleSystem, std::function<void()> destructCallback, const Ship* const target, sf::Vector2f const& position, sf::Vector2f const& direction, const float maxSpeed, const float acceleration, const float turnSpeed) :
 Bullet(position, direction, 0.f),
 TARGET_(target),
 MAX_SPEED_(maxSpeed),
 ACCELERATION_(acceleration),
 TURN_SPEED_(turnSpeed),
-isAccelerating_(true)
+isAccelerating_(true),
+destructCallback_(destructCallback)
 {
 	setPointCount(5u);
 
@@ -22,6 +23,7 @@ isAccelerating_(true)
 
 	setOutlineColor(sf::Color::Red);
 
+	forward_ = direction;
 	setRotation(thor::toDegree(atan2(forward_.y, forward_.x)));	//get forward vector as angle in degrees
 
 	particleEmitter_.setParticleColor(getOutlineColor());
@@ -36,6 +38,15 @@ isAccelerating_(true)
 Missile::~Missile() {
 	//disconnect emitter from particle system
 	connection_.disconnect();
+
+	try
+	{
+		destructCallback_();
+	}
+	catch (...)
+	{
+		printf("Tried to perform Missile destruct callback, but the firing ship must be dead.\n");
+	}
 }
 
 // returns sin(theta)*length(a)*length(b), where theta = the angle between vectors a,b
@@ -88,6 +99,11 @@ void Missile::update() {
 
 		updateParticleEmitter();
 	}
+}
+
+void Missile::setForward(sf::Vector2f const& direction) {
+	forward_ = direction;
+	setRotation(thor::toDegree(atan2(forward_.y, forward_.x)));
 }
 
 void Missile::updateParticleEmitter() {
