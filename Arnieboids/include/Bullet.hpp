@@ -5,6 +5,12 @@
 
 #include <Thor/Vectors.hpp>
 
+/*!
+* \brief Bullet class. 
+* A simple bullet that moves in a direction for a lifetime.
+* Dies if it hits something.
+*/
+
 class Bullet : public sf::ConvexShape {
 public:
 	Bullet(sf::Vector2f const &position, sf::Vector2f const &direction, const float speed = 10.f);

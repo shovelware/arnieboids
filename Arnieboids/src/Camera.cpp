@@ -36,13 +36,13 @@ void Camera::loadFont(std::string filename)
 {
 	sf::Font* fnt = new sf::Font();
 
-	if (fnt->loadFromFile("./font/" + filename));
+	if (fnt->loadFromFile("./" + filename));
 	{
 		//If we load successfully, assign font
 		font_ = fnt;
 
 		text_ = sf::Text("", *font_);
-		text_.setCharacterSize(25);
+		text_.setCharacterSize(50);
 	}
 }
 

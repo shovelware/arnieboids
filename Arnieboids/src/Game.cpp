@@ -29,7 +29,7 @@ backdrop_(sf::Vector2f(window.getSize()) * 3.f)
 	//define function for adding bullets to list
 	fireBulletCallback_ = [this](Bullet* bullet){ bullets_.push_back(bullet); };
 	spawnShipCallback_ = [this](Ship * ship){ ships_.push_back(ship); };
-	camera_.loadFont("CODE Bold.otf");
+	camera_.loadFont("game_over.ttf");
 
 	//fade particles out at end of life
 	particleSystem_.addAffector(thor::AnimationAffector(thor::FadeAnimation(0.f, 0.25f)));
