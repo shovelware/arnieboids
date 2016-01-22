@@ -8,6 +8,13 @@
 #include "Bullet.hpp"
 #include "Pickup.hpp"
 
+/*!
+* \brief Collision System class.
+* Provides SAT collision for Convex Shapes.
+* Contains references to game lists
+*/
+
+
 class CollisionSystem {
 public:
 	CollisionSystem(std::list<Ship*>& shipList, std::list<Bullet*>& bulletList, std::list<Pickup*>& pickupList);

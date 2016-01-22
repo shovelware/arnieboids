@@ -6,8 +6,8 @@
 
 /*!
 * \brief Asteroid class.
-* Abstract class that inherits from sf::ConvexShape.
-* Contains members common to all ships.
+* Asteroids are technically ships but do things a little differently.
+* Constantly move forward at fixed speed, collisions impart some velocity change.
 */
 class Asteroid : public Ship {
 public:

@@ -26,6 +26,7 @@
 #include "Pickup.hpp"
 
 /*!
+ * \brief Game class.
  * Updates and draws all ships and bullets.
  * Culls dead bullets and ships.
  * 

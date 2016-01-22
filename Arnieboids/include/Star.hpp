@@ -3,6 +3,11 @@
 
 #include <SFML/Graphics/CircleShape.hpp>
 
+/*!
+*	\brief Star class
+*	A super-lightweight sf::CircleShape wrapper, for drawing starry background
+*/
+
 class Star : public sf::CircleShape
 {
 public:

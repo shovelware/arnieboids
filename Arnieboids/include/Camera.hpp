@@ -5,7 +5,7 @@
 #include <include\Ship.hpp>
 
 /*!
-* \brief Camera Class.
+* \brief Camera class.
 * Camera that can follow target a ship.
 * Zoom and Independent movement also possible.
 * Handles drawing of HUD, only if a ship is targeted.
