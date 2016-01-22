@@ -1,0 +1,11 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$class_bullet.html" title="Bullet class. A simple bullet that moves in a direction for a lifetime. Dies if it hits something..." alt="" coords="159,12,213,39"/>
+<area shape="rect" id="node4" href="$class_pickup.html" title="Pickup class. A multi&#45;purpose pickup that assists a Player or Predator. A pickup will add as much hea..." alt="" coords="155,75,217,101"/>
+<area shape="rect" id="node5" href="$class_ship.html" title="Base Ship class. Abstract class that inherits from sf::ConvexShape. Contains members common to all sh..." alt="" coords="162,151,210,177"/>
+<area shape="rect" id="node3" href="$class_missile.html" title="Missile" alt="" coords="278,5,341,32"/>
+<area shape="rect" id="node6" href="$class_asteroid.html" title="Asteroid class. Asteroids are technically ships but do things a little differently. Constantly move forward at fixed speed, collisions impart some velocity change. " alt="" coords="274,56,345,83"/>
+<area shape="rect" id="node7" href="$class_mothership.html" title="Mothership" alt="" coords="266,107,353,133"/>
+<area shape="rect" id="node8" href="$class_player.html" title="Controllable player class. Has no AI behaviour. Controlled through keyboard input in Game::handleEven..." alt="" coords="280,157,339,184"/>
+<area shape="rect" id="node9" href="$class_predator.html" title="Predator" alt="" coords="274,208,345,235"/>
+<area shape="rect" id="node10" href="$class_swarm_boid.html" title="SwarmBoid" alt="" coords="265,259,353,285"/>
+</map>

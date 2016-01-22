@@ -1,0 +1,5 @@
+<map id="Camera::drawRadar" name="Camera::drawRadar">
+<area shape="rect" id="node2" href="$class_game.html#a6d54497ce3a66f6dd45eacfdccc8d0bd" title="Draws all bullets and ships. Also draws the backdrop_ of stars. " alt="" coords="189,5,281,32"/>
+<area shape="rect" id="node3" href="$class_game.html#a99fb161fbbe87d25a8b73265a0611e58" title="Implements the main game loop. While window_ is open: Calls handleEvents(), Implements a fixed timest..." alt="" coords="329,5,412,32"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="460,5,511,32"/>
+</map>

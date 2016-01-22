@@ -1,0 +1,51 @@
+<map id="main" name="main">
+<area shape="rect" id="node2" href="$class_splash_screen.html#aab5819e18a5580cde2f4d521c3e683ce" title="SplashScreen::run" alt="" coords="104,1069,233,1096"/>
+<area shape="rect" id="node3" href="$class_game.html#a99fb161fbbe87d25a8b73265a0611e58" title="Implements the main game loop. While window_ is open: Calls handleEvents(), Implements a fixed timest..." alt="" coords="127,1120,210,1147"/>
+<area shape="rect" id="node4" href="$class_game.html#adb5563f62c0c82e3e42ec36501aa5698" title="Polls the RenderWindow for events and handles these events accordingly. " alt="" coords="281,512,424,539"/>
+<area shape="rect" id="node33" href="$class_game.html#a79df6376b332d63c9eca0dcee30305c3" title="Calls Update on all bullets and ships. " alt="" coords="301,1120,405,1147"/>
+<area shape="rect" id="node42" href="$class_game.html#a6d54497ce3a66f6dd45eacfdccc8d0bd" title="Draws all bullets and ships. Also draws the backdrop_ of stars. " alt="" coords="307,1297,399,1324"/>
+<area shape="rect" id="node5" href="$class_key_input.html#a14646d6a26aac7f82877b6f14a860810" title="Is a key down. " alt="" coords="480,107,627,133"/>
+<area shape="rect" id="node7" href="$class_key_input.html#aedc341260ca4a091ae068c9511fc2060" title="Has a key just been pressed. " alt="" coords="472,411,635,437"/>
+<area shape="rect" id="node8" href="$class_game.html#a39bb2fd26b5ea6b164f28f9f6723582e" title="Resets the game. " alt="" coords="506,563,601,589"/>
+<area shape="rect" id="node10" href="$class_camera.html#afa6c3f4508a58c0d690043b6398e70c8" title="Clears the camera&#39;s target, can keep camera on target&#39;s last position or reset. " alt="" coords="709,816,847,843"/>
+<area shape="rect" id="node11" href="$class_camera.html#a0212ec3e79a822e9259439b53b6c3427" title="Camera::moveReset" alt="" coords="709,461,847,488"/>
+<area shape="rect" id="node12" href="$class_camera.html#a2a8fc39bb84d82d969827d504e4f6928" title="Camera::setTarget" alt="" coords="713,512,843,539"/>
+<area shape="rect" id="node19" href="$class_ship.html#a4543637a3f0b4275206f684247e1b313" title="Apply acceleration in direction of forward vector. " alt="" coords="509,664,598,691"/>
+<area shape="rect" id="node20" href="$class_ship.html#a471e4e86d3cf0ea0b02d3603575f070e" title="Turn ship right. " alt="" coords="499,715,607,741"/>
+<area shape="rect" id="node21" href="$class_ship.html#aee981dc9846a549b31274e7e2d29b82c" title="Turn ship left. " alt="" coords="504,765,603,792"/>
+<area shape="rect" id="node22" href="$class_ship.html#a719e69f970fc6088eea225242e843640" title="Apply deceleration if thrust is present. " alt="" coords="509,816,597,843"/>
+<area shape="rect" id="node23" href="$class_ship.html#ad8f6d67f0ae2d0076792f9076a99373c" title="Attempt to fire, returns success. " alt="" coords="507,867,599,893"/>
+<area shape="rect" id="node24" href="$class_ship.html#a40f4d36fbef8f0b501f60b8ec817f8f6" title="Returns forward direction of ship. " alt="" coords="493,917,613,944"/>
+<area shape="rect" id="node25" href="$class_ship.html#a80cb0dd72d6104f20152ee72b10b8182" title="Returns velocity. " alt="" coords="493,5,614,32"/>
+<area shape="rect" id="node26" href="$class_bullet.html#aaae9f5313691d4e951075ddb9e88632c" title="Bullet::setFaction" alt="" coords="491,56,615,83"/>
+<area shape="rect" id="node27" href="$class_ship.html#a25357ff5a748c27c2dda77106ac2b635" title="Reduces health by the specified amount. " alt="" coords="713,1069,843,1096"/>
+<area shape="rect" id="node28" href="$class_camera.html#a62d35e87b3eeac9463f43c17b65ef090" title="Zoom controls for camera. " alt="" coords="495,157,612,184"/>
+<area shape="rect" id="node29" href="$class_camera.html#aafc1d985053e11bd553b8a12540a562d" title="Camera::zoomOut" alt="" coords="489,208,617,235"/>
+<area shape="rect" id="node30" href="$class_camera.html#a9d6e88df1d8fc3e3209089529751be60" title="Camera::zoomReset" alt="" coords="483,259,624,285"/>
+<area shape="rect" id="node31" href="$class_camera.html#a2ef7ab63555ce882aa2fd8e21b0f20a5" title="Move controls for the camera. " alt="" coords="501,309,606,336"/>
+<area shape="rect" id="node32" href="$class_camera.html#ad9ab2d09758faec8de60205b4cecacd9" title="Camera::getTarget" alt="" coords="489,360,618,387"/>
+<area shape="rect" id="node6" href="$class_key_input.html#abcb3d9af28558c73d56cb2f7c5999ebf" title="KeyInput::checkKeyDown" alt="" coords="693,259,863,285"/>
+<area shape="rect" id="node9" href="$class_game.html#a03cf795e9aaa4c5950b4b5e918ab9ab6" title="Clears the game of entities. " alt="" coords="717,613,839,640"/>
+<area shape="rect" id="node13" href="$class_swarm_boid.html#ad80d43f4292e271fe923e336e4a00fc9" title="Sets the target for all swarm boids. They will tend toward this target. " alt="" coords="683,917,873,944"/>
+<area shape="rect" id="node14" href="$class_predator.html#ac0443982b52b92fc663f10aa22a1af32" title="Predator::setPrey" alt="" coords="716,715,840,741"/>
+<area shape="rect" id="node15" href="$class_mothership.html#a9408cae65d9873396fcac20a1c720445" title="Sets the target for all motherships. " alt="" coords="704,765,852,792"/>
+<area shape="rect" id="node16" href="$_game_8cpp.html#a59b2f49f2e86089a1b63cb69f71896ab" title="randFloat" alt="" coords="971,613,1047,640"/>
+<area shape="rect" id="node18" href="$class_game.html#a4ec995efd5ef74c85418564f3dcce177" title="Adds a swarm of [amount] boids in circle around [pos] with [radius]. " alt="" coords="702,664,854,691"/>
+<area shape="rect" id="node17" href="$_asteroid_8cpp.html#adcf7e38e2819cfc325a5ae8b3034eeab" title="rand" alt="" coords="1144,613,1191,640"/>
+<area shape="rect" id="node34" href="$class_collision_system.html#a0ea99c0b3b16a7df82aad2cb43ecd422" title="Checks for collision between all game entities. Checks for ship&#45;ship collision (broad and narrow phas..." alt="" coords="473,1171,634,1197"/>
+<area shape="rect" id="node38" href="$class_camera.html#a42cda7239981a5618660d04bd5893556" title="Updates camera&#39;s center to where the target is. " alt="" coords="496,1221,611,1248"/>
+<area shape="rect" id="node39" href="$class_key_input.html#ab32b8ec028e37e27e059c0ba5109d9f0" title="Updates all keys. " alt="" coords="493,1069,613,1096"/>
+<area shape="rect" id="node40" href="$class_game.html#a8c6e2c8402b48b52b960d512e91e9f2d" title="Wraps a passed convexShape to the opposite side of game bounds. " alt="" coords="507,1120,599,1147"/>
+<area shape="rect" id="node41" href="$class_game.html#ab7f3eff651c80c1c73bc9ceec036e66e" title="Resets behaviours dependant on player existing. " alt="" coords="486,968,621,995"/>
+<area shape="rect" id="node35" href="$class_collision_system.html#a27bf78e0a1149731235938bc81d5b91c" title="Check two ships for collision. " alt="" coords="687,1171,869,1197"/>
+<area shape="rect" id="node36" href="$class_collision_system.html#a158e6ab18ea61ae99522463ab6088155" title="Get the axies of a shape and insert them into the list. " alt="" coords="921,1200,1096,1227"/>
+<area shape="rect" id="node37" href="$class_collision_system.html#aabc383eedc5ffdba7bab772373803c3b" title="Project a shape onto an axis and return the line projection. " alt="" coords="927,1134,1090,1175"/>
+<area shape="rect" id="node43" href="$class_tiled_backdrop.html#a16d4fe2b3aba3dff33727098d893d764" title="Draws the texture to the target. " alt="" coords="484,1323,623,1349"/>
+<area shape="rect" id="node44" href="$class_camera.html#a293e96ec309365bbbe590140ce1b7828" title="HUD Drawing controls, both of these change render target for their duration. " alt="" coords="489,1373,618,1400"/>
+<area shape="rect" id="node49" href="$class_camera.html#ace51d5eb12bd72eab18a1e91d97b95a5" title="Camera::drawRadar" alt="" coords="485,1272,621,1299"/>
+<area shape="rect" id="node45" href="$class_camera.html#a3afdcede73702ae602fe45caa79cd76c" title="Camera::drawText" alt="" coords="715,1323,841,1349"/>
+<area shape="rect" id="node46" href="$class_camera.html#a1b0caefff29574efdc17e294ab2fc805" title="Returns zoom factor as a percentage. " alt="" coords="693,1373,863,1400"/>
+<area shape="rect" id="node47" href="$class_ship.html#ad35eef36ba6207b762f6823ba6a63e29" title="Health accessors. " alt="" coords="723,1424,833,1451"/>
+<area shape="rect" id="node48" href="$class_ship.html#a0554aae1ad5141b4d48ac617c469d7bb" title="Ship::getMaxHealth" alt="" coords="710,1475,846,1501"/>
+<area shape="rect" id="node50" href="$class_camera.html#ae19d6ff8c821069099bca4a59508ba13" title="Draws a color text at pos to HUD, called by drawHUD() " alt="" coords="700,1272,856,1299"/>
+</map>

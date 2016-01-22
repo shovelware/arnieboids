@@ -1,0 +1,10 @@
+<map id="Game" name="Game">
+<area shape="rect" id="node14" href="$class_collision_system.html" title="Collision System class. Provides collision checks for SFML ConvexShapes. Provides SAT collision for n..." alt="" coords="845,157,961,184"/>
+<area shape="rect" id="node3" href="$class_ship.html" title="Base Ship class. Abstract class that inherits from sf::ConvexShape. Contains members common to all sh..." alt="" coords="200,299,248,325"/>
+<area shape="rect" id="node10" href="$class_camera.html" title="Camera class. Camera that can follow target a ship. Zoom and Independent movement also possible..." alt="" coords="368,391,435,417"/>
+<area shape="rect" id="node13" href="$class_pickup.html" title="Pickup class. A multi&#45;purpose pickup that assists a Player or Predator. A pickup will add as much hea..." alt="" coords="370,191,433,217"/>
+<area shape="rect" id="node5" href="$class_key_input.html" title="Keyboard handler class. Holds and handles all key inputs. Should be updated with game and then querie..." alt="" coords="867,21,940,48"/>
+<area shape="rect" id="node8" href="$class_bullet.html" title="Bullet class. A simple bullet that moves in a direction for a lifetime. Dies if it hits something..." alt="" coords="374,136,429,163"/>
+<area shape="rect" id="node15" href="$class_tiled_backdrop.html" title="TiledBackdrop" alt="" coords="851,441,955,468"/>
+<area shape="rect" id="node16" href="$class_x_controller.html" title="Xbox Controller class, not currently used. " alt="" coords="861,492,945,519"/>
+</map>

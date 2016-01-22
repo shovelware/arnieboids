@@ -1,0 +1,15 @@
+<map id="SwarmBoid::update" name="SwarmBoid::update">
+<area shape="rect" id="node2" href="$class_ship.html#a3ee2f77fa9920030dc3ff8268b2f73a4" title="Hides sf::Shape::update() " alt="" coords="208,56,303,83"/>
+<area shape="rect" id="node5" href="$class_swarm_boid.html#ab23045f4517e26ca98876d9f11bb0315" title="SwarmBoid::swarm" alt="" coords="188,107,323,133"/>
+<area shape="rect" id="node3" href="$class_ship.html#a8e7bc2ee7d749ab0d28062091733987c" title="Clamps the length of the velocity_ vector to MAX_SPEED_. " alt="" coords="397,56,564,83"/>
+<area shape="rect" id="node4" href="$class_ship.html#aab6a7b7a2761b7df818729579a3ca0e1" title="Ship::updateParticleEmitter" alt="" coords="390,5,571,32"/>
+<area shape="rect" id="node6" href="$class_swarm_boid.html#aad576d012b5621a4011305775b4c9aa6" title="SwarmBoid::LenardJonesPotential" alt="" coords="371,107,591,133"/>
+<area shape="rect" id="node10" href="$class_ship.html#af03aaa2145b622a9af30c38cbca6bf42" title="Ship::turnToward" alt="" coords="421,157,540,184"/>
+<area shape="rect" id="node14" href="$class_ship.html#a4543637a3f0b4275206f684247e1b313" title="Apply acceleration in direction of forward vector. " alt="" coords="436,208,525,235"/>
+<area shape="rect" id="node7" href="$class_swarm_boid.html#adc0e87319036336094dd28b1869a87a7" title="SwarmBoid::extrapolate" alt="" coords="639,5,799,32"/>
+<area shape="rect" id="node8" href="$class_ship.html#a40f4d36fbef8f0b501f60b8ec817f8f6" title="Returns forward direction of ship. " alt="" coords="659,56,779,83"/>
+<area shape="rect" id="node9" href="$class_ship.html#a80cb0dd72d6104f20152ee72b10b8182" title="Returns velocity. " alt="" coords="658,107,779,133"/>
+<area shape="rect" id="node11" href="$_ship_8cpp.html#aefb05e9300183bbf4969f53e73891cac" title="perpDot" alt="" coords="685,157,752,184"/>
+<area shape="rect" id="node12" href="$class_ship.html#a471e4e86d3cf0ea0b02d3603575f070e" title="Turn ship right. " alt="" coords="665,208,773,235"/>
+<area shape="rect" id="node13" href="$class_ship.html#aee981dc9846a549b31274e7e2d29b82c" title="Turn ship left. " alt="" coords="669,259,768,285"/>
+</map>

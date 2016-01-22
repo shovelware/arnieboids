@@ -1,0 +1,5 @@
+<map id="Camera::drawRadarObj" name="Camera::drawRadarObj">
+<area shape="rect" id="node2" href="$class_camera.html#a0dbf9853ac233e957175efb253b67631" title="Converts a vector from world space down through range and into radar on&#45;screen space. " alt="" coords="209,31,363,57"/>
+<area shape="rect" id="node3" href="$class_ship.html#a1b2ad80dc11f03cf729771a281a27431" title="Ship::getRadarRange" alt="" coords="419,5,565,32"/>
+<area shape="rect" id="node4" href="$class_camera.html#a62b96edd9b54d560a90dbfc184c1e157" title="Translates pos in coordinate space src to equivalent in coord space dest. " alt="" coords="411,56,573,83"/>
+</map>

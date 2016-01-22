@@ -1,0 +1,4 @@
+<map id="Ship::update" name="Ship::update">
+<area shape="rect" id="node2" href="$class_ship.html#a8e7bc2ee7d749ab0d28062091733987c" title="Clamps the length of the velocity_ vector to MAX_SPEED_. " alt="" coords="155,5,322,32"/>
+<area shape="rect" id="node3" href="$class_ship.html#aab6a7b7a2761b7df818729579a3ca0e1" title="Ship::updateParticleEmitter" alt="" coords="148,56,329,83"/>
+</map>

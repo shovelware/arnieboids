@@ -1,0 +1,13 @@
+<map id="SwarmBoid::swarm" name="SwarmBoid::swarm">
+<area shape="rect" id="node2" href="$class_swarm_boid.html#aad576d012b5621a4011305775b4c9aa6" title="SwarmBoid::LenardJonesPotential" alt="" coords="188,93,408,120"/>
+<area shape="rect" id="node6" href="$class_ship.html#af03aaa2145b622a9af30c38cbca6bf42" title="Ship::turnToward" alt="" coords="239,169,357,196"/>
+<area shape="rect" id="node10" href="$class_ship.html#a4543637a3f0b4275206f684247e1b313" title="Apply acceleration in direction of forward vector. " alt="" coords="253,220,343,247"/>
+<area shape="rect" id="node11" href="$class_ship.html#a8e7bc2ee7d749ab0d28062091733987c" title="Clamps the length of the velocity_ vector to MAX_SPEED_. " alt="" coords="215,271,381,297"/>
+<area shape="rect" id="node12" href="$class_ship.html#aab6a7b7a2761b7df818729579a3ca0e1" title="Ship::updateParticleEmitter" alt="" coords="207,321,389,348"/>
+<area shape="rect" id="node3" href="$class_swarm_boid.html#adc0e87319036336094dd28b1869a87a7" title="SwarmBoid::extrapolate" alt="" coords="456,5,616,32"/>
+<area shape="rect" id="node4" href="$class_ship.html#a40f4d36fbef8f0b501f60b8ec817f8f6" title="Returns forward direction of ship. " alt="" coords="476,56,596,83"/>
+<area shape="rect" id="node5" href="$class_ship.html#a80cb0dd72d6104f20152ee72b10b8182" title="Returns velocity. " alt="" coords="475,107,597,133"/>
+<area shape="rect" id="node7" href="$_ship_8cpp.html#aefb05e9300183bbf4969f53e73891cac" title="perpDot" alt="" coords="503,157,569,184"/>
+<area shape="rect" id="node8" href="$class_ship.html#a471e4e86d3cf0ea0b02d3603575f070e" title="Turn ship right. " alt="" coords="482,208,590,235"/>
+<area shape="rect" id="node9" href="$class_ship.html#aee981dc9846a549b31274e7e2d29b82c" title="Turn ship left. " alt="" coords="487,259,585,285"/>
+</map>

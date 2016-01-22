@@ -1,0 +1,9 @@
+<map id="KeyInput::checkKeyDown" name="KeyInput::checkKeyDown">
+<area shape="rect" id="node2" href="$class_key_input.html#a14646d6a26aac7f82877b6f14a860810" title="Is a key down. " alt="" coords="235,5,381,32"/>
+<area shape="rect" id="node6" href="$class_key_input.html#a05667656783ac709b9b2aaf22f2eab93" title="Is a key up. " alt="" coords="243,56,373,83"/>
+<area shape="rect" id="node7" href="$class_key_input.html#aedc341260ca4a091ae068c9511fc2060" title="Has a key just been pressed. " alt="" coords="227,107,389,133"/>
+<area shape="rect" id="node8" href="$class_key_input.html#abc5ff40ae7764fc2aa9694a5d5b46fb6" title="Has a key just been released. " alt="" coords="224,157,392,184"/>
+<area shape="rect" id="node3" href="$class_game.html#adb5563f62c0c82e3e42ec36501aa5698" title="Polls the RenderWindow for events and handles these events accordingly. " alt="" coords="440,56,583,83"/>
+<area shape="rect" id="node4" href="$class_game.html#a99fb161fbbe87d25a8b73265a0611e58" title="Implements the main game loop. While window_ is open: Calls handleEvents(), Implements a fixed timest..." alt="" coords="631,56,713,83"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="761,56,812,83"/>
+</map>

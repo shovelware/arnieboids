@@ -1,0 +1,9 @@
+<map id="Arnieboids/include/Pickup.hpp" name="Arnieboids/include/Pickup.hpp">
+<area shape="rect" id="node2" href="$_collision_system_8hpp.html" title="Arnieboids/include\l/CollisionSystem.hpp" alt="" coords="213,95,359,136"/>
+<area shape="rect" id="node3" href="$_game_8hpp.html" title="Arnieboids/include\l/Game.hpp" alt="" coords="111,184,239,225"/>
+<area shape="rect" id="node8" href="$_pickup_8cpp.html" title="Arnieboids/src/Pickup.cpp" alt="" coords="383,102,557,129"/>
+<area shape="rect" id="node7" href="$_collision_system_8cpp.html" title="Arnieboids/src/Collision\lSystem.cpp" alt="" coords="264,184,423,225"/>
+<area shape="rect" id="node4" href="$_splash_screen_8hpp.html" title="Arnieboids/include\l/SplashScreen.hpp" alt="" coords="5,273,137,315"/>
+<area shape="rect" id="node5" href="$main_8cpp.html" title="Arnieboids/src/main.cpp" alt="" coords="42,363,205,389"/>
+<area shape="rect" id="node6" href="$_game_8cpp.html" title="Arnieboids/src/Game.cpp" alt="" coords="213,281,383,307"/>
+</map>

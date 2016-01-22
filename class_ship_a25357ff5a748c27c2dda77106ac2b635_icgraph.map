@@ -1,0 +1,12 @@
+<map id="Ship::takeDamage" name="Ship::takeDamage">
+<area shape="rect" id="node2" href="$class_asteroid.html#a1d13470ee5d53dad7dfcbc7ccc56851a" title="Colliding with ships will impart some of that ship&#39;s velocity on us. " alt="" coords="198,5,329,32"/>
+<area shape="rect" id="node3" href="$class_collision_system.html#a0ea99c0b3b16a7df82aad2cb43ecd422" title="Checks for collision between all game entities. Checks for ship&#45;ship collision (broad and narrow phas..." alt="" coords="183,56,344,83"/>
+<area shape="rect" id="node7" href="$class_game.html#adb5563f62c0c82e3e42ec36501aa5698" title="Polls the RenderWindow for events and handles these events accordingly. " alt="" coords="392,107,535,133"/>
+<area shape="rect" id="node8" href="$class_mothership.html#aad17eedc9afc1fcc759fe5f1d86c3775" title="Takes damage if the ship is a Player ship. " alt="" coords="190,157,337,184"/>
+<area shape="rect" id="node9" href="$class_player.html#a4f7cc374f991211ccc547f66dd6bcd13" title="Causes ship take damage if an asteroid was hit. " alt="" coords="203,208,323,235"/>
+<area shape="rect" id="node10" href="$class_predator.html#a7aa7523b910e83d14a48ba95f8f793fc" title="Takes damage if colliding with player. " alt="" coords="197,259,329,285"/>
+<area shape="rect" id="node11" href="$class_swarm_boid.html#a8268bb58798e2d22d601c88bcaa27bdf" title="Takes one damage if other is the Player. " alt="" coords="189,309,338,336"/>
+<area shape="rect" id="node4" href="$class_game.html#a79df6376b332d63c9eca0dcee30305c3" title="Calls Update on all bullets and ships. " alt="" coords="411,56,515,83"/>
+<area shape="rect" id="node5" href="$class_game.html#a99fb161fbbe87d25a8b73265a0611e58" title="Implements the main game loop. While window_ is open: Calls handleEvents(), Implements a fixed timest..." alt="" coords="583,81,665,108"/>
+<area shape="rect" id="node6" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="713,81,764,108"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Asteroid::onCollide" name="Asteroid::onCollide">
+<area shape="rect" id="node2" href="$class_ship.html#a80cb0dd72d6104f20152ee72b10b8182" title="Returns velocity. " alt="" coords="188,5,309,32"/>
+<area shape="rect" id="node3" href="$class_ship.html#a25357ff5a748c27c2dda77106ac2b635" title="Reduces health by the specified amount. " alt="" coords="184,56,313,83"/>
+</map>

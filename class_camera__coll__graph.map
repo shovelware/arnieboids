@@ -1,0 +1,3 @@
+<map id="Camera" name="Camera">
+<area shape="rect" id="node3" href="$class_ship.html" title="Base Ship class. Abstract class that inherits from sf::ConvexShape. Contains members common to all sh..." alt="" coords="98,81,146,108"/>
+</map>

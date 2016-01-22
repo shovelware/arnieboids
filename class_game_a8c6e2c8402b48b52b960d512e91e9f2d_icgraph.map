@@ -1,0 +1,5 @@
+<map id="Game::wrap" name="Game::wrap">
+<area shape="rect" id="node2" href="$class_game.html#a79df6376b332d63c9eca0dcee30305c3" title="Calls Update on all bullets and ships. " alt="" coords="145,5,249,32"/>
+<area shape="rect" id="node3" href="$class_game.html#a99fb161fbbe87d25a8b73265a0611e58" title="Implements the main game loop. While window_ is open: Calls handleEvents(), Implements a fixed timest..." alt="" coords="297,5,380,32"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="428,5,479,32"/>
+</map>

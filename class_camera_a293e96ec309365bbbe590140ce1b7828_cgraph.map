@@ -1,0 +1,6 @@
+<map id="Camera::drawHUD" name="Camera::drawHUD">
+<area shape="rect" id="node2" href="$class_camera.html#a3afdcede73702ae602fe45caa79cd76c" title="Camera::drawText" alt="" coords="205,5,331,32"/>
+<area shape="rect" id="node3" href="$class_camera.html#a1b0caefff29574efdc17e294ab2fc805" title="Returns zoom factor as a percentage. " alt="" coords="183,56,353,83"/>
+<area shape="rect" id="node4" href="$class_ship.html#ad35eef36ba6207b762f6823ba6a63e29" title="Health accessors. " alt="" coords="213,107,323,133"/>
+<area shape="rect" id="node5" href="$class_ship.html#a0554aae1ad5141b4d48ac617c469d7bb" title="Ship::getMaxHealth" alt="" coords="200,157,336,184"/>
+</map>

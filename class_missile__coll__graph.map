@@ -1,0 +1,4 @@
+<map id="Missile" name="Missile">
+<area shape="rect" id="node2" href="$class_bullet.html" title="Bullet class. A simple bullet that moves in a direction for a lifetime. Dies if it hits something..." alt="" coords="43,81,98,108"/>
+<area shape="rect" id="node4" href="$class_ship.html" title="Base Ship class. Abstract class that inherits from sf::ConvexShape. Contains members common to all sh..." alt="" coords="152,81,200,108"/>
+</map>

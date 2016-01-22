@@ -1,0 +1,3 @@
+<map id="Mothership::onCollide" name="Mothership::onCollide">
+<area shape="rect" id="node2" href="$class_ship.html#a25357ff5a748c27c2dda77106ac2b635" title="Reduces health by the specified amount. " alt="" coords="200,5,329,32"/>
+</map>

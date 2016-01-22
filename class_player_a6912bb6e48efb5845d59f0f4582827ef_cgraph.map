@@ -1,0 +1,6 @@
+<map id="Player::update" name="Player::update">
+<area shape="rect" id="node2" href="$class_ship.html#a3ee2f77fa9920030dc3ff8268b2f73a4" title="Hides sf::Shape::update() " alt="" coords="170,31,265,57"/>
+<area shape="rect" id="node5" href="$class_ship.html#ab865757829aec291f3f1d26cb598b39d" title="Ticks to seconds. " alt="" coords="160,81,275,108"/>
+<area shape="rect" id="node3" href="$class_ship.html#a8e7bc2ee7d749ab0d28062091733987c" title="Clamps the length of the velocity_ vector to MAX_SPEED_. " alt="" coords="330,5,497,32"/>
+<area shape="rect" id="node4" href="$class_ship.html#aab6a7b7a2761b7df818729579a3ca0e1" title="Ship::updateParticleEmitter" alt="" coords="323,56,504,83"/>
+</map>

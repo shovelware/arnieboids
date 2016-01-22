@@ -1,0 +1,7 @@
+<map id="Camera::worldToRadar" name="Camera::worldToRadar">
+<area shape="rect" id="node2" href="$class_camera.html#ae19d6ff8c821069099bca4a59508ba13" title="Draws a color text at pos to HUD, called by drawHUD() " alt="" coords="207,5,363,32"/>
+<area shape="rect" id="node3" href="$class_camera.html#ace51d5eb12bd72eab18a1e91d97b95a5" title="Camera::drawRadar" alt="" coords="411,5,547,32"/>
+<area shape="rect" id="node4" href="$class_game.html#a6d54497ce3a66f6dd45eacfdccc8d0bd" title="Draws all bullets and ships. Also draws the backdrop_ of stars. " alt="" coords="595,5,687,32"/>
+<area shape="rect" id="node5" href="$class_game.html#a99fb161fbbe87d25a8b73265a0611e58" title="Implements the main game loop. While window_ is open: Calls handleEvents(), Implements a fixed timest..." alt="" coords="735,5,817,32"/>
+<area shape="rect" id="node6" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="865,5,916,32"/>
+</map>

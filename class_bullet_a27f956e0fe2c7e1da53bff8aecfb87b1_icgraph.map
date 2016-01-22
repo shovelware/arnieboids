@@ -1,0 +1,4 @@
+<map id="Bullet::tickToSec" name="Bullet::tickToSec">
+<area shape="rect" id="node2" href="$class_bullet.html#a32f4a0611fe2dd245fee955d14ca1f68" title="Moves the bullet forward and checks if it has exceeded time to live. " alt="" coords="179,5,281,32"/>
+<area shape="rect" id="node3" href="$class_missile.html#a6bc00954b20db86b293fd4d98012cd09" title="Turns to face target while thrusting forward. " alt="" coords="175,56,285,83"/>
+</map>

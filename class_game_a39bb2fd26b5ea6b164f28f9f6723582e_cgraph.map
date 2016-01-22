@@ -1,0 +1,12 @@
+<map id="Game::reset" name="Game::reset">
+<area shape="rect" id="node2" href="$class_game.html#a03cf795e9aaa4c5950b4b5e918ab9ab6" title="Clears the game of entities. " alt="" coords="183,5,304,32"/>
+<area shape="rect" id="node3" href="$class_camera.html#afa6c3f4508a58c0d690043b6398e70c8" title="Clears the camera&#39;s target, can keep camera on target&#39;s last position or reset. " alt="" coords="174,56,313,83"/>
+<area shape="rect" id="node4" href="$class_camera.html#a0212ec3e79a822e9259439b53b6c3427" title="Camera::moveReset" alt="" coords="174,107,313,133"/>
+<area shape="rect" id="node5" href="$class_camera.html#a2a8fc39bb84d82d969827d504e4f6928" title="Camera::setTarget" alt="" coords="179,157,308,184"/>
+<area shape="rect" id="node6" href="$class_swarm_boid.html#ad80d43f4292e271fe923e336e4a00fc9" title="Sets the target for all swarm boids. They will tend toward this target. " alt="" coords="148,208,339,235"/>
+<area shape="rect" id="node7" href="$class_predator.html#ac0443982b52b92fc663f10aa22a1af32" title="Predator::setPrey" alt="" coords="181,259,305,285"/>
+<area shape="rect" id="node8" href="$class_mothership.html#a9408cae65d9873396fcac20a1c720445" title="Sets the target for all motherships. " alt="" coords="169,309,317,336"/>
+<area shape="rect" id="node9" href="$_game_8cpp.html#a59b2f49f2e86089a1b63cb69f71896ab" title="randFloat" alt="" coords="387,385,463,412"/>
+<area shape="rect" id="node11" href="$class_game.html#a4ec995efd5ef74c85418564f3dcce177" title="Adds a swarm of [amount] boids in circle around [pos] with [radius]. " alt="" coords="167,411,319,437"/>
+<area shape="rect" id="node10" href="$_asteroid_8cpp.html#adcf7e38e2819cfc325a5ae8b3034eeab" title="rand" alt="" coords="511,385,557,412"/>
+</map>

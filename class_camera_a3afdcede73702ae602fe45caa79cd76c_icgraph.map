@@ -1,0 +1,6 @@
+<map id="Camera::drawText" name="Camera::drawText">
+<area shape="rect" id="node2" href="$class_camera.html#a293e96ec309365bbbe590140ce1b7828" title="HUD Drawing controls, both of these change render target for their duration. " alt="" coords="180,5,309,32"/>
+<area shape="rect" id="node3" href="$class_game.html#a6d54497ce3a66f6dd45eacfdccc8d0bd" title="Draws all bullets and ships. Also draws the backdrop_ of stars. " alt="" coords="357,5,449,32"/>
+<area shape="rect" id="node4" href="$class_game.html#a99fb161fbbe87d25a8b73265a0611e58" title="Implements the main game loop. While window_ is open: Calls handleEvents(), Implements a fixed timest..." alt="" coords="497,5,580,32"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="628,5,679,32"/>
+</map>

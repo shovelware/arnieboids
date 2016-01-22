@@ -1,0 +1,14 @@
+<map id="Game::Game" name="Game::Game">
+<area shape="rect" id="node2" href="$class_camera.html#a279c9208ae37b24fd6e17d096e049f9b" title="Loads a font, required for drawing HUD. " alt="" coords="153,157,279,184"/>
+<area shape="rect" id="node3" href="$class_game.html#a39bb2fd26b5ea6b164f28f9f6723582e" title="Resets the game. " alt="" coords="169,208,263,235"/>
+<area shape="rect" id="node4" href="$class_game.html#a03cf795e9aaa4c5950b4b5e918ab9ab6" title="Clears the game of entities. " alt="" coords="361,5,483,32"/>
+<area shape="rect" id="node5" href="$class_camera.html#afa6c3f4508a58c0d690043b6398e70c8" title="Clears the camera&#39;s target, can keep camera on target&#39;s last position or reset. " alt="" coords="353,56,491,83"/>
+<area shape="rect" id="node6" href="$class_camera.html#a0212ec3e79a822e9259439b53b6c3427" title="Camera::moveReset" alt="" coords="353,107,491,133"/>
+<area shape="rect" id="node7" href="$class_camera.html#a2a8fc39bb84d82d969827d504e4f6928" title="Camera::setTarget" alt="" coords="357,157,487,184"/>
+<area shape="rect" id="node8" href="$class_swarm_boid.html#ad80d43f4292e271fe923e336e4a00fc9" title="Sets the target for all swarm boids. They will tend toward this target. " alt="" coords="327,208,517,235"/>
+<area shape="rect" id="node9" href="$class_predator.html#ac0443982b52b92fc663f10aa22a1af32" title="Predator::setPrey" alt="" coords="360,259,484,285"/>
+<area shape="rect" id="node10" href="$class_mothership.html#a9408cae65d9873396fcac20a1c720445" title="Sets the target for all motherships. " alt="" coords="348,309,496,336"/>
+<area shape="rect" id="node11" href="$_game_8cpp.html#a59b2f49f2e86089a1b63cb69f71896ab" title="randFloat" alt="" coords="565,385,641,412"/>
+<area shape="rect" id="node13" href="$class_game.html#a4ec995efd5ef74c85418564f3dcce177" title="Adds a swarm of [amount] boids in circle around [pos] with [radius]. " alt="" coords="346,411,498,437"/>
+<area shape="rect" id="node12" href="$_asteroid_8cpp.html#adcf7e38e2819cfc325a5ae8b3034eeab" title="rand" alt="" coords="689,385,736,412"/>
+</map>

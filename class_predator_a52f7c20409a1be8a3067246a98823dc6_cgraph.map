@@ -1,0 +1,6 @@
+<map id="Predator::flock" name="Predator::flock">
+<area shape="rect" id="node2" href="$class_predator.html#a7c177f051a8d2849b8c7b77e5f6ec4ba" title="Keeps ships from piling on top of each other. " alt="" coords="160,5,299,32"/>
+<area shape="rect" id="node3" href="$class_predator.html#acd02ea8feb1013cf411adeaa1fed02d6" title="Predator::alignment" alt="" coords="162,56,297,83"/>
+<area shape="rect" id="node5" href="$class_predator.html#a2c6d1082b9858e14dcc00cba1a658aa8" title="Keeps the ship moving in the same direction as nearby flockmates. Finds the averagelocation of nearby..." alt="" coords="164,107,295,133"/>
+<area shape="rect" id="node4" href="$class_ship.html#a40f4d36fbef8f0b501f60b8ec817f8f6" title="Returns forward direction of ship. " alt="" coords="347,56,467,83"/>
+</map>

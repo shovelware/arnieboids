@@ -1,0 +1,8 @@
+<map id="randFloat" name="randFloat">
+<area shape="rect" id="node2" href="$class_game.html#a39bb2fd26b5ea6b164f28f9f6723582e" title="Resets the game. " alt="" coords="329,31,424,57"/>
+<area shape="rect" id="node7" href="$class_game.html#a4ec995efd5ef74c85418564f3dcce177" title="Adds a swarm of [amount] boids in circle around [pos] with [radius]. " alt="" coords="129,56,281,83"/>
+<area shape="rect" id="node3" href="$class_game.html#a34c045ccd929e6d4240b84c90023df3e" title="Game::Game" alt="" coords="493,5,593,32"/>
+<area shape="rect" id="node4" href="$class_game.html#adb5563f62c0c82e3e42ec36501aa5698" title="Polls the RenderWindow for events and handles these events accordingly. " alt="" coords="472,56,615,83"/>
+<area shape="rect" id="node5" href="$class_game.html#a99fb161fbbe87d25a8b73265a0611e58" title="Implements the main game loop. While window_ is open: Calls handleEvents(), Implements a fixed timest..." alt="" coords="663,56,745,83"/>
+<area shape="rect" id="node6" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="793,56,844,83"/>
+</map>

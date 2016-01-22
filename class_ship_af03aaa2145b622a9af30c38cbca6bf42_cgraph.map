@@ -1,0 +1,5 @@
+<map id="Ship::turnToward" name="Ship::turnToward">
+<area shape="rect" id="node2" href="$_ship_8cpp.html#aefb05e9300183bbf4969f53e73891cac" title="perpDot" alt="" coords="193,5,259,32"/>
+<area shape="rect" id="node3" href="$class_ship.html#a471e4e86d3cf0ea0b02d3603575f070e" title="Turn ship right. " alt="" coords="172,56,280,83"/>
+<area shape="rect" id="node4" href="$class_ship.html#aee981dc9846a549b31274e7e2d29b82c" title="Turn ship left. " alt="" coords="177,107,275,133"/>
+</map>

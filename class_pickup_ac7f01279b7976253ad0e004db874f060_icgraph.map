@@ -1,0 +1,3 @@
+<map id="Pickup::isOwned" name="Pickup::isOwned">
+<area shape="rect" id="node2" href="$class_pickup.html#aeab938f84b342cb54a2ea0d890a25252" title="Used to play as sound in Game::update() when power up is collected. " alt="" coords="173,5,372,32"/>
+</map>

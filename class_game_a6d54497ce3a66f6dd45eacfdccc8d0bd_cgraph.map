@@ -1,0 +1,13 @@
+<map id="Game::draw" name="Game::draw">
+<area shape="rect" id="node2" href="$class_tiled_backdrop.html#a16d4fe2b3aba3dff33727098d893d764" title="Draws the texture to the target. " alt="" coords="145,56,284,83"/>
+<area shape="rect" id="node3" href="$class_camera.html#a293e96ec309365bbbe590140ce1b7828" title="HUD Drawing controls, both of these change render target for their duration. " alt="" coords="150,107,279,133"/>
+<area shape="rect" id="node8" href="$class_camera.html#ace51d5eb12bd72eab18a1e91d97b95a5" title="Camera::drawRadar" alt="" coords="147,183,283,209"/>
+<area shape="rect" id="node4" href="$class_camera.html#a3afdcede73702ae602fe45caa79cd76c" title="Camera::drawText" alt="" coords="354,5,481,32"/>
+<area shape="rect" id="node5" href="$class_camera.html#a1b0caefff29574efdc17e294ab2fc805" title="Returns zoom factor as a percentage. " alt="" coords="332,56,503,83"/>
+<area shape="rect" id="node6" href="$class_ship.html#ad35eef36ba6207b762f6823ba6a63e29" title="Health accessors. " alt="" coords="362,107,473,133"/>
+<area shape="rect" id="node7" href="$class_ship.html#a0554aae1ad5141b4d48ac617c469d7bb" title="Ship::getMaxHealth" alt="" coords="349,157,485,184"/>
+<area shape="rect" id="node9" href="$class_camera.html#ae19d6ff8c821069099bca4a59508ba13" title="Draws a color text at pos to HUD, called by drawHUD() " alt="" coords="339,208,495,235"/>
+<area shape="rect" id="node10" href="$class_camera.html#a0dbf9853ac233e957175efb253b67631" title="Converts a vector from world space down through range and into radar on&#45;screen space. " alt="" coords="551,208,704,235"/>
+<area shape="rect" id="node11" href="$class_ship.html#a1b2ad80dc11f03cf729771a281a27431" title="Ship::getRadarRange" alt="" coords="761,183,906,209"/>
+<area shape="rect" id="node12" href="$class_camera.html#a62b96edd9b54d560a90dbfc184c1e157" title="Translates pos in coordinate space src to equivalent in coord space dest. " alt="" coords="752,233,915,260"/>
+</map>

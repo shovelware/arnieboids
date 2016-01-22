@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['game',['Game',['../class_game.html',1,'Game'],['../class_game.html#a34c045ccd929e6d4240b84c90023df3e',1,'Game::Game()']]],
+  ['game_2ecpp',['Game.cpp',['../_game_8cpp.html',1,'']]],
+  ['game_2ehpp',['Game.hpp',['../_game_8hpp.html',1,'']]],
+  ['gamebounds_5f',['gameBounds_',['../class_game.html#a20bf9064103af62be86ae9c0b95280a4',1,'Game']]],
+  ['generategeometry',['generateGeometry',['../class_asteroid.html#a62cb8a04315395298a0b0290c4927a04',1,'Asteroid']]],
+  ['genstars',['genStars',['../class_tiled_backdrop.html#a48d81cd42bccb649136abdd0cc151a8e',1,'TiledBackdrop']]],
+  ['getaxies',['getAxies',['../class_collision_system.html#a158e6ab18ea61ae99522463ab6088155',1,'CollisionSystem']]],
+  ['getdamage',['getDamage',['../class_bullet.html#a6cab9df9abc7cef2f9f0f0c266ffd73a',1,'Bullet']]],
+  ['getdeadzonelx',['getDeadzoneLX',['../class_x_controller.html#ab00ba988d215a523a7730f20594fa2c5',1,'XController']]],
+  ['getdeadzonely',['getDeadzoneLY',['../class_x_controller.html#a705a1d4ad575e6ef15db2391813fd18e',1,'XController']]],
+  ['getdeadzonerx',['getDeadzoneRX',['../class_x_controller.html#a08bf17b0a3c086bf5667cf3286cbc585',1,'XController']]],
+  ['getdeadzonery',['getDeadzoneRY',['../class_x_controller.html#abb171d26892efcc9ef5d4109a0e46644',1,'XController']]],
+  ['getfaction',['getFaction',['../class_bullet.html#a039f076030de9ac0bd8d4cb3c17447aa',1,'Bullet']]],
+  ['getforward',['getForward',['../class_ship.html#a40f4d36fbef8f0b501f60b8ec817f8f6',1,'Ship']]],
+  ['gethealth',['getHealth',['../class_ship.html#ad35eef36ba6207b762f6823ba6a63e29',1,'Ship']]],
+  ['getmaxhealth',['getMaxHealth',['../class_ship.html#a0554aae1ad5141b4d48ac617c469d7bb',1,'Ship']]],
+  ['getowner',['getOwner',['../class_pickup.html#aedaa568d9413ee3112098f134c7ff31a',1,'Pickup']]],
+  ['getport',['getPort',['../class_x_controller.html#a148116f8235dd69b17f10c09ebc8e493',1,'XController']]],
+  ['getradarrange',['getRadarRange',['../class_ship.html#a1b2ad80dc11f03cf729771a281a27431',1,'Ship']]],
+  ['gettarget',['getTarget',['../class_camera.html#ad9ab2d09758faec8de60205b4cecacd9',1,'Camera']]],
+  ['getthresholdlt',['getThresholdLT',['../class_x_controller.html#a29521bc4c619301d8448cd9b1fa84bc4',1,'XController']]],
+  ['getthresholdrt',['getThresholdRT',['../class_x_controller.html#a74406c5161e85934a0a25a11ca44fa96',1,'XController']]],
+  ['getvelocity',['getVelocity',['../class_ship.html#a80cb0dd72d6104f20152ee72b10b8182',1,'Ship']]],
+  ['getzoompercent',['getZoomPercent',['../class_camera.html#a1b0caefff29574efdc17e294ab2fc805',1,'Camera']]]
+];

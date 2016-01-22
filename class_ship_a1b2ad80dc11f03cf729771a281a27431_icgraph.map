@@ -1,0 +1,8 @@
+<map id="Ship::getRadarRange" name="Ship::getRadarRange">
+<area shape="rect" id="node2" href="$class_camera.html#a0dbf9853ac233e957175efb253b67631" title="Converts a vector from world space down through range and into radar on&#45;screen space. " alt="" coords="199,5,352,32"/>
+<area shape="rect" id="node3" href="$class_camera.html#ae19d6ff8c821069099bca4a59508ba13" title="Draws a color text at pos to HUD, called by drawHUD() " alt="" coords="400,5,556,32"/>
+<area shape="rect" id="node4" href="$class_camera.html#ace51d5eb12bd72eab18a1e91d97b95a5" title="Camera::drawRadar" alt="" coords="604,5,740,32"/>
+<area shape="rect" id="node5" href="$class_game.html#a6d54497ce3a66f6dd45eacfdccc8d0bd" title="Draws all bullets and ships. Also draws the backdrop_ of stars. " alt="" coords="788,5,880,32"/>
+<area shape="rect" id="node6" href="$class_game.html#a99fb161fbbe87d25a8b73265a0611e58" title="Implements the main game loop. While window_ is open: Calls handleEvents(), Implements a fixed timest..." alt="" coords="928,5,1011,32"/>
+<area shape="rect" id="node7" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="1059,5,1109,32"/>
+</map>

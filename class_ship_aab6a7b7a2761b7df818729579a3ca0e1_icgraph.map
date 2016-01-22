@@ -1,0 +1,8 @@
+<map id="Ship::updateParticleEmitter" name="Ship::updateParticleEmitter">
+<area shape="rect" id="node2" href="$class_ship.html#a3ee2f77fa9920030dc3ff8268b2f73a4" title="Hides sf::Shape::update() " alt="" coords="255,107,349,133"/>
+<area shape="rect" id="node7" href="$class_swarm_boid.html#ab23045f4517e26ca98876d9f11bb0315" title="SwarmBoid::swarm" alt="" coords="235,157,369,184"/>
+<area shape="rect" id="node3" href="$class_mothership.html#ae1cd812d77fbb73656346be02606b464" title="Hides sf::Shape::update() " alt="" coords="418,5,551,32"/>
+<area shape="rect" id="node4" href="$class_player.html#a6912bb6e48efb5845d59f0f4582827ef" title="Moves by velocity and cools gun. " alt="" coords="431,56,538,83"/>
+<area shape="rect" id="node5" href="$class_predator.html#a9a93478b93c68c966dbdf0aa324f293b" title="Makes the ship flock toward other predators and prey_. Fires bullet at prey_ if facing toward it..." alt="" coords="425,107,544,133"/>
+<area shape="rect" id="node6" href="$class_swarm_boid.html#a25f68c54ca05b761a6aa700801a02cff" title="Calls swarm() " alt="" coords="417,157,552,184"/>
+</map>

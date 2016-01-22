@@ -1,0 +1,4 @@
+<map id="Mothership::missileDestructed" name="Mothership::missileDestructed">
+<area shape="rect" id="node2" href="$class_mothership.html#aa78ecb93d5f79e1e131bc41a57aa4d9d" title="Tries to fire a missile toward target. Does nothing if max missiles already live. ..." alt="" coords="252,5,363,32"/>
+<area shape="rect" id="node3" href="$class_mothership.html#ae1cd812d77fbb73656346be02606b464" title="Hides sf::Shape::update() " alt="" coords="411,5,544,32"/>
+</map>

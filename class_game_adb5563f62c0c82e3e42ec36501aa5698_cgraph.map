@@ -1,0 +1,30 @@
+<map id="Game::handleEvents" name="Game::handleEvents">
+<area shape="rect" id="node2" href="$class_key_input.html#a14646d6a26aac7f82877b6f14a860810" title="Is a key down. " alt="" coords="204,5,351,32"/>
+<area shape="rect" id="node4" href="$class_key_input.html#aedc341260ca4a091ae068c9511fc2060" title="Has a key just been pressed. " alt="" coords="196,56,359,83"/>
+<area shape="rect" id="node5" href="$class_game.html#a39bb2fd26b5ea6b164f28f9f6723582e" title="Resets the game. " alt="" coords="230,208,325,235"/>
+<area shape="rect" id="node7" href="$class_camera.html#afa6c3f4508a58c0d690043b6398e70c8" title="Clears the camera&#39;s target, can keep camera on target&#39;s last position or reset. " alt="" coords="433,56,571,83"/>
+<area shape="rect" id="node8" href="$class_camera.html#a0212ec3e79a822e9259439b53b6c3427" title="Camera::moveReset" alt="" coords="433,107,571,133"/>
+<area shape="rect" id="node9" href="$class_camera.html#a2a8fc39bb84d82d969827d504e4f6928" title="Camera::setTarget" alt="" coords="437,461,567,488"/>
+<area shape="rect" id="node16" href="$class_ship.html#a4543637a3f0b4275206f684247e1b313" title="Apply acceleration in direction of forward vector. " alt="" coords="233,309,322,336"/>
+<area shape="rect" id="node17" href="$class_ship.html#a471e4e86d3cf0ea0b02d3603575f070e" title="Turn ship right. " alt="" coords="223,360,331,387"/>
+<area shape="rect" id="node18" href="$class_ship.html#aee981dc9846a549b31274e7e2d29b82c" title="Turn ship left. " alt="" coords="228,411,327,437"/>
+<area shape="rect" id="node19" href="$class_ship.html#a719e69f970fc6088eea225242e843640" title="Apply deceleration if thrust is present. " alt="" coords="233,461,321,488"/>
+<area shape="rect" id="node20" href="$class_ship.html#ad8f6d67f0ae2d0076792f9076a99373c" title="Attempt to fire, returns success. " alt="" coords="231,512,323,539"/>
+<area shape="rect" id="node21" href="$class_ship.html#a40f4d36fbef8f0b501f60b8ec817f8f6" title="Returns forward direction of ship. " alt="" coords="217,563,337,589"/>
+<area shape="rect" id="node22" href="$class_ship.html#a80cb0dd72d6104f20152ee72b10b8182" title="Returns velocity. " alt="" coords="217,613,338,640"/>
+<area shape="rect" id="node23" href="$class_bullet.html#aaae9f5313691d4e951075ddb9e88632c" title="Bullet::setFaction" alt="" coords="215,664,339,691"/>
+<area shape="rect" id="node24" href="$class_ship.html#a25357ff5a748c27c2dda77106ac2b635" title="Reduces health by the specified amount. " alt="" coords="213,715,342,741"/>
+<area shape="rect" id="node25" href="$class_camera.html#a62d35e87b3eeac9463f43c17b65ef090" title="Zoom controls for camera. " alt="" coords="219,765,336,792"/>
+<area shape="rect" id="node26" href="$class_camera.html#aafc1d985053e11bd553b8a12540a562d" title="Camera::zoomOut" alt="" coords="213,816,341,843"/>
+<area shape="rect" id="node27" href="$class_camera.html#a9d6e88df1d8fc3e3209089529751be60" title="Camera::zoomReset" alt="" coords="207,867,348,893"/>
+<area shape="rect" id="node28" href="$class_camera.html#a2ef7ab63555ce882aa2fd8e21b0f20a5" title="Move controls for the camera. " alt="" coords="225,917,330,944"/>
+<area shape="rect" id="node29" href="$class_camera.html#ad9ab2d09758faec8de60205b4cecacd9" title="Camera::getTarget" alt="" coords="213,968,342,995"/>
+<area shape="rect" id="node3" href="$class_key_input.html#abcb3d9af28558c73d56cb2f7c5999ebf" title="KeyInput::checkKeyDown" alt="" coords="417,5,587,32"/>
+<area shape="rect" id="node6" href="$class_game.html#a03cf795e9aaa4c5950b4b5e918ab9ab6" title="Clears the game of entities. " alt="" coords="441,157,563,184"/>
+<area shape="rect" id="node10" href="$class_swarm_boid.html#ad80d43f4292e271fe923e336e4a00fc9" title="Sets the target for all swarm boids. They will tend toward this target. " alt="" coords="407,208,597,235"/>
+<area shape="rect" id="node11" href="$class_predator.html#ac0443982b52b92fc663f10aa22a1af32" title="Predator::setPrey" alt="" coords="440,259,564,285"/>
+<area shape="rect" id="node12" href="$class_mothership.html#a9408cae65d9873396fcac20a1c720445" title="Sets the target for all motherships. " alt="" coords="428,309,576,336"/>
+<area shape="rect" id="node13" href="$_game_8cpp.html#a59b2f49f2e86089a1b63cb69f71896ab" title="randFloat" alt="" coords="645,385,721,412"/>
+<area shape="rect" id="node15" href="$class_game.html#a4ec995efd5ef74c85418564f3dcce177" title="Adds a swarm of [amount] boids in circle around [pos] with [radius]. " alt="" coords="426,411,578,437"/>
+<area shape="rect" id="node14" href="$_asteroid_8cpp.html#adcf7e38e2819cfc325a5ae8b3034eeab" title="rand" alt="" coords="769,385,816,412"/>
+</map>

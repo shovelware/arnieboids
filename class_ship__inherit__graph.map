@@ -1,0 +1,7 @@
+<map id="Ship" name="Ship">
+<area shape="rect" id="node3" href="$class_asteroid.html" title="Asteroid class. Asteroids are technically ships but do things a little differently. Constantly move forward at fixed speed, collisions impart some velocity change. " alt="" coords="5,155,76,181"/>
+<area shape="rect" id="node4" href="$class_mothership.html" title="Mothership" alt="" coords="100,155,187,181"/>
+<area shape="rect" id="node5" href="$class_player.html" title="Controllable player class. Has no AI behaviour. Controlled through keyboard input in Game::handleEven..." alt="" coords="211,155,270,181"/>
+<area shape="rect" id="node6" href="$class_predator.html" title="Predator" alt="" coords="295,155,365,181"/>
+<area shape="rect" id="node7" href="$class_swarm_boid.html" title="SwarmBoid" alt="" coords="390,155,478,181"/>
+</map>

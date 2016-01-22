@@ -1,0 +1,4 @@
+<map id="Camera::worldToRadar" name="Camera::worldToRadar">
+<area shape="rect" id="node2" href="$class_ship.html#a1b2ad80dc11f03cf729771a281a27431" title="Ship::getRadarRange" alt="" coords="215,5,361,32"/>
+<area shape="rect" id="node3" href="$class_camera.html#a62b96edd9b54d560a90dbfc184c1e157" title="Translates pos in coordinate space src to equivalent in coord space dest. " alt="" coords="207,56,369,83"/>
+</map>

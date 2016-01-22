@@ -1,0 +1,4 @@
+<map id="Mothership::separation" name="Mothership::separation">
+<area shape="rect" id="node2" href="$class_mothership.html#a686dc5581abf34d9d50c4ae9f4ac8ad3" title="Runs separation(), cohesion() and alignment(). Weights the results. " alt="" coords="208,5,329,32"/>
+<area shape="rect" id="node3" href="$class_mothership.html#ae1cd812d77fbb73656346be02606b464" title="Hides sf::Shape::update() " alt="" coords="377,5,511,32"/>
+</map>

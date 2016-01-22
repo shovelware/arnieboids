@@ -1,0 +1,3 @@
+<map id="Predator::flock" name="Predator::flock">
+<area shape="rect" id="node2" href="$class_predator.html#a9a93478b93c68c966dbdf0aa324f293b" title="Makes the ship flock toward other predators and prey_. Fires bullet at prey_ if facing toward it..." alt="" coords="160,5,279,32"/>
+</map>

@@ -1,0 +1,3 @@
+<map id="Missile" name="Missile">
+<area shape="rect" id="node2" href="$class_bullet.html" title="Bullet class. A simple bullet that moves in a direction for a lifetime. Dies if it hits something..." alt="" coords="29,80,83,107"/>
+</map>

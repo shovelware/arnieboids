@@ -1,0 +1,4 @@
+<map id="Pickup::setShape" name="Pickup::setShape">
+<area shape="rect" id="node2" href="$class_pickup.html#a866d2ca6102b85d656ee666ebbe3807e" title="Pickup::Pickup" alt="" coords="179,5,289,32"/>
+<area shape="rect" id="node3" href="$class_pickup.html#a6c925436865749192557275d93af906e" title="Affects the taker with pickup&#39;s logic. " alt="" coords="187,56,281,83"/>
+</map>

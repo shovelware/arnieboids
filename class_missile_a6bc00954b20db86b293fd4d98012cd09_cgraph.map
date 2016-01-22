@@ -1,0 +1,5 @@
+<map id="Missile::update" name="Missile::update">
+<area shape="rect" id="node2" href="$_missile_8cpp.html#aefb05e9300183bbf4969f53e73891cac" title="perpDot" alt="" coords="229,5,295,32"/>
+<area shape="rect" id="node3" href="$class_bullet.html#a27f956e0fe2c7e1da53bff8aecfb87b1" title="Ticks to seconds. " alt="" coords="201,56,323,83"/>
+<area shape="rect" id="node4" href="$class_missile.html#a7e4b9dfbe277c21ca460d048232c0383" title="Missile::updateParticleEmitter" alt="" coords="164,107,360,133"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="Predator::update" name="Predator::update">
+<area shape="rect" id="node2" href="$class_predator.html#a52f7c20409a1be8a3067246a98823dc6" title="Predator::flock" alt="" coords="178,81,285,108"/>
+<area shape="rect" id="node7" href="$class_ship.html#af03aaa2145b622a9af30c38cbca6bf42" title="Ship::turnToward" alt="" coords="172,183,291,209"/>
+<area shape="rect" id="node11" href="$class_ship.html#a4543637a3f0b4275206f684247e1b313" title="Apply acceleration in direction of forward vector. " alt="" coords="187,233,276,260"/>
+<area shape="rect" id="node12" href="$class_ship.html#ad8f6d67f0ae2d0076792f9076a99373c" title="Attempt to fire, returns success. " alt="" coords="185,284,277,311"/>
+<area shape="rect" id="node13" href="$class_ship.html#ab865757829aec291f3f1d26cb598b39d" title="Ticks to seconds. " alt="" coords="174,335,289,361"/>
+<area shape="rect" id="node14" href="$class_ship.html#a3ee2f77fa9920030dc3ff8268b2f73a4" title="Hides sf::Shape::update() " alt="" coords="184,385,279,412"/>
+<area shape="rect" id="node3" href="$class_predator.html#a7c177f051a8d2849b8c7b77e5f6ec4ba" title="Keeps ships from piling on top of each other. " alt="" coords="360,5,499,32"/>
+<area shape="rect" id="node4" href="$class_predator.html#acd02ea8feb1013cf411adeaa1fed02d6" title="Predator::alignment" alt="" coords="362,56,497,83"/>
+<area shape="rect" id="node6" href="$class_predator.html#a2c6d1082b9858e14dcc00cba1a658aa8" title="Keeps the ship moving in the same direction as nearby flockmates. Finds the averagelocation of nearby..." alt="" coords="364,107,495,133"/>
+<area shape="rect" id="node5" href="$class_ship.html#a40f4d36fbef8f0b501f60b8ec817f8f6" title="Returns forward direction of ship. " alt="" coords="568,56,688,83"/>
+<area shape="rect" id="node8" href="$_ship_8cpp.html#aefb05e9300183bbf4969f53e73891cac" title="perpDot" alt="" coords="396,157,463,184"/>
+<area shape="rect" id="node9" href="$class_ship.html#a471e4e86d3cf0ea0b02d3603575f070e" title="Turn ship right. " alt="" coords="375,208,483,235"/>
+<area shape="rect" id="node10" href="$class_ship.html#aee981dc9846a549b31274e7e2d29b82c" title="Turn ship left. " alt="" coords="380,259,479,285"/>
+<area shape="rect" id="node15" href="$class_ship.html#a8e7bc2ee7d749ab0d28062091733987c" title="Clamps the length of the velocity_ vector to MAX_SPEED_. " alt="" coords="346,360,513,387"/>
+<area shape="rect" id="node16" href="$class_ship.html#aab6a7b7a2761b7df818729579a3ca0e1" title="Ship::updateParticleEmitter" alt="" coords="339,411,520,437"/>
+</map>

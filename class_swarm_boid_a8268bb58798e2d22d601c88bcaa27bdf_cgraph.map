@@ -1,0 +1,3 @@
+<map id="SwarmBoid::onCollide" name="SwarmBoid::onCollide">
+<area shape="rect" id="node2" href="$class_ship.html#a25357ff5a748c27c2dda77106ac2b635" title="Reduces health by the specified amount. " alt="" coords="203,5,332,32"/>
+</map>

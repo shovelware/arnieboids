@@ -1,0 +1,6 @@
+<map id="Ship::update" name="Ship::update">
+<area shape="rect" id="node2" href="$class_mothership.html#ae1cd812d77fbb73656346be02606b464" title="Hides sf::Shape::update() " alt="" coords="149,5,282,32"/>
+<area shape="rect" id="node3" href="$class_player.html#a6912bb6e48efb5845d59f0f4582827ef" title="Moves by velocity and cools gun. " alt="" coords="162,56,269,83"/>
+<area shape="rect" id="node4" href="$class_predator.html#a9a93478b93c68c966dbdf0aa324f293b" title="Makes the ship flock toward other predators and prey_. Fires bullet at prey_ if facing toward it..." alt="" coords="156,107,275,133"/>
+<area shape="rect" id="node5" href="$class_swarm_boid.html#a25f68c54ca05b761a6aa700801a02cff" title="Calls swarm() " alt="" coords="148,157,283,184"/>
+</map>

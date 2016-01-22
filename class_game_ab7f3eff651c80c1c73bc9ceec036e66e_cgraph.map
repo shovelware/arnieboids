@@ -1,0 +1,6 @@
+<map id="Game::playerDeath" name="Game::playerDeath">
+<area shape="rect" id="node2" href="$class_camera.html#afa6c3f4508a58c0d690043b6398e70c8" title="Clears the camera&#39;s target, can keep camera on target&#39;s last position or reset. " alt="" coords="214,5,353,32"/>
+<area shape="rect" id="node3" href="$class_swarm_boid.html#ad80d43f4292e271fe923e336e4a00fc9" title="Sets the target for all swarm boids. They will tend toward this target. " alt="" coords="188,56,379,83"/>
+<area shape="rect" id="node4" href="$class_predator.html#ac0443982b52b92fc663f10aa22a1af32" title="Predator::setPrey" alt="" coords="221,107,345,133"/>
+<area shape="rect" id="node5" href="$class_mothership.html#a9408cae65d9873396fcac20a1c720445" title="Sets the target for all motherships. " alt="" coords="209,157,357,184"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="Ship::turnLeft" name="Ship::turnLeft">
+<area shape="rect" id="node2" href="$class_game.html#adb5563f62c0c82e3e42ec36501aa5698" title="Polls the RenderWindow for events and handles these events accordingly. " alt="" coords="152,19,295,45"/>
+<area shape="rect" id="node5" href="$class_ship.html#af03aaa2145b622a9af30c38cbca6bf42" title="Ship::turnToward" alt="" coords="164,95,283,121"/>
+<area shape="rect" id="node3" href="$class_game.html#a99fb161fbbe87d25a8b73265a0611e58" title="Implements the main game loop. While window_ is open: Calls handleEvents(), Implements a fixed timest..." alt="" coords="369,5,451,32"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="567,5,618,32"/>
+<area shape="rect" id="node6" href="$class_mothership.html#ae1cd812d77fbb73656346be02606b464" title="Hides sf::Shape::update() " alt="" coords="343,56,477,83"/>
+<area shape="rect" id="node7" href="$class_predator.html#a9a93478b93c68c966dbdf0aa324f293b" title="Makes the ship flock toward other predators and prey_. Fires bullet at prey_ if facing toward it..." alt="" coords="351,107,469,133"/>
+<area shape="rect" id="node8" href="$class_swarm_boid.html#ab23045f4517e26ca98876d9f11bb0315" title="SwarmBoid::swarm" alt="" coords="343,157,477,184"/>
+<area shape="rect" id="node9" href="$class_swarm_boid.html#a25f68c54ca05b761a6aa700801a02cff" title="Calls swarm() " alt="" coords="525,157,660,184"/>
+</map>

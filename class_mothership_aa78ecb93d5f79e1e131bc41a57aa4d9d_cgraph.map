@@ -1,0 +1,3 @@
+<map id="Mothership::fire" name="Mothership::fire">
+<area shape="rect" id="node2" href="$class_mothership.html#ac1165cd1657a0efc3f5ee48e9b35524a" title="Decrements liveMissiles_. Called by Missile::destructCallback_. " alt="" coords="164,5,363,32"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="Mothership::flock" name="Mothership::flock">
+<area shape="rect" id="node2" href="$class_mothership.html#a9b68bbe220d44b1139b40f937820a31e" title="Keeps ships from piling on top of each other. " alt="" coords="175,5,329,32"/>
+<area shape="rect" id="node3" href="$class_mothership.html#a52eb3ae2897a3fa00a954f6170ba78f8" title="Mothership::alignment" alt="" coords="177,56,327,83"/>
+<area shape="rect" id="node5" href="$class_mothership.html#a74e59716acc785b2c14a7c6d15e51919" title="Keeps the ship moving in the same direction as nearby flockmates. Finds the averagelocation of nearby..." alt="" coords="179,107,325,133"/>
+<area shape="rect" id="node4" href="$class_ship.html#a40f4d36fbef8f0b501f60b8ec817f8f6" title="Returns forward direction of ship. " alt="" coords="377,56,497,83"/>
+</map>

@@ -1,0 +1,22 @@
+<map id="Mothership::update" name="Mothership::update">
+<area shape="rect" id="node2" href="$class_mothership.html#a0c2b357320115a055449c83532984cff" title="Mothership::calculateState" alt="" coords="187,5,364,32"/>
+<area shape="rect" id="node3" href="$class_ship.html#af03aaa2145b622a9af30c38cbca6bf42" title="Ship::turnToward" alt="" coords="216,56,335,83"/>
+<area shape="rect" id="node7" href="$class_mothership.html#af27fcec28614f5063922940eab02c269" title="Mothership::evade" alt="" coords="212,107,339,133"/>
+<area shape="rect" id="node8" href="$class_ship.html#ad8f6d67f0ae2d0076792f9076a99373c" title="Attempt to fire, returns success. " alt="" coords="229,157,321,184"/>
+<area shape="rect" id="node9" href="$class_mothership.html#aa78ecb93d5f79e1e131bc41a57aa4d9d" title="Tries to fire a missile toward target. Does nothing if max missiles already live. ..." alt="" coords="220,208,331,235"/>
+<area shape="rect" id="node11" href="$class_mothership.html#a686dc5581abf34d9d50c4ae9f4ac8ad3" title="Runs separation(), cohesion() and alignment(). Weights the results. " alt="" coords="215,259,336,285"/>
+<area shape="rect" id="node16" href="$class_mothership.html#a66f973ccf53b83841803533ef924296b" title="Mothership::wander" alt="" coords="208,309,343,336"/>
+<area shape="rect" id="node17" href="$class_ship.html#ab865757829aec291f3f1d26cb598b39d" title="Ticks to seconds. " alt="" coords="218,360,333,387"/>
+<area shape="rect" id="node18" href="$class_ship.html#a4543637a3f0b4275206f684247e1b313" title="Apply acceleration in direction of forward vector. " alt="" coords="231,411,320,437"/>
+<area shape="rect" id="node19" href="$class_ship.html#a3ee2f77fa9920030dc3ff8268b2f73a4" title="Hides sf::Shape::update() " alt="" coords="228,461,323,488"/>
+<area shape="rect" id="node4" href="$_ship_8cpp.html#aefb05e9300183bbf4969f53e73891cac" title="perpDot" alt="" coords="478,5,545,32"/>
+<area shape="rect" id="node5" href="$class_ship.html#a471e4e86d3cf0ea0b02d3603575f070e" title="Turn ship right. " alt="" coords="457,56,565,83"/>
+<area shape="rect" id="node6" href="$class_ship.html#aee981dc9846a549b31274e7e2d29b82c" title="Turn ship left. " alt="" coords="462,107,561,133"/>
+<area shape="rect" id="node10" href="$class_mothership.html#ac1165cd1657a0efc3f5ee48e9b35524a" title="Decrements liveMissiles_. Called by Missile::destructCallback_. " alt="" coords="412,183,611,209"/>
+<area shape="rect" id="node12" href="$class_mothership.html#a9b68bbe220d44b1139b40f937820a31e" title="Keeps ships from piling on top of each other. " alt="" coords="434,233,589,260"/>
+<area shape="rect" id="node13" href="$class_mothership.html#a52eb3ae2897a3fa00a954f6170ba78f8" title="Mothership::alignment" alt="" coords="436,284,587,311"/>
+<area shape="rect" id="node15" href="$class_mothership.html#a74e59716acc785b2c14a7c6d15e51919" title="Keeps the ship moving in the same direction as nearby flockmates. Finds the averagelocation of nearby..." alt="" coords="438,335,585,361"/>
+<area shape="rect" id="node14" href="$class_ship.html#a40f4d36fbef8f0b501f60b8ec817f8f6" title="Returns forward direction of ship. " alt="" coords="659,284,779,311"/>
+<area shape="rect" id="node20" href="$class_ship.html#a8e7bc2ee7d749ab0d28062091733987c" title="Clamps the length of the velocity_ vector to MAX_SPEED_. " alt="" coords="428,436,595,463"/>
+<area shape="rect" id="node21" href="$class_ship.html#aab6a7b7a2761b7df818729579a3ca0e1" title="Ship::updateParticleEmitter" alt="" coords="421,487,602,513"/>
+</map>

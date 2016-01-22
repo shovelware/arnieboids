@@ -1,0 +1,14 @@
+<map id="Ship::getForward" name="Ship::getForward">
+<area shape="rect" id="node2" href="$class_game.html#adb5563f62c0c82e3e42ec36501aa5698" title="Polls the RenderWindow for events and handles these events accordingly. " alt="" coords="212,5,355,32"/>
+<area shape="rect" id="node5" href="$class_mothership.html#a52eb3ae2897a3fa00a954f6170ba78f8" title="Mothership::alignment" alt="" coords="208,56,359,83"/>
+<area shape="rect" id="node8" href="$class_predator.html#acd02ea8feb1013cf411adeaa1fed02d6" title="Predator::alignment" alt="" coords="216,107,351,133"/>
+<area shape="rect" id="node11" href="$class_swarm_boid.html#aad576d012b5621a4011305775b4c9aa6" title="SwarmBoid::LenardJonesPotential" alt="" coords="173,157,393,184"/>
+<area shape="rect" id="node3" href="$class_game.html#a99fb161fbbe87d25a8b73265a0611e58" title="Implements the main game loop. While window_ is open: Calls handleEvents(), Implements a fixed timest..." alt="" coords="467,5,550,32"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="666,5,717,32"/>
+<area shape="rect" id="node6" href="$class_mothership.html#a686dc5581abf34d9d50c4ae9f4ac8ad3" title="Runs separation(), cohesion() and alignment(). Weights the results. " alt="" coords="448,56,569,83"/>
+<area shape="rect" id="node7" href="$class_mothership.html#ae1cd812d77fbb73656346be02606b464" title="Hides sf::Shape::update() " alt="" coords="625,56,758,83"/>
+<area shape="rect" id="node9" href="$class_predator.html#a52f7c20409a1be8a3067246a98823dc6" title="Predator::flock" alt="" coords="455,107,562,133"/>
+<area shape="rect" id="node10" href="$class_predator.html#a9a93478b93c68c966dbdf0aa324f293b" title="Makes the ship flock toward other predators and prey_. Fires bullet at prey_ if facing toward it..." alt="" coords="632,107,751,133"/>
+<area shape="rect" id="node12" href="$class_swarm_boid.html#ab23045f4517e26ca98876d9f11bb0315" title="SwarmBoid::swarm" alt="" coords="441,157,576,184"/>
+<area shape="rect" id="node13" href="$class_swarm_boid.html#a25f68c54ca05b761a6aa700801a02cff" title="Calls swarm() " alt="" coords="624,157,759,184"/>
+</map>

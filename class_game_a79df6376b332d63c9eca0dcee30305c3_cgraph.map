@@ -1,0 +1,15 @@
+<map id="Game::update" name="Game::update">
+<area shape="rect" id="node2" href="$class_collision_system.html#a0ea99c0b3b16a7df82aad2cb43ecd422" title="Checks for collision between all game entities. Checks for ship&#45;ship collision (broad and narrow phas..." alt="" coords="157,60,319,87"/>
+<area shape="rect" id="node7" href="$class_camera.html#a42cda7239981a5618660d04bd5893556" title="Updates camera&#39;s center to where the target is. " alt="" coords="181,111,295,137"/>
+<area shape="rect" id="node8" href="$class_key_input.html#ab32b8ec028e37e27e059c0ba5109d9f0" title="Updates all keys. " alt="" coords="178,161,298,188"/>
+<area shape="rect" id="node9" href="$class_game.html#a8c6e2c8402b48b52b960d512e91e9f2d" title="Wraps a passed convexShape to the opposite side of game bounds. " alt="" coords="192,212,284,239"/>
+<area shape="rect" id="node10" href="$class_game.html#ab7f3eff651c80c1c73bc9ceec036e66e" title="Resets behaviours dependant on player existing. " alt="" coords="171,263,305,289"/>
+<area shape="rect" id="node3" href="$class_collision_system.html#a27bf78e0a1149731235938bc81d5b91c" title="Check two ships for collision. " alt="" coords="371,35,553,61"/>
+<area shape="rect" id="node6" href="$class_ship.html#a25357ff5a748c27c2dda77106ac2b635" title="Reduces health by the specified amount. " alt="" coords="397,85,527,112"/>
+<area shape="rect" id="node4" href="$class_collision_system.html#a158e6ab18ea61ae99522463ab6088155" title="Get the axies of a shape and insert them into the list. " alt="" coords="605,5,780,32"/>
+<area shape="rect" id="node5" href="$class_collision_system.html#aabc383eedc5ffdba7bab772373803c3b" title="Project a shape onto an axis and return the line projection. " alt="" coords="611,57,774,98"/>
+<area shape="rect" id="node11" href="$class_camera.html#afa6c3f4508a58c0d690043b6398e70c8" title="Clears the camera&#39;s target, can keep camera on target&#39;s last position or reset. " alt="" coords="393,187,531,213"/>
+<area shape="rect" id="node12" href="$class_swarm_boid.html#ad80d43f4292e271fe923e336e4a00fc9" title="Sets the target for all swarm boids. They will tend toward this target. " alt="" coords="367,237,557,264"/>
+<area shape="rect" id="node13" href="$class_predator.html#ac0443982b52b92fc663f10aa22a1af32" title="Predator::setPrey" alt="" coords="400,288,524,315"/>
+<area shape="rect" id="node14" href="$class_mothership.html#a9408cae65d9873396fcac20a1c720445" title="Sets the target for all motherships. " alt="" coords="388,339,536,365"/>
+</map>

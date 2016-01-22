@@ -1,0 +1,6 @@
+<map id="Game::reset" name="Game::reset">
+<area shape="rect" id="node2" href="$class_game.html#a34c045ccd929e6d4240b84c90023df3e" title="Game::Game" alt="" coords="169,5,269,32"/>
+<area shape="rect" id="node3" href="$class_game.html#adb5563f62c0c82e3e42ec36501aa5698" title="Polls the RenderWindow for events and handles these events accordingly. " alt="" coords="148,56,291,83"/>
+<area shape="rect" id="node4" href="$class_game.html#a99fb161fbbe87d25a8b73265a0611e58" title="Implements the main game loop. While window_ is open: Calls handleEvents(), Implements a fixed timest..." alt="" coords="339,56,421,83"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="469,56,520,83"/>
+</map>
