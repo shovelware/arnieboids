@@ -104,6 +104,46 @@ int Game::run() {
 #pragma endregion
 
 #pragma region PrivateMemberFunctions
+void Game::wrap(sf::ConvexShape * cs)
+{
+	sf::Vector2f curPos = cs->getPosition();
+	sf::Vector2f newPos = curPos;
+
+	//X check
+	if (curPos.x < gameBounds_.left || curPos.x > gameBounds_.width)
+	{
+		//Wrap
+		newPos.x *= -1;
+
+		//Double check in case we're wrapped outside
+		if (newPos.x < gameBounds_.left || newPos.x > gameBounds_.width)
+		{
+			int sign = (0 < newPos.x) - (newPos.x < 0);
+			newPos.x = (gameBounds_.width - 10) * sign;
+		}
+	}
+
+	//Y check
+	if (curPos.y < gameBounds_.top|| curPos.y > gameBounds_.height)
+	{
+		//Wrap
+		newPos.y *= -1;
+
+		//Double check in case we're wrapped outside
+		if (newPos.y < gameBounds_.top || newPos.y > gameBounds_.height)
+		{
+			int sign = (0 < newPos.y) - (newPos.y < 0);
+			newPos.y = (gameBounds_.height- 10) * sign;
+		}
+	}
+
+	if (curPos != newPos)
+	{
+		cs->setPosition(newPos);
+	}
+
+}
+
 void Game::playerDeath()
 {
 	backSound_.play();
@@ -187,7 +227,7 @@ void Game::reset()
 	sf::Vector2f swarmPos(0, 0);
 	for (int i = 0; i < swarms; ++i)
 	{
-		swarmPos = sf::Vector2f(randFloat(gameBounds_.left, gameBounds_.width), randFloat(gameBounds_.top, gameBounds_.height));
+		swarmPos = sf::Vector2f(randFloat(gameBounds_.left + 100, gameBounds_.width - 100), randFloat(gameBounds_.top + 100, gameBounds_.height - 100));
 
 		float thisSwarmNum = randFloat(0, maxBoids - minBoids) + minBoids;
 		float thisSwarmRad = randFloat(0, maxSwarmRad - minSwarmRad) + minSwarmRad;
@@ -427,7 +467,7 @@ void Game::update() {
 	itr != end; /*No increment*/)
 	{
 		if ((*itr)->isActive()) {
-		
+			wrap(*itr);
 			(*itr++)->update();
 		}
 		
@@ -493,6 +533,7 @@ void Game::update() {
 			itr = ships_.erase(itr++);
 		}
 		else {
+			wrap(*itr);
 			(*itr++)->update();
 		}
 	}
@@ -512,6 +553,7 @@ void Game::update() {
 			{
 				mineSound_.play();
 			}
+			wrap(*itr);
 			(*itr++)->update();
 		}
 	}
@@ -552,8 +594,17 @@ void Game::draw() {
 		window_.draw(**itr);
 	}
 
-		camera_.drawHUD();
-		camera_.drawRadar(ships_, sf::Vector2f(0, 0), 100);
+	camera_.drawHUD();
+	camera_.drawRadar(ships_, sf::Vector2f(0, 0), 100);
+
+	//Draw game bounds
+	sf::RectangleShape boundsR(sf::Vector2f(gameBounds_.width * 2, gameBounds_.height * 2));
+	boundsR.setOrigin(gameBounds_.width, gameBounds_.height);
+	boundsR.setPosition(sf::Vector2f(0, 0));
+	boundsR.setFillColor(sf::Color(255, 000, 000, 000));
+	boundsR.setOutlineColor(sf::Color(255, 128, 064, 128));
+	boundsR.setOutlineThickness(-1);
+	window_.draw(boundsR);
 
 	window_.display();
 }
