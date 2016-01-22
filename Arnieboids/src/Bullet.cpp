@@ -9,16 +9,14 @@ ticks_(0),
 damage_(1),
 faction_(ENEMY)
 {
-	setPointCount(5u);
+	setPointCount(4u);
 
-	setPoint(0u, sf::Vector2f(0, 10));
-	setPoint(1u, sf::Vector2f(0, 30));
-	setPoint(2u, sf::Vector2f(8, 30));
-	setPoint(3u, sf::Vector2f(8, 10));
-	setPoint(4u, sf::Vector2f(4, 0));
+	setPoint(0u, sf::Vector2f(0, 0));
+	setPoint(1u, sf::Vector2f(5, 0));
+	setPoint(2u, sf::Vector2f(5, 5));
+	setPoint(3u, sf::Vector2f(0, 5));
 
-	//setOrigin(getLocalBounds().width * 0.5f, getLocalBounds().height * 0.5f);
-	setRotation(thor::toDegree(atan2(forward_.x, -forward_.y)));	//get forward vector as angle in degrees
+	setOrigin(getLocalBounds().width * 0.5f, getLocalBounds().height * 0.5f);
 
 	setFillColor(sf::Color::Magenta);
 
@@ -33,7 +31,7 @@ Bullet::~Bullet() {}
 void Bullet::update() {
 	if (active_)
 	{
-		//rotate(10.f);
+		rotate(10.f);
 		move(forward_ * speed_);
 		
 		ticks_ = (ticks_ + 1) % INT_MAX;

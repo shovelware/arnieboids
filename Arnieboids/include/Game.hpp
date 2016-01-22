@@ -91,6 +91,7 @@ private:
 	std::chrono::milliseconds timePerTick_;	//!< Milliseconds per update/draw tick
 	std::chrono::time_point<std::chrono::system_clock> timeOfLastTick_;	//!< Time at which the last update/draw tick occurred.
 
+	//! Wraps a passed convexShape to the opposite side of game bounds
 	void wrap(sf::ConvexShape* cs);
 
 	//! Resets behaviours dependant on player existing

@@ -10,9 +10,9 @@ typedef sf::Keyboard::Key Key;
 using std::list;
 
 /*!
- * Holds and handles all key inputs
- * Should be updated with game and 
- * then queried for keys
+ * \brief Keyboard handler class.
+ * Holds and handles all key inputs.
+ * Should be updated with game and then queried for keys.
  */
 
 class KeyInput {
@@ -34,7 +34,7 @@ public:
 private:
 	bool checkKeyDown(list<Key> list, Key key) const;
 
-	list<Key> curKeys;
-	list<Key> prvKeys;
+	list<Key> curKeys_;
+	list<Key> prvKeys_;
 };
 #endif

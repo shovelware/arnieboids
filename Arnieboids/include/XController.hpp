@@ -18,6 +18,12 @@
 #include <map>
 #include <iterator>
 
+/*!
+* \brief Xbox Controller class, not currently used.
+*
+* 
+*/
+
 class XController {
 private:
 	int controllerId_;

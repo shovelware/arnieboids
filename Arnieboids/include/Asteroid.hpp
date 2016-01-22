@@ -4,6 +4,11 @@
 #include <SFML/Graphics.hpp>
 #include "Ship.hpp"
 
+/*!
+* \brief Asteroid class.
+* Abstract class that inherits from sf::ConvexShape.
+* Contains members common to all ships.
+*/
 class Asteroid : public Ship {
 public:
 	/*!
@@ -19,8 +24,8 @@ public:
 	void update() override;
 
 	/*!
-	 * Empty method. Does nothing on collision.
-	 * \remarks Perhaps asteroids should bounce off each other?
+	 * Colliding with ships will impart some of that ship's velocity on us
+	 * \remarks Asteroids do not "collide", with each other; they grind against and damage each other
 	 */
 	void onCollide(Ship* other) override;
 

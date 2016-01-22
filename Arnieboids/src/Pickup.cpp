@@ -62,9 +62,9 @@ void Pickup::take(Ship * taker)
 {
 	owner_ = taker;
 
-	//If taker is hurt, heal it
 	int healthDiff = owner_->getMaxHealth() - owner_->getHealth();
 
+	//If taker is hurt, heal it
 	if (healthDiff > 0)
 	{
 		if (value_ > 0)
@@ -135,6 +135,7 @@ bool Pickup::wasPickedUpLastTick() {
 	if (isOwned() && !pickedUp_)
 	{
 		pickedUp_ = true;
+		
 		return true;
 	}
 	return false;
