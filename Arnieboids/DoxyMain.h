@@ -7,6 +7,20 @@
 * \section start_sec Where do I start?
 * Take a look at the [Class Hierarchy](inherits.html). That should give you an idea of the project structure.
 *
+* section obvs_feat Are there any features that may not be immediately obvious?
+* -# The game has sound:
+*     - Background music.
+*     - Sounds that play when: game starts, factory ship dies, player dies, pickup is collected.
+* -# There's a really sweet particle system.
+* -# The camera is unlockable, steerable and zoomable.
+* -# Factories (Mothership) only wander if no other factory ships are nearby, they flock instead; Evading the Player overrides both flocking and wandering.
+* -# SwarmBoids will try to intercept the Player. If they are very close, however, they'll try to smash him. Also, they're smart enough not to "intercept" a stationary target.
+* -# The background of stars is randomly generated.
+* -# Pressing F5 will reset the game. The number and position of objects is randomly generated each time.
+* -# There's a simple and to-the-point loading screen.
+* -# The power-up will provide a shield if health is full, otherwise it will heal.
+* -# Asteroids are not all powerful, it takes a while, but they can be destroyed.
+*
 * \section brief_sec Brief
 * This section is the brief we received for the project. Word for word.
 *
