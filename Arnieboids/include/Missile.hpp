@@ -7,14 +7,22 @@
 
 #include "Ship.hpp"
 
+/*
+ * \brief A homing missile that tracks a ship.
+ * Explodes on contact with ship or at end of lifetime.
+ */
 class Missile : public Bullet {
 public:
 	/*!
+	 * \param particleSystem The particle system to connect the Missile's emitter to
+	 * \param destructCallback Called when the missile is destroyed. See Missile::~Missile()
 	 * \param target The target for the missile
 	 * \param position Initial position
 	 * \param direction Launch direction
 	 */
 	Missile(thor::ParticleSystem& particleSystem, std::function<void()> destructCallback, const Ship* const target, sf::Vector2f  const &position, sf::Vector2f const &direction, const float maxSpeed = 4.f, const float acceleration = 0.1f, const float turnSpeed = 2.f);
+	
+	//! Disconnects emitter from particle system and invokes destructCallback_
 	~Missile();
 
 	//! Turns to face target while thrusting forward.

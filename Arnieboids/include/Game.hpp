@@ -85,7 +85,10 @@ private:
 	//! Texture for all particles
 	sf::Texture particleTexture_;
 
+	//! Adds a bullet to the bulletList_. Given to ships so that they can fire bullets.
 	std::function<void(Bullet*)> fireBulletCallback_;
+	
+	//! Adds a ship to the shipList_. Given to Motherships so that they can spawn other ships.
 	std::function<void(Ship*)> spawnShipCallback_;
 
 	std::chrono::steady_clock tickClock_;
@@ -107,23 +110,28 @@ private:
 	//! Adds a swarm of [amount] boids in circle around [pos] with [radius]
 	void addBoidSwarm(sf::Vector2f const &pos, float amount, float radius);
 
+
+	//! Buffers for the sounds in the game.
 	sf::SoundBuffer erasedSBuffer_, mineSBuffer_, planSBuffer_, backSBuffer_;
+	//! Sounds that the game will play.
 	sf::Sound erasedSound_, mineSound_, planSound_, backSound_;
+	//! The background music forthe game.
 	sf::Music bgMusic_;
 
 	/*!
-	 * Polls the RenderWindow for events and
-	 * handles these events accordingly.
+	 * \brief Polls the RenderWindow for events and
+	 *        handles these events accordingly.
 	 */
 	void handleEvents();
 
 	/*!
-	 * Calls Update on all bullets and ships.
+	 * \brief Calls Update on all bullets and ships.
 	 */
 	void update();
 
 	/*!
-	 * Draws all bullets and ships.
+	 * \brief Draws all bullets and ships.
+	 * Also draws the backdrop_ of stars.
 	 */
 	void draw();
 };

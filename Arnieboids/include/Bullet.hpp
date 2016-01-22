@@ -24,8 +24,10 @@ public:
 
 	void setActive(bool active);
 
+	//! Gets the damage that the bullet will deal to something it hits.
 	int getDamage() const;
 
+	//! Every bullet either belongs to the player or to an enemy.
 	enum Faction {
 		PLAYER,
 		ENEMY
@@ -47,13 +49,16 @@ protected:
 	//! The direction or heading of the bullet
 	sf::Vector2f forward_;
 
+	//! The number of ticks that the bullet will remain alive for
 	int lifeTime_;
 
+	//! True if the bullet has been fired and hasn't collided with anything.
 	bool active_;
 
 	//! Ticks to seconds
 	float tickToSec(unsigned int ticks) const;
 
+	//! Will be PLAYER or ENEMY, depending on who fired it.
 	Faction faction_;
 
 };

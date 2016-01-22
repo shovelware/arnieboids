@@ -35,11 +35,11 @@ private:
 
 	void setShape(float radius);
 
-	unsigned int value_;			//! Value of powerup, in HP
-	unsigned int ticks_;			//!	Ticks passed since spawn
-	unsigned int takeTick_;			//!	The tick number that we were picked up on
-	unsigned int shieldTimeTotal_;	//!	Total shielding time, value_ * 2
-	unsigned int shieldTime_;		//!	Shield time that counts up to total when active
+	unsigned int value_;			//!< Value of powerup, in HP
+	unsigned int ticks_;			//!<	Ticks passed since spawn
+	unsigned int takeTick_;			//!<	The tick number that we were picked up on
+	unsigned int shieldTimeTotal_;	//!<	Total shielding time, value_ * 2
+	unsigned int shieldTime_;		//!<	Shield time that counts up to total when active
 
 	float tickToSec(unsigned int ticks) const;
 };

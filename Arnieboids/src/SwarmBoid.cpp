@@ -65,11 +65,6 @@ void SwarmBoid::setSwarmTarget(Ship* target) {
 void SwarmBoid::swarm() {
 	sf::Vector2f sum(0, 0);
 
-	static const float A = 100.0f;	//force of attraction
-	static const float B = 50000.0f;	//force of seperation
-	static const float N = 1.0f;	//attraction attenuation
-	static const float M = 2.0f;	//seperatation attenuation
-
 	int count = 0;
 	for (SwarmBoid* boid : swarm_)
 	{

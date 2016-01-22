@@ -204,18 +204,6 @@ sf::Vector2f Predator::alignment() const {
 	return steer;
 }
 
-sf::Vector2f Predator::seek(sf::Vector2f const& pos) const {
-	sf::Vector2f desired;
-	desired -= pos;	//A vector pointing from our location to the target
-
-	//Normalize and scale to max speed
-	desired = thor::unitVector(desired);
-	desired *= MAX_SPEED_;
-
-	//Steering = desired - velocity
-	return desired - velocity_;
-}
-
 void Predator::onCollide(Ship* other) {
 	if (dynamic_cast<Player*>(other))
 	{

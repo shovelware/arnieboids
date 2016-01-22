@@ -9,6 +9,7 @@
 * Camera that can follow target a ship.
 * Zoom and Independent movement also possible.
 * Handles drawing of HUD, only if a ship is targeted.
+* \remarks **I,J,K,L** moves the camera. **I** and **O** zoom in and out respectively.
 */
 
 class Camera : public sf::View
@@ -16,6 +17,10 @@ class Camera : public sf::View
 public:
 	Camera(sf::RenderTarget& target);
 
+	/*
+	 * \brief Sets the follow target.
+	 * The camera will follow this ship until the camera is unlocked or the ship is destroyed.
+	 */
 	void setTarget(Ship* target);
 	Ship* getTarget();
 	

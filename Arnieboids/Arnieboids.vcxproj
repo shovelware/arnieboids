@@ -104,6 +104,7 @@ xcopy "$(THOR)\bin\thor.dll" "$(TargetDir)" /Y /D</Command>
     <ClCompile Include="src\XController.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DoxyMain.h" />
     <ClInclude Include="include\Asteroid.hpp" />
     <ClInclude Include="include\Bullet.hpp" />
     <ClInclude Include="include\Camera.hpp" />

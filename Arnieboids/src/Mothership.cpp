@@ -36,9 +36,12 @@ MAX_LIVE_MISSILES(5u)
 	particleEmitter_.setParticleColor(getFillColor());
 
 	wanderWaypoint_ = getPosition();
+
+	flock_.push_back(this);
 }
 
 Mothership::~Mothership() {
+	flock_.erase(std::find(flock_.begin(), flock_.end(), this));
 }
 
 void Mothership::update() {
@@ -117,7 +120,7 @@ sf::Vector2f Mothership::evade() const {
 
 	sf::Vector2f steer(0, 0);
 
-	//Avoid colliding with prey_
+	//Avoid colliding with target_
 	sf::Vector2f diff = this->getPosition() - target_->getPosition();
 	float distance = thor::length(diff);
 	if (distance < desiredSeparation) {
@@ -128,10 +131,8 @@ sf::Vector2f Mothership::evade() const {
 
 	if (thor::length(steer) > 0)
 	{
-		//steering = desired - velocity
 		steer = thor::unitVector(steer);
 		steer *= MAX_SPEED_;
-		//steer -= velocity_;
 	}
 
 	return steer;

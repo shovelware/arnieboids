@@ -14,7 +14,7 @@ public:
 	/*!
 	 * \param position Initial position of the Asteroid.
 	 * \param direction The heading that the Asteroid will travel on
-	 * \spinSpeed How fast (in degrees per tick) that the asteroid will rotate
+	 * \param spinSpeed How fast (in degrees per tick) that the asteroid will rotate
 	 */
 	Asteroid(thor::ParticleSystem &particleSystem, sf::Vector2f const &position, sf::Vector2f const &direction, float spinSpeed = (rand() % 50 - 25) * 0.1f);
 	Asteroid(thor::ParticleSystem &particleSystem, sf::Vector2f const &position, float spinSpeed = (rand() % 50 - 25) * 0.1f);
@@ -24,7 +24,7 @@ public:
 	void update() override;
 
 	/*!
-	 * Colliding with ships will impart some of that ship's velocity on us
+	 * \brief Colliding with ships will impart some of that ship's velocity on us
 	 * \remarks Asteroids do not "collide", with each other; they grind against and damage each other
 	 */
 	void onCollide(Ship* other) override;
