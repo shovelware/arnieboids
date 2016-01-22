@@ -69,7 +69,7 @@ void Predator::setPrey(Ship* prey) {
 }
 
 sf::Vector2f Predator::separation() const {
-	static float desiredSeparation = 100;
+	static float desiredSeparation = 200;
 
 	sf::Vector2f steer(0, 0);
 	float count = 0;
@@ -124,7 +124,7 @@ sf::Vector2f Predator::separation() const {
 }
 
 sf::Vector2f Predator::cohesion() const {
-	static float neighbourDist = 500;
+	static float neighbourDist = 2000;
 	sf::Vector2f sum(0, 0);
 	float count = 0;
 	
@@ -235,7 +235,7 @@ sf::Vector2f Predator::flock() const {
 	sf::Vector2f pry(0, 0);
 	if (prey_)
 	{
-		sf::Vector2f pry = thor::unitVector(prey_->getPosition() - getPosition());
+		pry = thor::unitVector(prey_->getPosition() - getPosition());
 	}
 	pry *= 5.0f;
 

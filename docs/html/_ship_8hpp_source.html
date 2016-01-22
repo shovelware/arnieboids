@@ -22,9 +22,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="spaceshipblenderhalf.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ArnieBoids
-   &#160;<span id="projectnumber">0.0.1</span>
+   &#160;<span id="projectnumber">0.9.0</span>
    </div>
    <div id="projectbrief">JOINT AI PROJECT</div>
   </td>
@@ -95,77 +96,108 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;SFML/Graphics.hpp&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;Thor/Vectors.hpp&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="class_ship.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_ship.html">Ship</a> : <span class="keyword">public</span> sf::ConvexShape {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="class_ship.html">Ship</a>(sf::Vector2f <span class="keyword">const</span> &amp;position, <span class="keywordtype">float</span> maxSpeed, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> health = 1u);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    ~<a class="code" href="class_ship.html">Ship</a>();</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_ship.html#abfe8b92e7f0346b198e8c40cff44ebeb">update</a>() = 0;  </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> onCollide(<a class="code" href="class_ship.html">Ship</a>* other) = 0;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_ship.html#a3a0732b4bb4697b57398cec3b24d76ed">takeDamage</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> amount);</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;Thor/Particles.hpp&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;Thor/Math.hpp&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="class_ship.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_ship.html">Ship</a> : <span class="keyword">public</span> sf::ConvexShape {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    sf::RectangleShape debug_rect_;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="class_ship.html">Ship</a>(thor::ParticleSystem &amp;particleSystem, sf::Vector2f <span class="keyword">const</span> &amp;position, <span class="keywordtype">float</span> maxSpeed, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> health = 1u);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    ~<a class="code" href="class_ship.html">Ship</a>();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_ship.html#a3ee2f77fa9920030dc3ff8268b2f73a4">update</a>();  </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> onCollide(<a class="code" href="class_ship.html">Ship</a>* other) = 0;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_ship.html#a52d219bbadbba6475b919f8e6497ce34">isDead</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_ship.html#a25357ff5a748c27c2dda77106ac2b635">takeDamage</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> amount = 1u);</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">float</span> getRadius() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_ship.html#a4543637a3f0b4275206f684247e1b313">thrust</a>();</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_ship.html#aee981dc9846a549b31274e7e2d29b82c">turnLeft</a>();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_ship.html#a471e4e86d3cf0ea0b02d3603575f070e">turnRight</a>();</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_ship.html#ad8f6d67f0ae2d0076792f9076a99373c">trigger</a>();</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    sf::Vector2f <a class="code" href="class_ship.html#a40f4d36fbef8f0b501f60b8ec817f8f6">getForward</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="class_ship.html#a6843554ddc3c0098bcc9d17f7a7fbf3b">   47</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_ship.html#a6843554ddc3c0098bcc9d17f7a7fbf3b">MAX_SPEED_</a>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">float</span> refireTime_;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">float</span> coolDown_;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ticks_; <span class="comment">//ticks_ = (ticks_ + 1) % INT_MAX;</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="class_ship.html#ac1584ef024d6ed1538eb2d1e99661557">   54</a></span>&#160;    sf::Vector2f <a class="code" href="class_ship.html#ac1584ef024d6ed1538eb2d1e99661557">velocity_</a>; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="class_ship.html#af9523b2053ac0164fa6c702aa1a1165e">   57</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_ship.html#af9523b2053ac0164fa6c702aa1a1165e">health_</a>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="class_ship.html#a152b38aa89be58f3037f82c408ff28c9">   60</a></span>&#160;    sf::Vector2f <a class="code" href="class_ship.html#a152b38aa89be58f3037f82c408ff28c9">forward_</a>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="class_ship.html#a2415e485b0707df42ef22121977fdce9">   63</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_ship.html#a2415e485b0707df42ef22121977fdce9">thrust_</a>;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="class_ship.html#a56a38990ec7817f256bce1abe1ded6ed">   66</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_ship.html#a56a38990ec7817f256bce1abe1ded6ed">turnSpeed_</a>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_ship.html#a8e7bc2ee7d749ab0d28062091733987c">clampToMaxSpeed</a>();</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_ship.html#a4543637a3f0b4275206f684247e1b313">thrust</a>();</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">float</span> boundingCircleRadius_;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_ship.html#a52d219bbadbba6475b919f8e6497ce34">isDead</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_ship.html#a4543637a3f0b4275206f684247e1b313">thrust</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_ship.html#a719e69f970fc6088eea225242e843640">brake</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_ship.html#aee981dc9846a549b31274e7e2d29b82c">turnLeft</a>();</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_ship.html#a471e4e86d3cf0ea0b02d3603575f070e">turnRight</a>();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_ship.html#ad8f6d67f0ae2d0076792f9076a99373c">trigger</a>();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_ship.html#af03aaa2145b622a9af30c38cbca6bf42">turnToward</a>(sf::Vector2f <span class="keyword">const</span> &amp;direction);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    sf::Vector2f <a class="code" href="class_ship.html#a40f4d36fbef8f0b501f60b8ec817f8f6">getForward</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    sf::Vector2f <a class="code" href="class_ship.html#a80cb0dd72d6104f20152ee72b10b8182">getVelocity</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_ship.html#ae33c669dc34fdeb8a3a964f7aba02048">setRadarRange</a>(<span class="keywordtype">float</span> range);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">float</span> getRadarRange() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_ship.html#ad35eef36ba6207b762f6823ba6a63e29">getHealth</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> addHealth(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> health);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> getMaxHealth() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="class_ship.html#a6843554ddc3c0098bcc9d17f7a7fbf3b">   68</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_ship.html#a6843554ddc3c0098bcc9d17f7a7fbf3b">MAX_SPEED_</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> MAX_HEALTH_;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">float</span> refireTime_;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">float</span> coolDown_;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ticks_; <span class="comment">//ticks_ = (ticks_ + 1) % INT_MAX;</span></div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> calculateBoundingCircle();</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_ship.html#ab865757829aec291f3f1d26cb598b39d">tickToSec</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ticks) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;};</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="class_ship_html_a6843554ddc3c0098bcc9d17f7a7fbf3b"><div class="ttname"><a href="class_ship.html#a6843554ddc3c0098bcc9d17f7a7fbf3b">Ship::MAX_SPEED_</a></div><div class="ttdeci">const float MAX_SPEED_</div><div class="ttdoc">Maximum length of velocity vector. </div><div class="ttdef"><b>Definition:</b> Ship.hpp:47</div></div>
-<div class="ttc" id="class_ship_html_ac1584ef024d6ed1538eb2d1e99661557"><div class="ttname"><a href="class_ship.html#ac1584ef024d6ed1538eb2d1e99661557">Ship::velocity_</a></div><div class="ttdeci">sf::Vector2f velocity_</div><div class="ttdoc">Delta position per update. </div><div class="ttdef"><b>Definition:</b> Ship.hpp:54</div></div>
-<div class="ttc" id="class_ship_html_af9523b2053ac0164fa6c702aa1a1165e"><div class="ttname"><a href="class_ship.html#af9523b2053ac0164fa6c702aa1a1165e">Ship::health_</a></div><div class="ttdeci">int health_</div><div class="ttdoc">Current health. </div><div class="ttdef"><b>Definition:</b> Ship.hpp:57</div></div>
-<div class="ttc" id="class_ship_html_a471e4e86d3cf0ea0b02d3603575f070e"><div class="ttname"><a href="class_ship.html#a471e4e86d3cf0ea0b02d3603575f070e">Ship::turnRight</a></div><div class="ttdeci">void turnRight()</div><div class="ttdoc">Turn ship right. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:82</div></div>
-<div class="ttc" id="class_ship_html_a8e7bc2ee7d749ab0d28062091733987c"><div class="ttname"><a href="class_ship.html#a8e7bc2ee7d749ab0d28062091733987c">Ship::clampToMaxSpeed</a></div><div class="ttdeci">void clampToMaxSpeed()</div><div class="ttdoc">Clamps the length of the velocity_ vector to MAX_SPEED_. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:40</div></div>
-<div class="ttc" id="class_ship_html_a52d219bbadbba6475b919f8e6497ce34"><div class="ttname"><a href="class_ship.html#a52d219bbadbba6475b919f8e6497ce34">Ship::isDead</a></div><div class="ttdeci">bool isDead() const </div><div class="ttdoc">Returns true if health is zero. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:32</div></div>
-<div class="ttc" id="class_ship_html_a2415e485b0707df42ef22121977fdce9"><div class="ttname"><a href="class_ship.html#a2415e485b0707df42ef22121977fdce9">Ship::thrust_</a></div><div class="ttdeci">float thrust_</div><div class="ttdoc">How fast the ship accelerates. </div><div class="ttdef"><b>Definition:</b> Ship.hpp:63</div></div>
-<div class="ttc" id="class_ship_html_a56a38990ec7817f256bce1abe1ded6ed"><div class="ttname"><a href="class_ship.html#a56a38990ec7817f256bce1abe1ded6ed">Ship::turnSpeed_</a></div><div class="ttdeci">float turnSpeed_</div><div class="ttdoc">How fast (in degrees) the ship can turn. </div><div class="ttdef"><b>Definition:</b> Ship.hpp:66</div></div>
-<div class="ttc" id="class_ship_html_aee981dc9846a549b31274e7e2d29b82c"><div class="ttname"><a href="class_ship.html#aee981dc9846a549b31274e7e2d29b82c">Ship::turnLeft</a></div><div class="ttdeci">void turnLeft()</div><div class="ttdoc">Turn ship left. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:70</div></div>
-<div class="ttc" id="class_ship_html_a4543637a3f0b4275206f684247e1b313"><div class="ttname"><a href="class_ship.html#a4543637a3f0b4275206f684247e1b313">Ship::thrust</a></div><div class="ttdeci">void thrust()</div><div class="ttdoc">Apply acceleration in direction of forward vector. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:48</div></div>
-<div class="ttc" id="class_ship_html_a152b38aa89be58f3037f82c408ff28c9"><div class="ttname"><a href="class_ship.html#a152b38aa89be58f3037f82c408ff28c9">Ship::forward_</a></div><div class="ttdeci">sf::Vector2f forward_</div><div class="ttdoc">Unit vector for ship&#39;s heading. </div><div class="ttdef"><b>Definition:</b> Ship.hpp:60</div></div>
-<div class="ttc" id="class_ship_html_ad8f6d67f0ae2d0076792f9076a99373c"><div class="ttname"><a href="class_ship.html#ad8f6d67f0ae2d0076792f9076a99373c">Ship::trigger</a></div><div class="ttdeci">bool trigger()</div><div class="ttdoc">Attempt to fire, returns success. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:94</div></div>
-<div class="ttc" id="class_ship_html_abfe8b92e7f0346b198e8c40cff44ebeb"><div class="ttname"><a href="class_ship.html#abfe8b92e7f0346b198e8c40cff44ebeb">Ship::update</a></div><div class="ttdeci">virtual void update()=0</div><div class="ttdoc">Hides sf::Shape::update() </div></div>
-<div class="ttc" id="class_ship_html_a40f4d36fbef8f0b501f60b8ec817f8f6"><div class="ttname"><a href="class_ship.html#a40f4d36fbef8f0b501f60b8ec817f8f6">Ship::getForward</a></div><div class="ttdeci">sf::Vector2f getForward() const </div><div class="ttdoc">Returns forward direction of ship. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:108</div></div>
-<div class="ttc" id="class_ship_html_a3a0732b4bb4697b57398cec3b24d76ed"><div class="ttname"><a href="class_ship.html#a3a0732b4bb4697b57398cec3b24d76ed">Ship::takeDamage</a></div><div class="ttdeci">void takeDamage(unsigned int amount)</div><div class="ttdoc">Reduces health by the specified amount. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:21</div></div>
-<div class="ttc" id="class_ship_html_ab865757829aec291f3f1d26cb598b39d"><div class="ttname"><a href="class_ship.html#ab865757829aec291f3f1d26cb598b39d">Ship::tickToSec</a></div><div class="ttdeci">float tickToSec(unsigned int ticks) const </div><div class="ttdoc">Ticks to seconds. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:113</div></div>
-<div class="ttc" id="class_ship_html"><div class="ttname"><a href="class_ship.html">Ship</a></div><div class="ttdoc">Base Ship class. Abstract class that inherits from sf::ConvexShape. Contains members common to all sh...</div><div class="ttdef"><b>Definition:</b> Ship.hpp:13</div></div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="class_ship.html#ac1584ef024d6ed1538eb2d1e99661557">   77</a></span>&#160;    sf::Vector2f <a class="code" href="class_ship.html#ac1584ef024d6ed1538eb2d1e99661557">velocity_</a>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="class_ship.html#af51d55f36508e794da6072133e849a0d">   80</a></span>&#160;    sf::Vector2f <a class="code" href="class_ship.html#af51d55f36508e794da6072133e849a0d">accel_</a>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="class_ship.html#af9523b2053ac0164fa6c702aa1a1165e">   83</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_ship.html#af9523b2053ac0164fa6c702aa1a1165e">health_</a>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="class_ship.html#a152b38aa89be58f3037f82c408ff28c9">   86</a></span>&#160;    sf::Vector2f <a class="code" href="class_ship.html#a152b38aa89be58f3037f82c408ff28c9">forward_</a>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="class_ship.html#a2415e485b0707df42ef22121977fdce9">   89</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_ship.html#a2415e485b0707df42ef22121977fdce9">thrust_</a>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="class_ship.html#a56a38990ec7817f256bce1abe1ded6ed">   92</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_ship.html#a56a38990ec7817f256bce1abe1ded6ed">turnSpeed_</a>;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_ship.html#a8e7bc2ee7d749ab0d28062091733987c">clampToMaxSpeed</a>();</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="class_ship.html#ab264a1e3fadf612383c5d5aa8e52b9ac">   98</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_ship.html#ab264a1e3fadf612383c5d5aa8e52b9ac">radarRange_</a>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_ship.html#ab865757829aec291f3f1d26cb598b39d">tickToSec</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ticks) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="class_ship.html#a5c40260e6dd1549e0e55a7b88e926b3a">  104</a></span>&#160;    thor::UniversalEmitter <a class="code" href="class_ship.html#a5c40260e6dd1549e0e55a7b88e926b3a">particleEmitter_</a>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> updateParticleEmitter();</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">float</span> particleAngleVariance_;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    thor::Connection connection_;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;};</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="class_ship_html_a3ee2f77fa9920030dc3ff8268b2f73a4"><div class="ttname"><a href="class_ship.html#a3ee2f77fa9920030dc3ff8268b2f73a4">Ship::update</a></div><div class="ttdeci">virtual void update()</div><div class="ttdoc">Hides sf::Shape::update() </div><div class="ttdef"><b>Definition:</b> Ship.cpp:45</div></div>
+<div class="ttc" id="class_ship_html_a719e69f970fc6088eea225242e843640"><div class="ttname"><a href="class_ship.html#a719e69f970fc6088eea225242e843640">Ship::brake</a></div><div class="ttdeci">void brake()</div><div class="ttdoc">Apply deceleration if thrust is present. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:92</div></div>
+<div class="ttc" id="class_ship_html_ab264a1e3fadf612383c5d5aa8e52b9ac"><div class="ttname"><a href="class_ship.html#ab264a1e3fadf612383c5d5aa8e52b9ac">Ship::radarRange_</a></div><div class="ttdeci">float radarRange_</div><div class="ttdoc">Ship&#39;s radar radius. </div><div class="ttdef"><b>Definition:</b> Ship.hpp:98</div></div>
+<div class="ttc" id="class_ship_html_a6843554ddc3c0098bcc9d17f7a7fbf3b"><div class="ttname"><a href="class_ship.html#a6843554ddc3c0098bcc9d17f7a7fbf3b">Ship::MAX_SPEED_</a></div><div class="ttdeci">const float MAX_SPEED_</div><div class="ttdoc">Maximum length of velocity vector. </div><div class="ttdef"><b>Definition:</b> Ship.hpp:68</div></div>
+<div class="ttc" id="class_ship_html_a80cb0dd72d6104f20152ee72b10b8182"><div class="ttname"><a href="class_ship.html#a80cb0dd72d6104f20152ee72b10b8182">Ship::getVelocity</a></div><div class="ttdeci">sf::Vector2f getVelocity() const </div><div class="ttdoc">Returns velocity. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:156</div></div>
+<div class="ttc" id="class_ship_html_af51d55f36508e794da6072133e849a0d"><div class="ttname"><a href="class_ship.html#af51d55f36508e794da6072133e849a0d">Ship::accel_</a></div><div class="ttdeci">sf::Vector2f accel_</div><div class="ttdoc">Delta velocity after update !velocity_ += accel_ in update! </div><div class="ttdef"><b>Definition:</b> Ship.hpp:80</div></div>
+<div class="ttc" id="class_ship_html_ac1584ef024d6ed1538eb2d1e99661557"><div class="ttname"><a href="class_ship.html#ac1584ef024d6ed1538eb2d1e99661557">Ship::velocity_</a></div><div class="ttdeci">sf::Vector2f velocity_</div><div class="ttdoc">Delta position per update. </div><div class="ttdef"><b>Definition:</b> Ship.hpp:77</div></div>
+<div class="ttc" id="class_ship_html_ad35eef36ba6207b762f6823ba6a63e29"><div class="ttname"><a href="class_ship.html#ad35eef36ba6207b762f6823ba6a63e29">Ship::getHealth</a></div><div class="ttdeci">int getHealth() const </div><div class="ttdoc">Health accessors. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:171</div></div>
+<div class="ttc" id="class_ship_html_af9523b2053ac0164fa6c702aa1a1165e"><div class="ttname"><a href="class_ship.html#af9523b2053ac0164fa6c702aa1a1165e">Ship::health_</a></div><div class="ttdeci">int health_</div><div class="ttdoc">Current health. </div><div class="ttdef"><b>Definition:</b> Ship.hpp:83</div></div>
+<div class="ttc" id="class_ship_html_a471e4e86d3cf0ea0b02d3603575f070e"><div class="ttname"><a href="class_ship.html#a471e4e86d3cf0ea0b02d3603575f070e">Ship::turnRight</a></div><div class="ttdeci">void turnRight()</div><div class="ttdoc">Turn ship right. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:112</div></div>
+<div class="ttc" id="class_ship_html_a8e7bc2ee7d749ab0d28062091733987c"><div class="ttname"><a href="class_ship.html#a8e7bc2ee7d749ab0d28062091733987c">Ship::clampToMaxSpeed</a></div><div class="ttdeci">void clampToMaxSpeed()</div><div class="ttdoc">Clamps the length of the velocity_ vector to MAX_SPEED_. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:77</div></div>
+<div class="ttc" id="class_ship_html_a52d219bbadbba6475b919f8e6497ce34"><div class="ttname"><a href="class_ship.html#a52d219bbadbba6475b919f8e6497ce34">Ship::isDead</a></div><div class="ttdeci">bool isDead() const </div><div class="ttdoc">Returns true if health is zero. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:73</div></div>
+<div class="ttc" id="class_ship_html_a2415e485b0707df42ef22121977fdce9"><div class="ttname"><a href="class_ship.html#a2415e485b0707df42ef22121977fdce9">Ship::thrust_</a></div><div class="ttdeci">float thrust_</div><div class="ttdoc">How fast the ship accelerates. </div><div class="ttdef"><b>Definition:</b> Ship.hpp:89</div></div>
+<div class="ttc" id="class_ship_html_a56a38990ec7817f256bce1abe1ded6ed"><div class="ttname"><a href="class_ship.html#a56a38990ec7817f256bce1abe1ded6ed">Ship::turnSpeed_</a></div><div class="ttdeci">float turnSpeed_</div><div class="ttdoc">How fast (in degrees) the ship can turn. </div><div class="ttdef"><b>Definition:</b> Ship.hpp:92</div></div>
+<div class="ttc" id="class_ship_html_aee981dc9846a549b31274e7e2d29b82c"><div class="ttname"><a href="class_ship.html#aee981dc9846a549b31274e7e2d29b82c">Ship::turnLeft</a></div><div class="ttdeci">void turnLeft()</div><div class="ttdoc">Turn ship left. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:100</div></div>
+<div class="ttc" id="class_ship_html_a4543637a3f0b4275206f684247e1b313"><div class="ttname"><a href="class_ship.html#a4543637a3f0b4275206f684247e1b313">Ship::thrust</a></div><div class="ttdeci">void thrust()</div><div class="ttdoc">Apply acceleration in direction of forward vector. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:85</div></div>
+<div class="ttc" id="class_ship_html_a152b38aa89be58f3037f82c408ff28c9"><div class="ttname"><a href="class_ship.html#a152b38aa89be58f3037f82c408ff28c9">Ship::forward_</a></div><div class="ttdeci">sf::Vector2f forward_</div><div class="ttdoc">Unit vector for ship&#39;s heading. </div><div class="ttdef"><b>Definition:</b> Ship.hpp:86</div></div>
+<div class="ttc" id="class_ship_html_a25357ff5a748c27c2dda77106ac2b635"><div class="ttname"><a href="class_ship.html#a25357ff5a748c27c2dda77106ac2b635">Ship::takeDamage</a></div><div class="ttdeci">void takeDamage(unsigned int amount=1u)</div><div class="ttdoc">Reduces health by the specified amount. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:62</div></div>
+<div class="ttc" id="class_ship_html_ad8f6d67f0ae2d0076792f9076a99373c"><div class="ttname"><a href="class_ship.html#ad8f6d67f0ae2d0076792f9076a99373c">Ship::trigger</a></div><div class="ttdeci">bool trigger()</div><div class="ttdoc">Attempt to fire, returns success. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:124</div></div>
+<div class="ttc" id="class_ship_html_a5c40260e6dd1549e0e55a7b88e926b3a"><div class="ttname"><a href="class_ship.html#a5c40260e6dd1549e0e55a7b88e926b3a">Ship::particleEmitter_</a></div><div class="ttdeci">thor::UniversalEmitter particleEmitter_</div><div class="ttdoc">Does nothing on it&#39;s own. Derived classes should play with this. </div><div class="ttdef"><b>Definition:</b> Ship.hpp:104</div></div>
+<div class="ttc" id="class_ship_html_af03aaa2145b622a9af30c38cbca6bf42"><div class="ttname"><a href="class_ship.html#af03aaa2145b622a9af30c38cbca6bf42">Ship::turnToward</a></div><div class="ttdeci">void turnToward(sf::Vector2f const &amp;direction)</div><div class="ttdef"><b>Definition:</b> Ship.cpp:138</div></div>
+<div class="ttc" id="class_ship_html_a40f4d36fbef8f0b501f60b8ec817f8f6"><div class="ttname"><a href="class_ship.html#a40f4d36fbef8f0b501f60b8ec817f8f6">Ship::getForward</a></div><div class="ttdeci">sf::Vector2f getForward() const </div><div class="ttdoc">Returns forward direction of ship. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:151</div></div>
+<div class="ttc" id="class_ship_html_ae33c669dc34fdeb8a3a964f7aba02048"><div class="ttname"><a href="class_ship.html#ae33c669dc34fdeb8a3a964f7aba02048">Ship::setRadarRange</a></div><div class="ttdeci">void setRadarRange(float range)</div><div class="ttdoc">Radar radius accessors. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:161</div></div>
+<div class="ttc" id="class_ship_html_ab865757829aec291f3f1d26cb598b39d"><div class="ttname"><a href="class_ship.html#ab865757829aec291f3f1d26cb598b39d">Ship::tickToSec</a></div><div class="ttdeci">float tickToSec(unsigned int ticks) const </div><div class="ttdoc">Ticks to seconds. </div><div class="ttdef"><b>Definition:</b> Ship.cpp:192</div></div>
+<div class="ttc" id="class_ship_html"><div class="ttname"><a href="class_ship.html">Ship</a></div><div class="ttdoc">Base Ship class. Abstract class that inherits from sf::ConvexShape. Contains members common to all sh...</div><div class="ttdef"><b>Definition:</b> Ship.hpp:15</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

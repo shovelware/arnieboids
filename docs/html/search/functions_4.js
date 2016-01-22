@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['isactive',['isActive',['../class_bullet.html#ac34da8003c6bc44bddfabce81411bed8',1,'Bullet']]],
-  ['isdead',['isDead',['../class_ship.html#a52d219bbadbba6475b919f8e6497ce34',1,'Ship']]],
-  ['iskeydown',['isKeyDown',['../class_key_input.html#a14646d6a26aac7f82877b6f14a860810',1,'KeyInput']]],
-  ['iskeypressed',['isKeyPressed',['../class_key_input.html#aedc341260ca4a091ae068c9511fc2060',1,'KeyInput']]],
-  ['iskeyreleased',['isKeyReleased',['../class_key_input.html#abc5ff40ae7764fc2aa9694a5d5b46fb6',1,'KeyInput']]],
-  ['iskeyup',['isKeyUp',['../class_key_input.html#a05667656783ac709b9b2aaf22f2eab93',1,'KeyInput']]]
+  ['getforward',['getForward',['../class_ship.html#a40f4d36fbef8f0b501f60b8ec817f8f6',1,'Ship']]],
+  ['gethealth',['getHealth',['../class_ship.html#ad35eef36ba6207b762f6823ba6a63e29',1,'Ship']]],
+  ['getvelocity',['getVelocity',['../class_ship.html#a80cb0dd72d6104f20152ee72b10b8182',1,'Ship']]]
 ];

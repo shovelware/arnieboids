@@ -1,0 +1,9 @@
+digraph "Arnieboids/include" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_6320226993e619eb3cf94dd74650d5a8 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Arnieboids" fontname="Helvetica", fontsize="10", URL="dir_6320226993e619eb3cf94dd74650d5a8.html"]
+  dir_f83c4d6fb9e84099085697ead5c0c891 [shape=box, label="include", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_f83c4d6fb9e84099085697ead5c0c891.html"];
+  }
+}

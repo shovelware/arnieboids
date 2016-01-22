@@ -4,9 +4,9 @@
 Ship* Mothership::target_ = nullptr;
 
 Mothership::Mothership(thor::ParticleSystem& particleSystem, std::function<void(Bullet*)> const& fireCallback, std::function<void(Ship*)> spawnCallback, sf::Vector2f position) :
-Ship(particleSystem, position, 2.f, 4u),
+Ship(particleSystem, position, 3.f, 4u),
 particleSystem_(particleSystem),
-ticksSinceLastSpawn_(rand() % 100),	//offset spawn times a bit
+ticksSinceLastSpawn_(rand() % 1000),	//offset spawn times a bit
 ticksPerSpawn_(1000u),
 fireBullet_(fireCallback),
 spawnShip_(spawnCallback),
@@ -27,7 +27,7 @@ MAX_LIVE_MISSILES(5u)
 	setOutlineColor(sf::Color(255,200,100));
 	setOutlineThickness(-2.f);
 
-	thrust_ = 0.005f;
+	thrust_ = 0.01f;
 	turnSpeed_ *= 0.1f;
 
 	particleAngleVariance_ = 90.f;
@@ -49,17 +49,22 @@ void Mothership::update() {
 		ticksSinceLastSpawn_ = 0u;
 	}
 
+	sf::Vector2f flockPoint;
+
 	//wander or evade
 	switch (calculateState())
 	{
-	case WANDER:
-		turnToward(wander());
-		turnToward(flock());
-		break;
 	case EVADE:
 		turnToward(evade());
 		if (trigger())
 			fire();
+		break;
+	case WANDER:
+		flockPoint = flock();
+		if (thor::length(flockPoint) > 0)
+			turnToward(flockPoint);
+		else
+			turnToward(wander());
 		break;
 	}
 

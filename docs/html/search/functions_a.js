@@ -1,4 +1,10 @@
 var searchData=
 [
-  ['update',['update',['../class_asteroid.html#aabe3a75b05df4749a69469a1204b8382',1,'Asteroid::update()'],['../class_bullet.html#a32f4a0611fe2dd245fee955d14ca1f68',1,'Bullet::update()'],['../class_camera.html#a42cda7239981a5618660d04bd5893556',1,'Camera::update()'],['../class_key_input.html#ab32b8ec028e37e27e059c0ba5109d9f0',1,'KeyInput::update()'],['../class_missile.html#a6bc00954b20db86b293fd4d98012cd09',1,'Missile::update()'],['../class_player.html#a6912bb6e48efb5845d59f0f4582827ef',1,'Player::update()'],['../class_ship.html#abfe8b92e7f0346b198e8c40cff44ebeb',1,'Ship::update()'],['../class_swarm_boid.html#a25f68c54ca05b761a6aa700801a02cff',1,'SwarmBoid::update()']]]
+  ['takedamage',['takeDamage',['../class_ship.html#a25357ff5a748c27c2dda77106ac2b635',1,'Ship']]],
+  ['thrust',['thrust',['../class_ship.html#a4543637a3f0b4275206f684247e1b313',1,'Ship']]],
+  ['ticktosec',['tickToSec',['../class_bullet.html#a27f956e0fe2c7e1da53bff8aecfb87b1',1,'Bullet::tickToSec()'],['../class_ship.html#ab865757829aec291f3f1d26cb598b39d',1,'Ship::tickToSec()']]],
+  ['trigger',['trigger',['../class_ship.html#ad8f6d67f0ae2d0076792f9076a99373c',1,'Ship']]],
+  ['turnleft',['turnLeft',['../class_ship.html#aee981dc9846a549b31274e7e2d29b82c',1,'Ship']]],
+  ['turnright',['turnRight',['../class_ship.html#a471e4e86d3cf0ea0b02d3603575f070e',1,'Ship']]],
+  ['turntoward',['turnToward',['../class_ship.html#af03aaa2145b622a9af30c38cbca6bf42',1,'Ship']]]
 ];

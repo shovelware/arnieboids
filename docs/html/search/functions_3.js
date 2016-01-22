@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['getforward',['getForward',['../class_ship.html#a40f4d36fbef8f0b501f60b8ec817f8f6',1,'Ship']]]
+  ['drawhud',['drawHUD',['../class_camera.html#a293e96ec309365bbbe590140ce1b7828',1,'Camera']]]
 ];

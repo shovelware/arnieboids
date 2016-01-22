@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['clamptomaxspeed',['clampToMaxSpeed',['../class_ship.html#a8e7bc2ee7d749ab0d28062091733987c',1,'Ship']]]
+  ['brake',['brake',['../class_ship.html#a719e69f970fc6088eea225242e843640',1,'Ship']]]
 ];

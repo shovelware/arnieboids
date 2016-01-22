@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['forward_5f',['forward_',['../class_bullet.html#a7bc86024912fd5c74aee5c1de7bb3130',1,'Bullet::forward_()'],['../class_ship.html#a152b38aa89be58f3037f82c408ff28c9',1,'Ship::forward_()']]]
+  ['damage_5f',['damage_',['../class_bullet.html#aaa26f3bff8a6f418831cf7458e018b40',1,'Bullet']]]
 ];

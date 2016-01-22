@@ -1,0 +1,11 @@
+digraph "Arnieboids" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_6320226993e619eb3cf94dd74650d5a8 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_6320226993e619eb3cf94dd74650d5a8.html"];
+    dir_6320226993e619eb3cf94dd74650d5a8 [shape=plaintext label="Arnieboids"];
+    dir_f83c4d6fb9e84099085697ead5c0c891 [shape=box label="include" color="black" fillcolor="white" style="filled" URL="dir_f83c4d6fb9e84099085697ead5c0c891.html"];
+    dir_8b0a5188814a2b2d10f51d7944015368 [shape=box label="src" color="black" fillcolor="white" style="filled" URL="dir_8b0a5188814a2b2d10f51d7944015368.html"];
+  }
+}

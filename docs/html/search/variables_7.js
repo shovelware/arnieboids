@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['velocity_5f',['velocity_',['../class_ship.html#ac1584ef024d6ed1538eb2d1e99661557',1,'Ship']]]
+  ['radarrange_5f',['radarRange_',['../class_ship.html#ab264a1e3fadf612383c5d5aa8e52b9ac',1,'Ship']]]
 ];

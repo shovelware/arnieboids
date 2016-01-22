@@ -22,9 +22,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="spaceshipblenderhalf.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ArnieBoids
-   &#160;<span id="projectnumber">0.0.1</span>
+   &#160;<span id="projectnumber">0.9.0</span>
    </div>
    <div id="projectbrief">JOINT AI PROJECT</div>
   </td>
@@ -85,6 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
@@ -96,18 +98,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for Bullet:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="class_bullet.png" usemap="#Bullet_map" alt=""/>
-  <map id="Bullet_map" name="Bullet_map">
-<area href="class_missile.html" alt="Missile" shape="rect" coords="0,112,91,136"/>
+<div class="center"><img src="class_bullet__inherit__graph.png" border="0" usemap="#_bullet_inherit__map" alt="Inheritance graph"/></div>
+<map name="_bullet_inherit__map" id="_bullet_inherit__map">
 </map>
- </div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for Bullet:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_bullet__coll__graph.png" border="0" usemap="#_bullet_coll__map" alt="Collaboration graph"/></div>
+<map name="_bullet_coll__map" id="_bullet_coll__map">
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ac6060e229ad72f94615920c8719ba93d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac6060e229ad72f94615920c8719ba93d"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>Faction</b> { <b>PLAYER</b>, 
+<b>ENEMY</b>
+ }<tr class="separator:ac6060e229ad72f94615920c8719ba93d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af049e550cd3848277badd21f86194c49"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af049e550cd3848277badd21f86194c49"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Bullet</b> (sf::Vector2f const &amp;position, sf::Vector2f const &amp;direction, const float speed=5.f)</td></tr>
-<tr class="separator:af049e550cd3848277badd21f86194c49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecd87e0a37426b14fb0e0fa07b4a39d0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aecd87e0a37426b14fb0e0fa07b4a39d0"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Bullet</b> (sf::Vector2f const &amp;position, sf::Vector2f const &amp;direction, const float speed=10.f)</td></tr>
+<tr class="separator:aecd87e0a37426b14fb0e0fa07b4a39d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32f4a0611fe2dd245fee955d14ca1f68"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a32f4a0611fe2dd245fee955d14ca1f68"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bullet.html#a32f4a0611fe2dd245fee955d14ca1f68">update</a> ()</td></tr>
 <tr class="memdesc:a32f4a0611fe2dd245fee955d14ca1f68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the bullet forward and checks if it has exceeded time to live. <br /></td></tr>
@@ -119,6 +133,15 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a3b790871b9487ef3cf5bf956354c8639"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b790871b9487ef3cf5bf956354c8639"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setActive</b> (bool active)</td></tr>
 <tr class="separator:a3b790871b9487ef3cf5bf956354c8639"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cab9df9abc7cef2f9f0f0c266ffd73a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6cab9df9abc7cef2f9f0f0c266ffd73a"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getDamage</b> () const </td></tr>
+<tr class="separator:a6cab9df9abc7cef2f9f0f0c266ffd73a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a039f076030de9ac0bd8d4cb3c17447aa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a039f076030de9ac0bd8d4cb3c17447aa"></a>
+Faction&#160;</td><td class="memItemRight" valign="bottom"><b>getFaction</b> () const </td></tr>
+<tr class="separator:a039f076030de9ac0bd8d4cb3c17447aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaae9f5313691d4e951075ddb9e88632c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaae9f5313691d4e951075ddb9e88632c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setFaction</b> (Faction faction)</td></tr>
+<tr class="separator:aaae9f5313691d4e951075ddb9e88632c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -133,6 +156,10 @@ Protected Attributes</h2></td></tr>
 float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bullet.html#a6fb156b4f69194ca4e6b2c1b23887902">speed_</a></td></tr>
 <tr class="memdesc:a6fb156b4f69194ca4e6b2c1b23887902"><td class="mdescLeft">&#160;</td><td class="mdescRight">How far the bullet travels each update. <br /></td></tr>
 <tr class="separator:a6fb156b4f69194ca4e6b2c1b23887902"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa26f3bff8a6f418831cf7458e018b40"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa26f3bff8a6f418831cf7458e018b40"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bullet.html#aaa26f3bff8a6f418831cf7458e018b40">damage_</a></td></tr>
+<tr class="memdesc:aaa26f3bff8a6f418831cf7458e018b40"><td class="mdescLeft">&#160;</td><td class="mdescRight">How much damage a bullet does. <br /></td></tr>
+<tr class="separator:aaa26f3bff8a6f418831cf7458e018b40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04d2c6f850e61e353b5c84b55f42a6f8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a04d2c6f850e61e353b5c84b55f42a6f8"></a>
 unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bullet.html#a04d2c6f850e61e353b5c84b55f42a6f8">ticks_</a></td></tr>
 <tr class="memdesc:a04d2c6f850e61e353b5c84b55f42a6f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ticks since bullet has spawned. <br /></td></tr>
@@ -147,6 +174,9 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>lifeTime_</b></td></tr
 <tr class="memitem:a46cc668478d5c798e4cbe85a56f14939"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46cc668478d5c798e4cbe85a56f14939"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>active_</b></td></tr>
 <tr class="separator:a46cc668478d5c798e4cbe85a56f14939"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5df7d37a631a9172b26bad093b16ec2a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5df7d37a631a9172b26bad093b16ec2a"></a>
+Faction&#160;</td><td class="memItemRight" valign="bottom"><b>faction_</b></td></tr>
+<tr class="separator:a5df7d37a631a9172b26bad093b16ec2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Arnieboids/include/<a class="el" href="_bullet_8hpp_source.html">Bullet.hpp</a></li>
