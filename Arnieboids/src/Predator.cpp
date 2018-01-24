@@ -39,13 +39,11 @@ void Predator::update() {
 	sf::Vector2f desiredPosition = flock();
 	turnToward(desiredPosition);
 	thrust();
-
-	sf::Vector2f displacement(0, 0);
 	float dotProd = 0;
 
 	if (prey_)
 	{
-		displacement = prey_->getPosition() - this->getPosition();
+		auto const displacement = prey_->getShortestDisplacement(getPosition());
 		dotProd = thor::dotProduct(forward_, thor::unitVector(displacement));
 	}
 
@@ -81,7 +79,7 @@ sf::Vector2f Predator::separation() const {
 	{
 		Predator* flockMember = *itr;
 		if (this != flockMember) {
-			sf::Vector2f diff = this->getPosition() - flockMember->getPosition();
+			sf::Vector2f diff = flockMember->getShortestDisplacement(getPosition());
 			float distance = thor::length(diff);
 			if (distance < desiredSeparation)
 			{
@@ -96,7 +94,7 @@ sf::Vector2f Predator::separation() const {
 	//Avoid colliding with prey_
 		if (prey_)
 		{
-		sf::Vector2f diff = this->getPosition() - prey_->getPosition();
+		sf::Vector2f diff = prey_->getShortestDisplacement(getPosition());
 		float distance = thor::length(diff);
 		if (distance < desiredSeparation) {
 			diff = thor::unitVector(diff);
@@ -135,10 +133,11 @@ sf::Vector2f Predator::cohesion() const {
 		Predator* flockMember = *itr;
 		if (this != flockMember) {
 			//Is the flockmember close enough to us?
-			float distance = thor::length(this->getPosition() - flockMember->getPosition());
+			auto const memberPos = flockMember->getClosestPosition(getPosition());
+			float distance = thor::length(this->getPosition() - memberPos);
 			if (distance < neighbourDist)
 			{
-				sum += flockMember->getPosition();
+				sum += memberPos;
 				++count;
 			}
 		}
@@ -172,7 +171,7 @@ sf::Vector2f Predator::alignment() const {
 		Predator* flockMember = *itr;
 		if (this != flockMember) {
 			//Is the flockmember close enough?
-			float distance = thor::length(this->getPosition() - flockMember->getPosition());
+			float distance = thor::length(flockMember->getShortestDisplacement(getPosition()));
 			if (distance < neighbourDist)
 			{
 				sum += flockMember->getForward();
@@ -223,7 +222,7 @@ sf::Vector2f Predator::flock() const {
 	sf::Vector2f pry(0, 0);
 	if (prey_)
 	{
-		pry = thor::unitVector(prey_->getPosition() - getPosition());
+		pry = thor::unitVector(prey_->getShortestDisplacement(getPosition()));
 	}
 	pry *= 5.0f;
 

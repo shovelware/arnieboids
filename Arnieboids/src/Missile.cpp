@@ -57,7 +57,7 @@ void Missile::update() {
 	if (active_)
 	{
 		//find out which way we should turn to face target
-		float d = perpDot(TARGET_->getPosition() - this->getPosition(), forward_);
+		float d = perpDot(TARGET_->getShortestDisplacement(getPosition()), forward_);
 		if (d > 0.f) {
 			//turn clockwise
 			rotate(TURN_SPEED_);

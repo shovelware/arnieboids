@@ -6,6 +6,8 @@ inline float randFloat(float MIN, float MAX) { return MIN + static_cast <float> 
 #pragma region PublicMemberFunctions
 Game::Game(sf::RenderWindow &window, unsigned int timePerTick) :
 window_(window),
+renderTexture_(),
+renderSprite_(),
 camera_(window_),
 ships_(),
 bullets_(),
@@ -20,15 +22,28 @@ particleTexture_(),
 gameBounds_(-(window.getSize().x * 1.5f), -(window.getSize().y * 1.5f), window.getSize().x  * 1.5f, window.getSize().y  * 1.5f),
 backdrop_(sf::Vector2f(window.getSize()) * 3.f)
 {
+	Ship::setGameBounds(gameBounds_);
 	srand(time(NULL));
 	//float w = winWidth;
 	//float h = winHeight;
 	//
 	//genStars(-w, w * 2, -h, h * 2, 420U, 1, 5);
 
-	//define function for adding bullets to list
+	// Setup the renderTexture and sprite. Will draw a 3x3 grid of the game area, where the playable area is the centre.
+	sf::Vector2f const worldDimensions((abs(gameBounds_.left) + gameBounds_.width), (abs(gameBounds_.top) + gameBounds_.height));
+	renderTexture_.create((unsigned)worldDimensions.x, (unsigned)worldDimensions.y);
+	renderTexture_.setRepeated(true);
+	renderTexture_.setView(sf::View(sf::Vector2f(), worldDimensions));
+	renderSprite_.setTexture(renderTexture_.getTexture());
+	sf::FloatRect const bounds = renderSprite_.getLocalBounds();
+	renderSprite_.setOrigin(bounds.width*1.5f, bounds.height*1.5f);
+	sf::Vector2i const textureSize(renderTexture_.getSize());
+	renderSprite_.setTextureRect({ 0, 0, textureSize.x * 3, textureSize.y * 3 });
+
+	//define functions for spawning objects
 	fireBulletCallback_ = [this](Bullet* bullet){ bullets_.push_back(bullet); };
 	spawnShipCallback_ = [this](Ship * ship){ ships_.push_back(ship); };
+
 	camera_.loadFont("game_over.ttf");
 
 	//fade particles out at end of life
@@ -51,6 +66,7 @@ backdrop_(sf::Vector2f(window.getSize()) * 3.f)
 
 	bgMusic_.openFromFile("./sound/music.ogg");
 	bgMusic_.setLoop(true);
+	bgMusic_.setVolume(50.f);
 	bgMusic_.play();
 
 	reset();
@@ -301,30 +317,8 @@ void Game::handleEvents() {
 		case sf::Event::Closed:
 			window_.close();
 			break;
-		case sf::Event::Resized: break;
-		case sf::Event::LostFocus: break;
-		case sf::Event::GainedFocus: break;
-		case sf::Event::TextEntered: break;
-		case sf::Event::KeyPressed: break;
-		case sf::Event::KeyReleased: break;
-		case sf::Event::MouseWheelMoved: break;
-		case sf::Event::MouseWheelScrolled: break;
-		case sf::Event::MouseButtonPressed: break;
-		case sf::Event::MouseButtonReleased: break;
-		case sf::Event::MouseMoved: break;
-		case sf::Event::MouseEntered: break;
-		case sf::Event::MouseLeft: break;
-		case sf::Event::JoystickButtonPressed: break;
-		case sf::Event::JoystickButtonReleased: break;
-		case sf::Event::JoystickMoved: break;
-		case sf::Event::JoystickConnected: break;
-		case sf::Event::JoystickDisconnected: break;
-		case sf::Event::TouchBegan: break;
-		case sf::Event::TouchMoved: break;
-		case sf::Event::TouchEnded: break;
-		case sf::Event::SensorChanged: break;
-		case sf::Event::Count: break;
-		default: break;
+		default:
+			break;
 		}
 	}//end while
 
@@ -560,21 +554,18 @@ void Game::update() {
 }
 
 void Game::draw() {
-	window_.clear();
-
-	window_.setView(camera_);
-
-	backdrop_.draw(window_);
+	renderTexture_.clear();
+	backdrop_.draw(renderTexture_);
 
 	//draw particles
-	window_.draw(particleSystem_);
+	renderTexture_.draw(particleSystem_);
 
 	//draw bullets
 	for (auto itr = bullets_.begin(), end = bullets_.end();
 		itr != end;
 		++itr)
 	{
-		window_.draw(**itr);
+		renderTexture_.draw(**itr);
 	}
 
 	//draw ships
@@ -582,8 +573,8 @@ void Game::draw() {
 		itr != end;
 		++itr)
 	{
-		window_.draw(**itr);
-		window_.draw((*itr)->debug_rect_);
+		renderTexture_.draw(**itr);
+		renderTexture_.draw((*itr)->debug_rect_);
 	}
 
 	//draw pickups
@@ -591,11 +582,8 @@ void Game::draw() {
 	itr != end;
 		++itr)
 	{
-		window_.draw(**itr);
+		renderTexture_.draw(**itr);
 	}
-
-	camera_.drawHUD();
-	camera_.drawRadar(ships_, sf::Vector2f(0, 0), 100);
 
 	//Draw game bounds
 	sf::RectangleShape boundsR(sf::Vector2f(gameBounds_.width * 2, gameBounds_.height * 2));
@@ -604,8 +592,15 @@ void Game::draw() {
 	boundsR.setFillColor(sf::Color(255, 000, 000, 000));
 	boundsR.setOutlineColor(sf::Color(255, 128, 064, 128));
 	boundsR.setOutlineThickness(-1);
-	window_.draw(boundsR);
+	renderTexture_.draw(boundsR);
 
+	renderTexture_.display();
+
+	window_.clear();
+	window_.setView(camera_);
+	window_.draw(renderSprite_);
+	camera_.drawHUD();
+	camera_.drawRadar(ships_, sf::Vector2f(0, 0), 100);
 	window_.display();
 }
 #pragma endregion

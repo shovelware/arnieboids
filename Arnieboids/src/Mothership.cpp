@@ -53,12 +53,15 @@ void Mothership::update() {
 	}
 
 	sf::Vector2f flockPoint;
+	auto const targetDisplacement = target_
+		? target_->getShortestDisplacement(getPosition())
+		: sf::Vector2f();
 
 	//wander or evade
-	switch (calculateState())
+	switch (calculateState(targetDisplacement))
 	{
 	case EVADE:
-		turnToward(evade());
+		turnToward(evade(targetDisplacement));
 		if (trigger())
 			fire();
 		break;
@@ -102,31 +105,23 @@ void Mothership::updateParticleEmitter() {
 	particleEmitter_.setParticleScale(sf::Vector2f(0.25f, 0.25f));
 }
 
-Mothership::State Mothership::calculateState() const {
-	if (target_)
-	{
-		sf::Vector2f displacement = target_->getPosition() - this->getPosition();
-		if (thor::length(displacement) <= 300)
-		{
-			return EVADE;
-		}
-	}
-
-	return WANDER;
+Mothership::State Mothership::calculateState(sf::Vector2f const &displacementFromTarget) const {
+	return (target_ && thor::length(displacementFromTarget) <= 300)
+		? EVADE
+		: WANDER;
 }
 
-sf::Vector2f Mothership::evade() const {
+sf::Vector2f Mothership::evade(sf::Vector2f const &displacementFromTarget) const {
 	static float desiredSeparation = 1000;
 
 	sf::Vector2f steer(0, 0);
 
 	//Avoid colliding with target_
-	sf::Vector2f diff = this->getPosition() - target_->getPosition();
-	float distance = thor::length(diff);
+	float distance = thor::length(displacementFromTarget);
 	if (distance < desiredSeparation) {
-		diff = thor::unitVector(diff);
-		diff /= distance;
-		steer += diff;
+		auto dir = thor::unitVector(displacementFromTarget);
+		dir /= distance;
+		steer += dir;
 	}
 
 	if (thor::length(steer) > 0)
