@@ -1,5 +1,7 @@
 #include <include/Ship.hpp>
 
+sf::FloatRect Ship::gameBounds_ = sf::FloatRect();
+
 // returns sin(theta)*length(a)*length(b), where theta = the angle between vectors a,b
 inline float perpDot(const sf::Vector2f& a, const sf::Vector2f& b)
 {
@@ -158,6 +160,44 @@ sf::Vector2f Ship::getVelocity() const
 	return velocity_;
 }
 
+sf::Vector2f Ship::getClosestPosition(sf::Vector2f const &point) const
+{
+	auto& const absolutePosition = getPosition();
+	
+	sf::Vector2f shortestXTranslation;
+	if (point.x > absolutePosition.x) {
+		shortestXTranslation = absolutePosition + sf::Vector2f(gameBounds_.width, 0.f);
+	}
+	else {
+		shortestXTranslation = absolutePosition - sf::Vector2f(gameBounds_.width, 0.f);
+	}
+
+
+	sf::Vector2f shortestYTranslation;
+	if (point.y > absolutePosition.y) {
+		shortestYTranslation = absolutePosition + sf::Vector2f(0.f, gameBounds_.height);
+	}
+	else {
+		shortestYTranslation = absolutePosition - sf::Vector2f(0.f, gameBounds_.height);
+	}
+
+	auto closestPosition = absolutePosition;
+	auto const absoluteDistance = thor::length(point - absolutePosition);
+	if (thor::length(point - shortestXTranslation) < absoluteDistance) {
+		closestPosition.x = shortestXTranslation.x;
+	}
+	if (thor::length(point - shortestYTranslation) < absoluteDistance) {
+		closestPosition.y = shortestYTranslation.y;
+	}
+
+	return closestPosition;
+}
+
+sf::Vector2f Ship::getShortestDisplacement(sf::Vector2f const & point) const
+{
+	return getClosestPosition(point) - point;
+}
+
 void Ship::setRadarRange(float range)
 {
 	radarRange_ = range;
@@ -187,6 +227,11 @@ void Ship::addHealth(unsigned int health)
 unsigned int Ship::getMaxHealth() const
 {
 	return MAX_HEALTH_;
+}
+
+void Ship::setGameBounds(sf::FloatRect const & gameBounds)
+{
+	gameBounds_ = gameBounds;
 }
 
 float Ship::tickToSec(unsigned int ticks) const

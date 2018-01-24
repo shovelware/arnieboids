@@ -68,7 +68,7 @@ void SwarmBoid::swarm() {
 	int count = 0;
 	for (SwarmBoid* boid : swarm_)
 	{
-		if (thor::length(boid->getPosition() - this->getPosition()) <= swarmThresholdRadius_) {
+		if (thor::length(boid->getShortestDisplacement(getPosition())) <= swarmThresholdRadius_) {
 			sum += LenardJonesPotential(boid, count);
 		}
 	}
@@ -111,12 +111,12 @@ sf::Vector2f SwarmBoid::LenardJonesPotential(const Ship* const other, int& count
 	sf::Vector2f R;
 	float D, U;
 
-	R = this->getPosition() - other->getPosition();
+	R = other->getShortestDisplacement(getPosition());
 	D = thor::length(R);
 
 	//if swarming toward target and distance to target is too far away for kamikaze...
 	if (other == swarmTarget_ && D > 100 && D < 600){
-		R = getPosition() - extrapolate(other->getPosition(), other->getForward(), thor::length(other->getVelocity()) * D);
+		R = getPosition() - extrapolate(other->getClosestPosition(getPosition()), other->getForward(), thor::length(other->getVelocity()) * D);
 		D = thor::length(R);
 	}
 

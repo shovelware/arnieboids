@@ -49,6 +49,9 @@ private:
 	//! Window that everything will be drawn to
 	sf::RenderWindow& window_;
 
+	sf::RenderTexture renderTexture_;
+	sf::Sprite renderSprite_;
+
 	//! Game bounds
 	sf::FloatRect gameBounds_;
 

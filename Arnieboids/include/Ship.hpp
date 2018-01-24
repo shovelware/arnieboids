@@ -54,6 +54,11 @@ public:
 	//! Returns velocity
 	sf::Vector2f getVelocity() const;
 
+	//! Gets the closest position to a point accounting for world-wrap
+	sf::Vector2f getClosestPosition(sf::Vector2f const &point) const;
+	//! Gets the shortest vector from the given point to us, even if it wraps world bounds.
+	sf::Vector2f getShortestDisplacement(sf::Vector2f const &point) const;
+
 	//! Radar radius accessors
 	void setRadarRange(float range);
 	float getRadarRange() const;
@@ -63,7 +68,11 @@ public:
 	void addHealth(unsigned int health);
 	unsigned int getMaxHealth() const;
 
+	static void setGameBounds(sf::FloatRect const &gameBounds);
+
 protected:
+	static sf::FloatRect gameBounds_;
+
 	//! Maximum length of velocity vector
 	const float MAX_SPEED_;
 

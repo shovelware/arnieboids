@@ -61,16 +61,16 @@ private:
 		EVADE
 	};
 	/*
-	 * \brief Calculates the state of the Mothership: WADNER or EVADE, depending on the distane to the target.
+	 * \brief Calculates the state of the Mothership: WADNER or EVADE, depending on the distance to the target.
 	 * \returns EVADE if the target is closer than 300 pixels, WANDER otherwise.
 	 */
-	State calculateState() const;
+	State calculateState(sf::Vector2f const &displacementFromTarget) const;
 
 	/*
 	 * \brief Calculates where to go to get away from target_
 	 * \returns A vector that will lead the ship away from target_
 	 */
-	sf::Vector2f evade() const;
+	sf::Vector2f evade(sf::Vector2f const &displacementFromTarget) const;
 
 	/*
 	 * \brief Picks a random location ahead of the ship (within a specified angle and distance).
