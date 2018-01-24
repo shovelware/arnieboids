@@ -203,7 +203,7 @@ void Camera::drawText(std::string info, sf::Vector2f pos = sf::Vector2f(0, 0), s
 	{
 		text_.setString(info);
 		text_.setPosition(pos);
-		text_.setColor(color);
+		text_.setFillColor(color);
 		rentrg_.draw(text_);
 	}
 }

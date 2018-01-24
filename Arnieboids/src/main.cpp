@@ -23,7 +23,7 @@
 
 int main()
 {
-	sf::RenderWindow window = sf::RenderWindow(sf::VideoMode(800u, 800u), L"ArnieBoids", sf::Style::Titlebar, sf::ContextSettings(0u, 0u, 8u));	//8x antialiasing
+	sf::RenderWindow window(sf::VideoMode(800u, 800u), L"ArnieBoids", sf::Style::Titlebar, sf::ContextSettings(0u, 0u, 8u));	//8x antialiasing
 
 	std::unique_ptr<Game> game;
 

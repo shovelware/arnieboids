@@ -19,13 +19,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -60,7 +60,8 @@
     </Link>
     <PostBuildEvent>
       <Command>xcopy $(THOR)\bin\thor-d.dll $(TargetDir) /Y /D /C
-xcopy $(SFML)\bin\*-d-2.dll $(TargetDir) /Y /D</Command>
+xcopy $(SFML)\bin\*-d-2.dll $(TargetDir) /Y /D
+xcopy "$(SFML)\bin\openal32.dll" "$(TargetDir)" /Y /D</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Copy sfml and thor dlls into target directory. Update Doxygen documentation</Message>
