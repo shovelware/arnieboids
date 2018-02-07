@@ -33,10 +33,6 @@ particleAngleVariance_(15.f)
 	particleEmitter_.setEmissionRate(20.f);
 	particleEmitter_.setParticleRotationSpeed(thor::Distributions::uniform(-100.f, 100.f));
 	particleEmitter_.setParticleScale(sf::Vector2f(0.2f, 0.2f));
-
-	debug_rect_ = sf::RectangleShape(sf::Vector2f(1, 1));
-	debug_rect_.setOutlineColor(sf::Color::Magenta);
-	debug_rect_.setOutlineThickness(0.1f);
 }
 
 Ship::~Ship() {
@@ -57,8 +53,6 @@ void Ship::update()
 
 	accel_.x = 0;
 	accel_.y = 0;
-
-	debug_rect_.setPosition(getPosition() - sf::Vector2f(0.5f, 0.5f));
 }
 
 void Ship::takeDamage(unsigned amount) {
@@ -81,6 +75,51 @@ void Ship::clampToMaxSpeed() {
 	{
 		velocity_ = thor::unitVector(velocity_);
 		velocity_ *= MAX_SPEED_;
+	}
+}
+
+void Ship::draw(sf::RenderTarget &target, sf::RenderStates states) const
+{
+	target.draw(static_cast<sf::ConvexShape>(*this));
+
+	const sf::FloatRect bounds(getGlobalBounds());
+
+	// Remember! gameBounds_ width/height is actually right/bottom. No need to add to get these.
+	sf::Vector2f offset;
+	if (bounds.top < gameBounds_.top)
+	{
+		// draw at bottom
+		offset.y = gameBounds_.height * 2;
+	}
+	else if (bounds.top+bounds.height > gameBounds_.height)
+	{
+		// draw at top
+		offset.y = -gameBounds_.height * 2;
+	}
+
+	if (bounds.left < gameBounds_.left)
+	{
+		// draw at right
+		offset.x = gameBounds_.width * 2;
+	}
+	else if (bounds.left+bounds.width > gameBounds_.width)
+	{
+		// draw at left
+		offset.x = -gameBounds_.width * 2;
+	}
+
+	if (0.f != offset.x || 0.f != offset.y)
+	{
+		sf::ConvexShape ghost(*this);
+		ghost.move(offset);
+		target.draw(ghost);
+		if (0.f != offset.x && 0.f != offset.y)
+		{
+			ghost.move(-offset.x, 0.f);
+			target.draw(ghost);
+			ghost.move(offset.x, -offset.y);
+			target.draw(ghost);
+		}
 	}
 }
 
@@ -163,22 +202,23 @@ sf::Vector2f Ship::getVelocity() const
 sf::Vector2f Ship::getClosestPosition(sf::Vector2f const &point) const
 {
 	auto& const absolutePosition = getPosition();
+	sf::Vector2f const playableArea(gameBounds_.width*2.f, gameBounds_.height*2.f);
 	
 	sf::Vector2f shortestXTranslation;
 	if (point.x > absolutePosition.x) {
-		shortestXTranslation = absolutePosition + sf::Vector2f(gameBounds_.width, 0.f);
+		shortestXTranslation = absolutePosition + sf::Vector2f(playableArea.x, 0.f);
 	}
 	else {
-		shortestXTranslation = absolutePosition - sf::Vector2f(gameBounds_.width, 0.f);
+		shortestXTranslation = absolutePosition - sf::Vector2f(playableArea.x, 0.f);
 	}
 
 
 	sf::Vector2f shortestYTranslation;
 	if (point.y > absolutePosition.y) {
-		shortestYTranslation = absolutePosition + sf::Vector2f(0.f, gameBounds_.height);
+		shortestYTranslation = absolutePosition + sf::Vector2f(0.f, playableArea.y);
 	}
 	else {
-		shortestYTranslation = absolutePosition - sf::Vector2f(0.f, gameBounds_.height);
+		shortestYTranslation = absolutePosition - sf::Vector2f(0.f, playableArea.y);
 	}
 
 	auto closestPosition = absolutePosition;

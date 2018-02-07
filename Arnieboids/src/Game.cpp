@@ -67,7 +67,7 @@ backdrop_(sf::Vector2f(window.getSize()) * 3.f)
 	bgMusic_.openFromFile("./sound/music.ogg");
 	bgMusic_.setLoop(true);
 	bgMusic_.setVolume(50.f);
-	bgMusic_.play();
+	//bgMusic_.play();
 
 	reset();
 }
@@ -122,42 +122,23 @@ int Game::run() {
 #pragma region PrivateMemberFunctions
 void Game::wrap(sf::ConvexShape * cs)
 {
-	sf::Vector2f curPos = cs->getPosition();
-	sf::Vector2f newPos = curPos;
-
-	//X check
-	if (curPos.x < gameBounds_.left || curPos.x > gameBounds_.width)
+	sf::Vector2f const pos = cs->getPosition();
+	if (pos.y < gameBounds_.top)
 	{
-		//Wrap
-		newPos.x *= -1;
-
-		//Double check in case we're wrapped outside
-		if (newPos.x < gameBounds_.left || newPos.x > gameBounds_.width)
-		{
-			int sign = (0 < newPos.x) - (newPos.x < 0);
-			newPos.x = (gameBounds_.width - 10) * sign;
-		}
+		cs->move(0.f, gameBounds_.height*2.f);
 	}
-
-	//Y check
-	if (curPos.y < gameBounds_.top|| curPos.y > gameBounds_.height)
+	else if (pos.y > gameBounds_.height)
 	{
-		//Wrap
-		newPos.y *= -1;
-
-		//Double check in case we're wrapped outside
-		if (newPos.y < gameBounds_.top || newPos.y > gameBounds_.height)
-		{
-			int sign = (0 < newPos.y) - (newPos.y < 0);
-			newPos.y = (gameBounds_.height- 10) * sign;
-		}
+		cs->move(0.f, -gameBounds_.height*2.f);
 	}
-
-	if (curPos != newPos)
+	else if (pos.x < gameBounds_.left)
 	{
-		cs->setPosition(newPos);
+		cs->move(gameBounds_.width*2.f, 0.f);
 	}
-
+	else if (pos.x > gameBounds_.width)
+	{
+		cs->move(-gameBounds_.width*2.f, 0.f);
+	}
 }
 
 void Game::playerDeath()
@@ -574,7 +555,6 @@ void Game::draw() {
 		++itr)
 	{
 		renderTexture_.draw(**itr);
-		renderTexture_.draw((*itr)->debug_rect_);
 	}
 
 	//draw pickups
@@ -585,6 +565,7 @@ void Game::draw() {
 		renderTexture_.draw(**itr);
 	}
 
+#ifdef _DEBUG
 	//Draw game bounds
 	sf::RectangleShape boundsR(sf::Vector2f(gameBounds_.width * 2, gameBounds_.height * 2));
 	boundsR.setOrigin(gameBounds_.width, gameBounds_.height);
@@ -593,6 +574,7 @@ void Game::draw() {
 	boundsR.setOutlineColor(sf::Color(255, 128, 064, 128));
 	boundsR.setOutlineThickness(-1);
 	renderTexture_.draw(boundsR);
+#endif
 
 	renderTexture_.display();
 

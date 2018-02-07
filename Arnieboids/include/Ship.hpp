@@ -14,7 +14,6 @@
  */
 class Ship : public sf::ConvexShape {
 public:
-	sf::RectangleShape debug_rect_;
 	Ship(thor::ParticleSystem &particleSystem, sf::Vector2f const &position, float maxSpeed, unsigned int health = 1u);
 	~Ship();
 
@@ -102,6 +101,8 @@ protected:
 
 	//! Clamps the length of the velocity_ vector to MAX_SPEED_
 	void clampToMaxSpeed();
+
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	//! Ship's radar radius
 	float radarRange_;
