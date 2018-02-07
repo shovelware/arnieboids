@@ -92,8 +92,8 @@ sf::Vector2f Predator::separation() const {
 	}//end for
 
 	//Avoid colliding with prey_
-		if (prey_)
-		{
+	if (prey_)
+	{
 		sf::Vector2f diff = prey_->getShortestDisplacement(getPosition());
 		float distance = thor::length(diff);
 		if (distance < desiredSeparation) {
